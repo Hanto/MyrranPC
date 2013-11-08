@@ -10,8 +10,8 @@ package Constantes;
  */
 public class MiscData 
 {
-    public final static int WINDOW_Horizontal_Resolution = 1920;
-    public final static int WINDOW_Vertical_Resolution = 1080;
+    public final static int WINDOW_Horizontal_Resolution = 1024;
+    public final static int WINDOW_Vertical_Resolution = 768;
     
     public final static int TILESIZE = 48;
     
