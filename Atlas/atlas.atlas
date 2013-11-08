@@ -5,51 +5,51 @@ filter: Nearest,Nearest
 repeat: none
 Arboles/BolaGrandeArbol2
   rotate: false
-  xy: 1, 84
+  xy: 2, 85
   size: 477, 167
   orig: 477, 167
   offset: 0, 0
   index: -1
 Arboles/BolaMedianaArbol2
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 282, 81
   orig: 282, 81
   offset: 0, 0
   index: -1
-Arboles/Hojas1
-  rotate: false
-  xy: 480, 74
-  size: 111, 177
-  orig: 111, 177
-  offset: 0, 0
-  index: -1
-Arboles/Tronco2
-  rotate: false
-  xy: 593, 78
-  size: 64, 173
-  orig: 64, 173
-  offset: 0, 0
-  index: -1
-Arboles/Tronco1
-  rotate: false
-  xy: 659, 45
-  size: 48, 206
-  orig: 48, 206
-  offset: 0, 0
-  index: -1
 Arboles/Bolapequeñaarbol2
   rotate: false
-  xy: 285, 25
+  xy: 286, 26
   size: 162, 57
   orig: 162, 57
   offset: 0, 0
   index: -1
+Arboles/Hojas1
+  rotate: false
+  xy: 481, 75
+  size: 111, 177
+  orig: 111, 177
+  offset: 0, 0
+  index: -1
 Arboles/SombraArbol1
   rotate: false
-  xy: 709, 213
+  xy: 710, 214
   size: 116, 38
   orig: 116, 38
+  offset: 0, 0
+  index: -1
+Arboles/Tronco1
+  rotate: false
+  xy: 660, 46
+  size: 48, 206
+  orig: 48, 206
+  offset: 0, 0
+  index: -1
+Arboles/Tronco2
+  rotate: false
+  xy: 594, 79
+  size: 64, 173
+  orig: 64, 173
   offset: 0, 0
   index: -1
 
@@ -59,42 +59,42 @@ filter: Nearest,Nearest
 repeat: none
 Armaduras/Botas1
   rotate: false
-  xy: 1, 581
+  xy: 2, 582
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Armaduras/Desnudo
   rotate: false
-  xy: 435, 581
+  xy: 436, 582
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Armaduras/Guantes1
   rotate: false
-  xy: 1, 291
+  xy: 2, 292
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Armaduras/Hombreras1
   rotate: false
-  xy: 435, 291
+  xy: 436, 292
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Armaduras/Pantalones1
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Armaduras/Peto1
   rotate: false
-  xy: 435, 1
+  xy: 436, 2
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
@@ -106,7 +106,7 @@ filter: Nearest,Nearest
 repeat: none
 Armaduras/CapaFrontal1
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 864, 576
   orig: 864, 576
   offset: 0, 0
@@ -118,7 +118,7 @@ filter: Nearest,Nearest
 repeat: none
 Armaduras/CapaTrasera1
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 864, 576
   orig: 864, 576
   offset: 0, 0
@@ -130,7 +130,7 @@ filter: Nearest,Nearest
 repeat: none
 Armaduras/Casco1
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 864, 576
   orig: 864, 576
   offset: 0, 0
@@ -142,21 +142,21 @@ filter: Nearest,Nearest
 repeat: none
 NPC Sprites/GlowingSpectre
   rotate: false
-  xy: 1, 261
+  xy: 2, 262
   size: 96, 128
   orig: 96, 128
   offset: 0, 0
   index: -1
 NPC Sprites/GrimReaper
   rotate: false
-  xy: 1, 131
+  xy: 2, 132
   size: 96, 128
   orig: 96, 128
   offset: 0, 0
   index: -1
 NPC Sprites/Momia
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 96, 128
   orig: 96, 128
   offset: 0, 0
@@ -168,42 +168,42 @@ filter: Nearest,Nearest
 repeat: none
 Player Sprites/Cabeza1
   rotate: false
-  xy: 1, 549
+  xy: 2, 550
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Cabeza2
   rotate: false
-  xy: 1, 259
+  xy: 2, 260
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Humano1
   rotate: false
-  xy: 435, 549
+  xy: 436, 550
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
-Player Sprites/Player
-  rotate: false
-  xy: 1, 1
-  size: 384, 256
-  orig: 384, 256
-  offset: 0, 0
-  index: -1
 Player Sprites/Humo
   rotate: false
-  xy: 435, 496
+  xy: 436, 497
   size: 51, 51
   orig: 51, 51
   offset: 0, 0
   index: -1
+Player Sprites/Player
+  rotate: false
+  xy: 2, 2
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
 Player Sprites/Sombra
   rotate: false
-  xy: 869, 826
+  xy: 870, 827
   size: 31, 11
   orig: 31, 11
   offset: 0, 0
@@ -215,49 +215,49 @@ filter: Nearest,Nearest
 repeat: none
 Spell Icons/Editar
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/Espectro
   rotate: false
-  xy: 35, 1
+  xy: 36, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/FireBall
   rotate: false
-  xy: 69, 1
+  xy: 70, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/IceBall
   rotate: false
-  xy: 103, 1
+  xy: 104, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/Plantar
   rotate: false
-  xy: 137, 1
+  xy: 138, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/PoisonBolt
   rotate: false
-  xy: 171, 1
+  xy: 172, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/Renew
   rotate: false
-  xy: 205, 1
+  xy: 206, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -267,39 +267,39 @@ atlas9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Spell Sprites/Fireball
+  rotate: false
+  xy: 388, 492
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
 Spell Sprites/SpellBalls_01n
   rotate: false
-  xy: 1, 517
+  xy: 2, 518
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_02n
   rotate: false
-  xy: 1, 259
+  xy: 2, 260
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_03n
   rotate: false
-  xy: 387, 517
+  xy: 388, 518
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_04n
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 384, 256
   orig: 384, 256
-  offset: 0, 0
-  index: -1
-Spell Sprites/Fireball
-  rotate: false
-  xy: 387, 491
-  size: 72, 24
-  orig: 72, 24
   offset: 0, 0
   index: -1
 
@@ -309,21 +309,21 @@ filter: Nearest,Nearest
 repeat: none
 Terrenos/Cesped
   rotate: false
-  xy: 1, 51
+  xy: 2, 52
   size: 144, 192
   orig: 144, 192
   offset: 0, 0
   index: -1
 Terrenos/Suelo
   rotate: false
-  xy: 1, 1
+  xy: 2, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Suelo2
   rotate: false
-  xy: 147, 195
+  xy: 148, 196
   size: 48, 48
   orig: 48, 48
   offset: 0, 0

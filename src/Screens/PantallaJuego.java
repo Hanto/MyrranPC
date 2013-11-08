@@ -21,13 +21,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import static Main.Mundo.player;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.graphics.glutils.PixmapTextureData;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * @author Ivan Delgado Huerta
@@ -35,28 +28,29 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class PantallaJuego extends PantallaAbstract
 {
-    public static final Stage stageMundo = new Stage (0,0, true);
+    public static Stage stageMundo;
     private static RayHandler rayHandler;
     private static World world;
     
-    private TiledMap map;;
+    private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
     
     private TextureRegion pruebaTron;
     private TextureRegion pruebaSom;
     private TextureRegion prueba3;
     
-    
+    //CONSTRUCTOR:
     public PantallaJuego (Myrran game)
     {
         super (game);
         
+        stageMundo = new Stage (0,0, true);
         world = new World (new Vector2 (0, -9.8f), false);
         RayHandler.useDiffuseLight(true);
-        rayHandler = new RayHandler (world);
-        rayHandler.setCombinedMatrix(camara.combined);
-        rayHandler.setAmbientLight(1f);
-        new PointLight(rayHandler, 10000, new Color(1,1,1,0.7f), 1000, 0, 0);
+        //rayHandler = new RayHandler (world);
+        //rayHandler.setCombinedMatrix(camara.combined);
+        //rayHandler.setAmbientLight(1f);
+        //new PointLight(rayHandler, 10000, new Color(1,1,1,0.7f), 1000, 0, 0);
         
         Recursos.crearRecursos();
         crearTileMap ();
@@ -97,10 +91,6 @@ public class PantallaJuego extends PantallaAbstract
         PixieArbol parbol3 = new PixieArbol(parbol);
         parbol3.setPosition(160, 40);
         stageMundo.addActor(parbol3);
-        
-        
-        
-        
     }
     
     @Override
@@ -177,7 +167,7 @@ public class PantallaJuego extends PantallaAbstract
         aTileArray.add(tile);
         
         AnimatedTiledMapTile aTile = new AnimatedTiledMapTile(1, aTileArray);
-        aTile.setAnimationTime(1f);
+        //aTile.setAnimationTime(1f);
         
         TiledMapTileLayer layer = new TiledMapTileLayer (200, 200, 48, 48);
         for (int x = 0; x < 200; x++)

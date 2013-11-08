@@ -20,8 +20,8 @@ public abstract class PantallaAbstract implements Screen
     protected final Myrran game;
     protected final SpriteBatch batch;
     protected final ShapeRenderer shape;
-    public static OrthographicCamera camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());  //la OrthographicCamera se encarga de hacer la conversion entre las distancias de juego y los pixeles de pantalla
     protected final Stage stageUI;
+    public static OrthographicCamera camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());  //la OrthographicCamera se encarga de hacer la conversion entre las distancias de juego y los pixeles de pantalla
     
     public String getNombrePantalla()           { return getClass().getSimpleName(); }
     

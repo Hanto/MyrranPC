@@ -35,9 +35,13 @@ public class Myrran extends Game
     
     public static void inicializarLibGDX ()
     {
+        //Hay que poner esto si no el OpenAL explota si el usuario del sistema tiene acentos (Bug Estupido de las librerias)
+        System.setProperty("user.name","Myrran");
+        
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Myrran";
-        cfg.vSyncEnabled = true;
+        cfg.vSyncEnabled = false;
+        cfg.foregroundFPS = 5000;
         cfg.useGL20 = true;
         cfg.width = MiscData.WINDOW_Horizontal_Resolution;
         cfg.height = MiscData.WINDOW_Vertical_Resolution;
