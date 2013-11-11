@@ -21,6 +21,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import static Main.Mundo.player;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import java.util.Comparator;
 
 /**
  * @author Ivan Delgado Huerta
@@ -38,6 +40,13 @@ public class PantallaJuego extends PantallaAbstract
     private TextureRegion pruebaTron;
     private TextureRegion pruebaSom;
     private TextureRegion prueba3;
+    
+    static class ComparatorActor implements Comparator<Actor>
+    {
+        @Override
+        public int compare(Actor o1, Actor o2) 
+        { return (o1.getY() <= o2.getY() ? 1 : -1); }
+    }
     
     //CONSTRUCTOR:
     public PantallaJuego (Myrran game)
@@ -91,6 +100,8 @@ public class PantallaJuego extends PantallaAbstract
         PixieArbol parbol3 = new PixieArbol(parbol);
         parbol3.setPosition(160, 40);
         stageMundo.addActor(parbol3);
+        
+        stageMundo.addActor(player.getPixie());
     }
     
     @Override
@@ -100,18 +111,17 @@ public class PantallaJuego extends PantallaAbstract
     
         //pruebaTron= new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
         
-        pruebaSom = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Sombra"));
-               
-        
+        pruebaSom = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Sombra"));      
         //pruebaTron.getTexture().draw(pam, 0, 0);
-        
     }
     
     @Override
     public void render (float delta)
     {
-        super.render(delta);
+        stageMundo.getActors().sort(new ComparatorActor());
         
+        super.render(delta);
+                
         camara.position.x = player.getX();
         camara.position.y = player.getY();
         stageMundo.setCamera(camara);
@@ -124,7 +134,7 @@ public class PantallaJuego extends PantallaAbstract
         batch.begin();
           
         
-        player.getGroupPixie().draw(batch, 1);
+        //player.getGroupPixie().draw(batch, 1);
         
         batch.end();
         
