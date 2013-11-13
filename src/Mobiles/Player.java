@@ -5,8 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 
-
-
 /**
  * @author Ivan Delgado Huerta
  */
@@ -20,84 +18,71 @@ public class Player extends PC
     protected int teclaIzquierda = Keys.A;
     protected int teclaDerecha = Keys.D;
     
-    //Constructor, que crea un hilo independiente para controlar al Jugador
+    //CONSTRUCTOR:
     public Player (final int numRaza)
     {
-        super (numRaza);
-        new Thread ( new Runnable ()
-        {
-            @Override
-            public void run() 
-            {   
-                inicializar(numRaza);
-                while (true) 
-                {
-                    actualizar();
-                    try {Thread.sleep(MiscData.MOB_REFRESH_RATE);} 
-                    catch (InterruptedException e) {return;}
-                }
-            }
-        }).start();
+        super(numRaza);
+        inicializar (numRaza);
     }
-    
-    public void inicializar (int numRaza)
+        
+    private void inicializar (int numRaza)
     {
-        velocidadMax = 1.0;
+        velocidadMax = 50.0;
         pixie.setPosition(0, 0);
         pixie.setUsarCoordenadasCamara(true);
     }
     
-    public void moverse ()
+    public void moverse (float delta)
     {       
         if (Gdx.input.isKeyPressed(teclaAbajo) && !Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaIzquierda))      
         {   //Sur
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(90d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(90d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(7, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaIzquierda))
         {   //Norte
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(270d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(270d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(1, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaAbajo))       
         {   //Este
-            X=  (float)(X+ (Math.cos(Math.toRadians(0d))*velocidadMax)*velocidadMod);
+            X=  (float)(X+ (Math.cos(Math.toRadians(0d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(5, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaIzquierda) && !Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaAbajo))       
         {   //Oeste
-            X=  (float)(X+ (Math.cos(Math.toRadians(180d))*velocidadMax)*velocidadMod);
+            X=  (float)(X+ (Math.cos(Math.toRadians(180d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(3, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaAbajo) && Gdx.input.isKeyPressed(teclaIzquierda))   
         {   //SurOeste
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(135d))*velocidadMax)*velocidadMod);
-            X=  (float)(X+ (Math.cos(Math.toRadians(135d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta);
+            X=  (float)(X+ (Math.cos(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(6, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaAbajo) && Gdx.input.isKeyPressed(teclaDerecha))   
         {   //SurEste
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(45d))*velocidadMax)*velocidadMod);
-            X=  (float)(X+ (Math.cos(Math.toRadians(45d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta);
+            X=  (float)(X+ (Math.cos(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(8, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaArriba) && Gdx.input.isKeyPressed(teclaIzquierda))   
         {   //NorOeste
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(225d))*velocidadMax)*velocidadMod);
-            X=  (float)(X+ (Math.cos(Math.toRadians(225d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta);
+            X=  (float)(X+ (Math.cos(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(0, false);
             pixie.setPosition(X, Y);
         }
         else if (Gdx.input.isKeyPressed(teclaArriba) && Gdx.input.isKeyPressed(teclaDerecha))   
         {   //NorEste
-            Y=  (float)(Y+ -(Math.sin(Math.toRadians(315d))*velocidadMax)*velocidadMod);
-            X=  (float)(X+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod);
+            Y=  (float)(Y+ -(Math.sin(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta);
+            X=  (float)(X+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta);
             pixie.setAnimacion(2, false);
             pixie.setPosition(X, Y);
         }       
@@ -129,10 +114,10 @@ public class Player extends PC
         }
     }
     
-    public void actualizar ()
+    public void actualizar (float delta)
     {
         castear ();
-        if (!isCasteando) moverse();
+        if (!isCasteando) moverse(delta);
     }
     
 }
