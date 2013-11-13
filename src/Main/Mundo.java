@@ -14,6 +14,17 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Mundo 
 {
-    public static Array<Terreno> listaDeTerrenos = new Array<Terreno>();
     public static Player player;
+    
+    public static Array<Terreno> listaDeTerrenos = new Array<>();
+    public static Array<Player> listaDePlayers = new Array<>();
+    
+    public static void actualizarPlayers (float delta)
+    {
+        for (int i=0; i<listaDePlayers.size; i++)
+        {
+            listaDePlayers.get(i).actualizar(delta);
+        }
+    }
+    
 }
