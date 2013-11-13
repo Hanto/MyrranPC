@@ -3,12 +3,10 @@ package Screens;
 import Constantes.MiscData;
 import Graphics.PixieArbol;
 import Graphics.Recursos;
+import Main.Mundo;
 import Main.Myrran;
 import Mobiles.Player;
-import box2dLight.PointLight;
-import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -21,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import static Main.Mundo.player;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.Comparator;
 
@@ -65,7 +64,8 @@ public class PantallaJuego extends PantallaAbstract
         crearTileMap ();
         
         player = new Player (0);
-        
+        Mundo.listaDePlayers.add(player);
+                
         //player.getGroupPixie().scale(4);
         
         player.getPixie().setCuerpo(0);
@@ -118,6 +118,8 @@ public class PantallaJuego extends PantallaAbstract
     @Override
     public void render (float delta)
     {
+        Mundo.actualizarPlayers(delta);
+                
         stageMundo.getActors().sort(new ComparatorActor());
         
         super.render(delta);
