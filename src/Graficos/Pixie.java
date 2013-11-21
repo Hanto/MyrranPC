@@ -1,21 +1,15 @@
-package Graphics;
-
+package Graficos;
 import Constantes.MiscData;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import static Screens.PantallaJuego.camara;
-import com.badlogic.gdx.graphics.Color;
-
-/**
- * @author Ivan Delgado Huerta
- */
-
+import com.badlogic.gdx.scenes.scene2d.Group;
+//@author Ivan Delgado Huerta
 //La clase Pixie es un Sprite animado, pero puede usarse para dibujar imagenes estaticas tambien
-public class Pixie extends Actor
+public class Pixie extends Group
 {
     private TextureRegion[][] frames;           //lista con las distintas animaciones, hay una fila para cada una de las posibibles animaciones, y en cada una de ellas, en las numCols estan todos los frames de dichas animaciones
     private TextureRegion frameActual;          //Textura del frame actual
@@ -28,19 +22,14 @@ public class Pixie extends Actor
     private boolean isLooping = true;           //por si queremos que la animation se repita indefinidamente
     private boolean isAnimado = true;           //para cuando tratemos con texturas sin animacion
     private boolean isPausado = false;          //por si queremos pausar la animacion
-    
-    private boolean usarCoordenasCamara = false; //Hay veces que la camara sigue al Pixie, y como desde que la camara pilla las coordenadas del pixie hasta que se dibuja el pixie pasa un rato, suele suceder que la posicion de este ultimo se
-                                                //actualiza, desincronizandose y produciendose el efecto parpadeo, para evitar esto, mientras se dibuja el frame actual y solo para el Pixie que esta siendo seguido por la camara hay que usar
-                                                //las coordenadas tomadas en el momento de empezar a dibujar el frame (en este caso las coordenadas X,Y de la camara). Para cumplir con este cometido usamos este booleano que se encargara de coger
-                                                //las coordenadas de la camara en lugar de las del pixie en caso de ser verdadero
+    public boolean ininterrumpible = false;     //Si queremos que una animacion se vea completa ininterrumpidamente activamos este booleano. Ninguna otra animacion puede interrumpirla hasta que no acabe.
+    private boolean mediaAnimacion= false;      //por si no queremos que empalme el final de la animacion con el inicio haciendo bucle. (para animaciones de disparo, salto, etc...)
     
     public void resetAnimacion ()                       { stateTime = 0; }
     public void setPausa()                              { isPausado = true; }
-    public void setUsarCoordenadasCamara (Boolean b)    { usarCoordenasCamara = b; }
     public void setOffset (int X, int Y)                { Offset.set(X, Y); }
-    
+ 
     public Vector2 getOffset ()                         { return Offset; }
-    
     
     //CONSTRUCTOR PARA ANIMACIONES:
     //texture: es la textura que contiene el mapa con todas las animaciones
@@ -123,6 +112,9 @@ public class Pixie extends Actor
         isLooping = pixie.isLooping;
         isAnimado = pixie.isAnimado;
         
+        this.setHeight(pixie.getHeight());
+        this.setWidth(pixie.getWidth());
+                
         if (isAnimado)
         {   //Si es una animacion hay que copiar todos los frames
             int numFilas = pixie.frames.length;
@@ -143,7 +135,10 @@ public class Pixie extends Actor
     
     //METODOS Principales:
     public void setAnimacion (int numAnimacion)
-    {
+    {   //Si se esta mostrando una animacion Ininterrumpible, no dejamos que la nueva haga nada
+        if (ininterrumpible) return;
+        
+        mediaAnimacion = false;
         if (numAnimacion >= frames.length) { System.out.println("Animacion no existe: "+numAnimacion); }
         else 
         {
@@ -156,9 +151,26 @@ public class Pixie extends Actor
         }
     }
     
+    public void setAnimacion (int numAnimacion, boolean ininterrumpible, boolean mediaAnimacion)
+    {   //Si se esta mostrando una animacion Ininterrumpible, no dejamos que la nueva haga nada
+        if (this.ininterrumpible) return;
+        
+        setAnimacion (numAnimacion);
+        this.ininterrumpible = ininterrumpible;
+        this.mediaAnimacion = mediaAnimacion;
+    }
+    
+    public void setAnimacion (int numAnimacion, boolean forzarAnimacion, boolean ininterrumpible, boolean mediaAnimacion)
+    {
+        if (this.ininterrumpible && !forzarAnimacion) return;
+        this.ininterrumpible = false;
+        this.mediaAnimacion = false;
+        setAnimacion (numAnimacion, ininterrumpible, mediaAnimacion);
+    }
+    
     @Override
     //Sobreescribimos el metodo draw de la clase Actor, para que sepa como dibujarse a si mismo cuando lo añadamos a un Stage
-    public void draw (SpriteBatch batch, float alpha)
+    public void draw (Batch batch, float alpha)
     {   //La unica forma de modificar el Alpha es cargar el color, modificar el canal alpha, dibujar el sprite y volver a restaurar el color
         Color oldColor = batch.getColor(); 
         Color color = batch.getColor();
@@ -166,18 +178,28 @@ public class Pixie extends Actor
         batch.setColor(color);
         
         if (isAnimado)
-        {   //le añadimos al stateTime el tiempo que ha pasado desde el ultimo Render (llamado DeltaTime)
+        {   //le añadimos al stateTime el tiempo que ha pasado desde el ultimo Render (llamado DeltaTime)           
             if (!isPausado) { stateTime += Gdx.graphics.getDeltaTime(); }
-            frameActual = animation.getKeyFrame(stateTime, isLooping);
-                        
-            if (usarCoordenasCamara == true) batch.draw(frameActual, camara.position.x + Offset.x, camara.position.y + Offset.y);
-            else batch.draw(frameActual, getX() + Offset.x, getY() + Offset.y);
-        }
-        else 
-        {   
-            if (usarCoordenasCamara == true) batch.draw(frameActual, camara.position.x + Offset.x, camara.position.y + Offset.y);
-            else batch.draw(frameActual, getX() + Offset.x, getY() + Offset.x); 
-        }
+            
+            if (mediaAnimacion)
+            {   //Si no queremos mostrar la animacion de retorno debemos mostrar los (N+2)/2 frames
+                if (stateTime>duracionFrame*(frames[0].length+2)/2) 
+                {   //Como ya se ha mostrado la mitad de la animacion, si es ininterrumpible, debemos desactivarlo, para que otras animaciones puedan activarse
+                    stateTime = 0;
+                    if (ininterrumpible = true) ininterrumpible = false;
+                }
+            }
+            else
+            {   //En caso contrario, si hemos indicado que sea ininterrumpible, como ya se ha mostrado toda, debemos desactivarlo, para que otras animaciones puedan activarse
+                if (stateTime>duracionFrame*(frames[0].length) && ininterrumpible == true)
+                    ininterrumpible = false;
+            }
+            //Cargamos el frame correspondiente a nuestro stateTime:
+            frameActual = animation.getKeyFrame(stateTime, isLooping);          
+            batch.draw(frameActual, getX() + Offset.x, getY() + Offset.y);
+        } 
+        else { batch.draw(frameActual, getX() + Offset.x, getY() + Offset.x); }
+        
         batch.setColor(oldColor);
     }
 }

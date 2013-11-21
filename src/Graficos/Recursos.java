@@ -1,18 +1,15 @@
-package Graphics;
-
+package Graficos;
 import Constantes.MiscData;
+import Main.Mundo;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 import com.badlogic.gdx.utils.Array;
-
-/**
- * @author Ivan Delgado Huerta
- */
-
+//@author Ivan Delgado Huerta
 //Esta clase se encarga de generar las texturas a partir de ficheros sueltos, asi como de cargarlas en memoria
 //Todas las texturas, graficos y animaciones se guardan y se acceden desde aqui:
 public class Recursos 
@@ -20,23 +17,24 @@ public class Recursos
     public static TextureAtlas atlas;
     //Graficos de las armaduras para los jugadores, contienen los graficos de las armaduras de cada uno de esos slots en cada una de las distintas animaciones de los personajes:
     //Cada Array, contiene un Array con todas las armaduras para cada tipo de cuerpo, la posicion 0, contiene todas las armaduras del cuerpo 0 por ejemplo.
-    public static Array<ArrayPixies> listaDeRazas = new Array<ArrayPixies>();
+    public static Array<ArrayPixies> listaDeRazas = new Array<>();
     public static class ArrayPixies
     {   //Este Array contiene todas las armaduras de un solo tipo de cuerpo
-        public Array<Pixie> listaDeCuerpos = new Array<Pixie>();
-        public Array<Pixie> listaDeCabezas = new Array<Pixie>();
-        public Array<Pixie> listaDeYelmos = new Array<Pixie>();
-        public Array<Pixie> listaDePetos = new Array<Pixie>();
-        public Array<Pixie> listaDePantalones = new Array<Pixie>();
-        public Array<Pixie> listaDeGuantes = new Array<Pixie>();
-        public Array<Pixie> listaDeBotas = new Array<Pixie>();
-        public Array<Pixie> listaDeHombreras = new Array<Pixie>();
-        public Array<Pixie> listaDeCapasTraseras = new Array<Pixie>();
-        public Array<Pixie> listaDeCapasFrontales = new Array<Pixie>();
+        public Array<Pixie> listaDeCuerpos = new Array<>();
+        public Array<Pixie> listaDeCabezas = new Array<>();
+        public Array<Pixie> listaDeYelmos = new Array<>();
+        public Array<Pixie> listaDePetos = new Array<>();
+        public Array<Pixie> listaDePantalones = new Array<>();
+        public Array<Pixie> listaDeGuantes = new Array<>();
+        public Array<Pixie> listaDeBotas = new Array<>();
+        public Array<Pixie> listaDeHombreras = new Array<>();
+        public Array<Pixie> listaDeCapasTraseras = new Array<>();
+        public Array<Pixie> listaDeCapasFrontales = new Array<>();
     }
-    public static Array<Pixie> listaDeSpells = new Array<Pixie>();
+    public static Array<Pixie> listaDeSpells = new Array<>();
+    public static Array<TextureRegion> listaIconos = new Array<>();
     
-    public static Array<TroncoTemplate> listaDeTroncos = new Array<TroncoTemplate>();
+    public static Array<TroncoTemplate> listaDeTroncos = new Array<>();
     public static class TroncoTemplate
     {
         public TextureRegion textura;
@@ -44,21 +42,29 @@ public class Recursos
         public Vector2 enganche2 = new Vector2(0,0);
         public Vector2 enganche3 = new Vector2(0,0);
     }
-    public static Array<Pixie> listaDeCopas = new Array<Pixie>();
+    public static Array<Pixie> listaDeCopas = new Array<>();
        
-    public static Image sombraPlayer;
+    public static TextureRegion sombraPlayer;
+    public static TextureRegion nameplateTotal;
+    public static TextureRegion nameplateActual;
+    public static TextureRegion grid;
     
     public static Image troncon;
     public static Image hojas;
     public static Image sombraArbol1;
-        
+    public static BitmapFont font14;  
+    
     public static void crearRecursos()
     {
         crearAtlas();
-        sombraPlayer = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Sombra"));
+        sombraPlayer = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Sombra"));
+        nameplateTotal = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Nameplate"));
+        nameplateActual = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"NameplateFondo"));
         
         Recursos.añadirRaza();
-        Recursos.salvarCuerpo(0, "Humano1");
+        Recursos.salvarCuerpo(0, "Golem");
+        Recursos.salvarCuerpo(0, "Golem2");
+        Recursos.salvarCuerpo(0, "Golem3");
         
         Recursos.salvarYelmo(0, "Desnudo");
         Recursos.salvarBotas(0, "Desnudo");
@@ -86,6 +92,8 @@ public class Recursos
         Recursos.salvarCopa("BolaMedianaArbol2");
         Recursos.salvarCopa("Bolapequeñaarbol2");
         
+        Recursos.salvarIcono("FireBall");
+        Recursos.salvarIcono("Editar");
         
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball"));
         Pixie fireball = new Pixie (texture, 1, 3, 3, 0.15f, false, true);
@@ -94,6 +102,11 @@ public class Recursos
         troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
         hojas = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Hojas1"));
         sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1")); 
+        font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
+        grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
+        
+        Mundo.añadirTerreno("Cesped");
+        Mundo.añadirTerreno("Cesped2");
     }
         
     public static void crearAtlas()
@@ -108,7 +121,7 @@ public class Recursos
         ArrayPixies aPixes = new ArrayPixies();
         listaDeRazas.add(aPixes);
     }
-    
+            
     public static void salvarCuerpo (int numRaza, String nombreCuerpo)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+nombreCuerpo));
@@ -189,7 +202,11 @@ public class Recursos
         listaDeRazas.get(numRaza).listaDeCapasFrontales.add(pixieArmadura);
     }
     
-    
+    public static void salvarIcono (String nombreIcono)
+    {
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellIcons_LOC+nombreIcono));
+        listaIconos.add(texture);
+    }
     
     
     
@@ -215,5 +232,7 @@ public class Recursos
     public static void liberarRecursos ()
     {
         if (atlas != null) atlas.dispose();
+        if (Mundo.tiledMap != null) Mundo.tiledMap.dispose();
+        if (Mundo.mapRenderer != null) Mundo.mapRenderer.dispose(); 
     }
 }

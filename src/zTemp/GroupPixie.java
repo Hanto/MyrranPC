@@ -1,6 +1,7 @@
-package Graphics;
+package zTemp;
 
 import Constantes.MiscData;
+import Graficos.Pixie;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 

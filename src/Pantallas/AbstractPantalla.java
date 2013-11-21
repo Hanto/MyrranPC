@@ -1,4 +1,4 @@
-package Screens;
+package Pantallas;
 
 import Main.Myrran;
 import com.badlogic.gdx.Gdx;
@@ -15,18 +15,18 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 
 //Plantilla Screen Base sobre la que construir todas las Screens:
-public abstract class PantallaAbstract implements Screen 
+public abstract class AbstractPantalla implements Screen 
 {
     protected final Myrran game;
     protected final SpriteBatch batch;
     protected final ShapeRenderer shape;
-    protected final Stage stageUI;
+    public final Stage stageUI;
     public static OrthographicCamera camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());  //la OrthographicCamera se encarga de hacer la conversion entre las distancias de juego y los pixeles de pantalla
     
     public String getNombrePantalla()           { return getClass().getSimpleName(); }
     
     //CONSTRUCTOR:
-    public PantallaAbstract (Myrran game)
+    public AbstractPantalla (Myrran game)
     {
         this.game = game;                           //Es necesario disponer de la clase game, para poder por ejemplo cambiar de pantalla con el metodo game.navegarA(screen)
         this.batch = new SpriteBatch ();            //El SpriteBatch es el encargado de dibujar Bitmaps en pantalla, no es una variable, es un motor de dibujado, lo creamos para tenerlo listo   
@@ -51,7 +51,7 @@ public abstract class PantallaAbstract implements Screen
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
         
         stageUI.act(delta);   //para animar el Stage
-        stageUI.draw();       //para dibujar el Stage
+        //stageUI.draw();       //para dibujar el Stage
     }
 
     @Override

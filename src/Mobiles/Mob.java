@@ -1,6 +1,6 @@
 package Mobiles;
 
-import Graphics.Pixie;
+import com.badlogic.gdx.scenes.scene2d.Group;
 
 /**
  * @author Ivan Delgado Huerta
@@ -10,8 +10,8 @@ import Graphics.Pixie;
 public abstract class Mob 
 {
     //Posicion:
-    protected float X=0;                    // Coordenadas X:
-    protected float Y=0;                    // Coordenadas Y:
+    protected float x;                      // Coordenadas X:
+    protected float y;                      // Coordenadas Y:
     protected float oldPosX;                // Coordenadas X, de la ultima posicion X segura
     protected float oldPosY;                // Coordenadas Y, de la ultima posicion Y segura
     
@@ -21,17 +21,20 @@ public abstract class Mob
     protected double velocidad;             // Velocidad Actual:
     protected double direccion;             // Direccion Actual en Radianes
     
-    //Animaciones
-    protected Pixie cuerpo;                 // Pixie que contiene todos los graficos con las animaciones
+    //Actor que representa el Mobile
+    protected Group actor = new Group();
+    
+    //No tenemos metodos para alterar la posicion X,Y, ya que de estos se encargaran las clases hijo que tienen actores a su cargo
+    //puesto que dichos metodos deben alterar las coordenadas X,Y tanto de la entidad como del actor, y es mejor que este todo en un
+    //solo sitio para no olvidarnos uno del otro
     
     //SET:
-    public void setX (float x)              { X = x; }
-    public void setY (float y)              { Y = y; }
     public void setVelocidadMax (double v)  { velocidadMax = v; }
     public void setVelocidad (double v)     { velocidad = v; }
     public void setDireccion (double d)     { direccion = d; }
     
     //GET:
-    public int getX()                     { return (int)X; }
-    public int getY()                     { return (int)Y; }
+    public int getX()                       { return (int)x; }
+    public int getY()                       { return (int)y; }
+    public Group getActor()                 { return actor; }
 }

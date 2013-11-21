@@ -168,42 +168,77 @@ filter: Nearest,Nearest
 repeat: none
 Player Sprites/Cabeza1
   rotate: false
-  xy: 2, 550
+  xy: 2, 703
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Cabeza2
   rotate: false
-  xy: 2, 260
+  xy: 2, 413
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
+Player Sprites/Golem
+  rotate: false
+  xy: 436, 557
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+Player Sprites/Golem2
+  rotate: false
+  xy: 2, 9
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+Player Sprites/Golem3
+  rotate: false
+  xy: 436, 411
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
 Player Sprites/Humano1
   rotate: false
-  xy: 436, 550
+  xy: 436, 703
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Humo
   rotate: false
-  xy: 436, 497
+  xy: 870, 940
   size: 51, 51
   orig: 51, 51
   offset: 0, 0
   index: -1
-Player Sprites/Player
+Player Sprites/Nameplate
   rotate: false
   xy: 2, 2
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+Player Sprites/NameplateFondo
+  rotate: false
+  xy: 292, 148
+  size: 1, 5
+  orig: 1, 5
+  offset: 0, 0
+  index: -1
+Player Sprites/Player
+  rotate: false
+  xy: 2, 155
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Player Sprites/Sombra
   rotate: false
-  xy: 870, 827
+  xy: 726, 690
   size: 31, 11
   orig: 31, 11
   offset: 0, 0
@@ -310,8 +345,15 @@ repeat: none
 Terrenos/Cesped
   rotate: false
   xy: 2, 52
-  size: 144, 192
-  orig: 144, 192
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Cesped2
+  rotate: false
+  xy: 52, 52
+  size: 48, 72
+  orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Suelo
@@ -323,8 +365,15 @@ Terrenos/Suelo
   index: -1
 Terrenos/Suelo2
   rotate: false
-  xy: 148, 196
+  xy: 52, 2
   size: 48, 48
   orig: 48, 48
+  offset: 0, 0
+  index: -1
+Terrenos/grid
+  rotate: false
+  xy: 102, 100
+  size: 24, 24
+  orig: 24, 24
   offset: 0, 0
   index: -1

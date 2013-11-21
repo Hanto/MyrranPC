@@ -1,24 +1,28 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Constantes;
 
+import com.badlogic.gdx.graphics.Color;
+
 /**
- *
- * @author Hanto
+ * @author Ivan Delgado Huerta
  */
 public class MiscData 
 {
-    public final static int WINDOW_Horizontal_Resolution = 800;
-    public final static int WINDOW_Vertical_Resolution = 600;
+    public final static int WINDOW_Horizontal_Resolution = 1024;
+    public final static int WINDOW_Vertical_Resolution = 768;
     
-    public final static int TILESIZE = 48;
+    //MUNDO
+    public final static int TILESIZE = 24;
+    public final static int MAPA_Max_X = 200;
+    public final static int MAPA_Max_Y = 200;
+    
+    //TERRENO:
+    public final static String TERRENO_Nombre_Nuevo = "Terreno";
+    public final static int MAPA_Max_Capas_Terreno = 3;
     
     //PIXIE
     public final static float PIXIE_DuracionFrame_Medio = 0.15f;
-    public final static int PIXIE_Player_numFilas = 6;
-    public final static int PIXIE_Player_numColumnas = 9;
+    public final static int PIXIE_Player_numFilas = 3;
+    public final static int PIXIE_Player_numColumnas = 6;
     public final static float PIXIE_Player_DuracionFrame = 0.15f; //en segundos
     public final static int PIXIE_Player_numFramesAnimacion = 3;
     public final static boolean PIXIE_Player_isEnlazado = false;
@@ -37,11 +41,11 @@ public class MiscData
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
     public final static String ATLAS_Arboles_LOC = "Arboles/";
     
-    //TERRENO:
-    public final static String TERRENO_Nombre_Nuevo="Terreno";
-    
     //MOBILES:
-    public final static int MOB_REFRESH_RATE = 15;
+    public final static float PLAYER_VelocidadMax_Pixeles_Sec = 80.0f;
     
+    //NAMEPLATES
+    public final static Color NAMEPLATE_Player_Vida = Color.GREEN;
+    public final static Color NAMEPLATE_Player_Casteo = Color.RED;
     
 }

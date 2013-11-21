@@ -5,8 +5,9 @@
 package Main;
 
 import Constantes.MiscData;
-import Screens.PantallaJuego;
-import Screens.PantallaMenu;
+import Pantallas.PantallaJuego;
+import Pantallas.PantallaMenu;
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -40,11 +41,13 @@ public class Myrran extends Game
         
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Myrran";
+        cfg.fullscreen = false;
         cfg.vSyncEnabled = false;
         cfg.foregroundFPS = 5000;
         cfg.useGL20 = true;
         cfg.width = MiscData.WINDOW_Horizontal_Resolution;
         cfg.height = MiscData.WINDOW_Vertical_Resolution;
+        cfg.addIcon("Images/Spell Icons/FireBall.png", Files.FileType.Internal);
         new LwjglApplication(new Myrran(), cfg);
     }
     

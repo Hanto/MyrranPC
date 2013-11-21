@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Mobiles;
+
+import Graficos.Nameplate;
 
 /**
  * @author Ivan Delgado Huerta
@@ -12,9 +9,32 @@ package Mobiles;
 // la clase Personaje incluye a todos los seres vivos del juego, sean controlados por el jugador o por la maquina
 public class Personaje extends Mob
 {
+    protected String nombre;
     protected int nivel;
-    protected int actualHPs;
-    protected int totalHPs;
+    protected int actualHPs=1000;
+    protected int maxHPs=1000;
     
     protected boolean isCasteando = false;
+    protected float actualCastingTime = 0;
+    protected float totalCastingTime = 0;
+    
+    protected Nameplate nameplate;
+    
+    //GET
+    public String getNombre()                   { return nombre; }
+    public int getActualHPs()                   { return actualHPs; }
+    public int getMaxHPs()                      { return maxHPs; }    
+    public float getHPsPercent()                { return ((float)actualHPs/(float)maxHPs); }
+    public float getCastingTimePercent()        { return ((float)actualCastingTime/(float)totalCastingTime); }
+    public boolean IsCasteando()                { return isCasteando; }
+    public float getActualCastingTime ()        { return actualCastingTime; }
+    public float getTotalCastingTime ()         { return totalCastingTime; }
+    //SET
+    public void setNombre(String s)             { nombre = s; }
+    public void setActualHPs (int i)            { actualHPs = i; }
+    public void setMaxHPs (int i)               { maxHPs = i; }
+    public void setIsCasteando (boolean b)      { isCasteando = b; }
+    public void setActualCastingTime (float i)  { actualCastingTime = i; }
+    public void setTotalCastingTime (float i)   { totalCastingTime = i; }
+    public void setCastingTime (float actual, float total) { actualCastingTime = actual; totalCastingTime = total;}
 }

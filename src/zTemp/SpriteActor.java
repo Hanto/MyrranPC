@@ -6,6 +6,7 @@
 package zTemp;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -38,7 +39,7 @@ public class SpriteActor extends Actor
     }
     
     @Override
-    public void draw(SpriteBatch batch, float parentAlpha)
+    public void draw(Batch batch, float parentAlpha)
     {
         Color color = new Color (this.getColor().r, this.getColor().g, this.getColor().b, this.getColor().a * parentAlpha);
         

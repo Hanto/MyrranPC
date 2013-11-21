@@ -1,7 +1,8 @@
-package Graphics;
+package Graficos;
 
-import Graphics.Recursos.TroncoTemplate;
+import Graficos.Recursos.TroncoTemplate;
 import Main.Mundo;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -77,7 +78,7 @@ public class PixieArbol extends Actor
     }
     
     @Override
-    public void draw (SpriteBatch batch, float alpha)
+    public void draw (Batch batch, float alpha)
     {
         //Calculamos la distancia del arbol al player, si esta cerca haremos las hojas transparentes:
         double distancia = Math.abs(Math.sqrt(Math.pow(Mundo.player.getX()-getX(),2)+Math.pow(Mundo.player.getY()-getY()-80, 2)));
