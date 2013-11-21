@@ -57,46 +57,32 @@ atlas2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Armaduras/Botas1
+Armaduras/BotasGolem01
   rotate: false
-  xy: 2, 582
-  size: 432, 288
-  orig: 432, 288
+  xy: 2, 2
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+Armaduras/CapaGolem01
+  rotate: false
+  xy: 436, 292
+  size: 288, 144
+  orig: 288, 144
   offset: 0, 0
   index: -1
 Armaduras/Desnudo
   rotate: false
-  xy: 436, 582
+  xy: 2, 148
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
-Armaduras/Guantes1
+Armaduras/GuantesGolem01
   rotate: false
-  xy: 2, 292
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Armaduras/Hombreras1
-  rotate: false
-  xy: 436, 292
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Armaduras/Pantalones1
-  rotate: false
-  xy: 2, 2
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Armaduras/Peto1
-  rotate: false
-  xy: 436, 2
-  size: 432, 288
-  orig: 432, 288
+  xy: 726, 292
+  size: 288, 144
+  orig: 288, 144
   offset: 0, 0
   index: -1
 
@@ -104,11 +90,46 @@ atlas3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Armaduras/CapaFrontal1
+BAK/Armaduras/Botas1
+  rotate: false
+  xy: 2, 582
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Armaduras/Desnudo
+  rotate: false
+  xy: 436, 582
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Armaduras/Guantes1
+  rotate: false
+  xy: 2, 292
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Armaduras/Hombreras1
+  rotate: false
+  xy: 436, 292
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Armaduras/Pantalones1
   rotate: false
   xy: 2, 2
-  size: 864, 576
-  orig: 864, 576
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Armaduras/Peto1
+  rotate: false
+  xy: 436, 2
+  size: 432, 288
+  orig: 432, 288
   offset: 0, 0
   index: -1
 
@@ -116,7 +137,7 @@ atlas4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Armaduras/CapaTrasera1
+BAK/Armaduras/CapaFrontal1
   rotate: false
   xy: 2, 2
   size: 864, 576
@@ -128,7 +149,7 @@ atlas5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Armaduras/Casco1
+BAK/Armaduras/CapaTrasera1
   rotate: false
   xy: 2, 2
   size: 864, 576
@@ -137,6 +158,100 @@ Armaduras/Casco1
   index: -1
 
 atlas6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+BAK/Armaduras/Casco1
+  rotate: false
+  xy: 2, 2
+  size: 864, 576
+  orig: 864, 576
+  offset: 0, 0
+  index: -1
+
+atlas7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+BAK/Player Sprites/Cabeza1
+  rotate: false
+  xy: 2, 703
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Cabeza2
+  rotate: false
+  xy: 2, 413
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Golem
+  rotate: false
+  xy: 436, 557
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Golem2
+  rotate: false
+  xy: 2, 9
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Golem3
+  rotate: false
+  xy: 436, 411
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Humano1
+  rotate: false
+  xy: 436, 703
+  size: 432, 288
+  orig: 432, 288
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Humo
+  rotate: false
+  xy: 870, 940
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Nameplate
+  rotate: false
+  xy: 2, 2
+  size: 36, 5
+  orig: 36, 5
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/NameplateFondo
+  rotate: false
+  xy: 292, 148
+  size: 1, 5
+  orig: 1, 5
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Player
+  rotate: false
+  xy: 2, 155
+  size: 384, 256
+  orig: 384, 256
+  offset: 0, 0
+  index: -1
+BAK/Player Sprites/Sombra
+  rotate: false
+  xy: 726, 690
+  size: 31, 11
+  orig: 31, 11
+  offset: 0, 0
+  index: -1
+
+atlas8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -162,89 +277,75 @@ NPC Sprites/Momia
   offset: 0, 0
   index: -1
 
-atlas7.png
+atlas9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 Player Sprites/Cabeza1
   rotate: false
-  xy: 2, 703
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
-Player Sprites/Cabeza2
-  rotate: false
-  xy: 2, 413
+  xy: 2, 208
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Golem
   rotate: false
-  xy: 436, 557
+  xy: 2, 62
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
 Player Sprites/Golem2
   rotate: false
-  xy: 2, 9
+  xy: 436, 94
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
 Player Sprites/Golem3
   rotate: false
-  xy: 436, 411
+  xy: 726, 94
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
-Player Sprites/Humano1
-  rotate: false
-  xy: 436, 703
-  size: 432, 288
-  orig: 432, 288
-  offset: 0, 0
-  index: -1
 Player Sprites/Humo
   rotate: false
-  xy: 870, 940
+  xy: 2, 9
   size: 51, 51
   orig: 51, 51
   offset: 0, 0
   index: -1
 Player Sprites/Nameplate
   rotate: false
-  xy: 2, 2
+  xy: 822, 491
   size: 36, 5
   orig: 36, 5
   offset: 0, 0
   index: -1
 Player Sprites/NameplateFondo
   rotate: false
-  xy: 292, 148
+  xy: 2, 2
   size: 1, 5
   orig: 1, 5
   offset: 0, 0
   index: -1
 Player Sprites/Player
   rotate: false
-  xy: 2, 155
+  xy: 436, 240
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Player Sprites/Sombra
   rotate: false
-  xy: 726, 690
+  xy: 292, 195
   size: 31, 11
   orig: 31, 11
   offset: 0, 0
   index: -1
 
-atlas8.png
+atlas10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -298,7 +399,7 @@ Spell Icons/Renew
   offset: 0, 0
   index: -1
 
-atlas9.png
+atlas11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -338,7 +439,7 @@ Spell Sprites/SpellBalls_04n
   offset: 0, 0
   index: -1
 
-atlas10.png
+atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
