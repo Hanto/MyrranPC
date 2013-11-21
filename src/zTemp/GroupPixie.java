@@ -16,22 +16,22 @@ public class GroupPixie extends Group
     public Pixie pixie;                 //Campo con la animacion
     
     //CONSTRUCTOR PARA ANIMACIONES:
-    public GroupPixie (TextureRegion texture, int filas, int columnas, int numFramesAnimacion, float duracionFrame, boolean isEnlazado, boolean isLooping)
+    public GroupPixie (TextureRegion texture, int filas, int columnas, int numFramesAnimacion, float duracionFrame, boolean isEnlazado)
     {
-        pixie = new Pixie (texture, filas, columnas, numFramesAnimacion, duracionFrame, isEnlazado, isLooping);
+        pixie = new Pixie (texture, filas, columnas, numFramesAnimacion, duracionFrame, isEnlazado);
         this.setWidth(pixie.getWidth());
         this.setHeight(pixie.getHeight());
         this.addActor(pixie);
     }
     //CONSTRUCTORES ALTERNATICOS: asumiendo parametros por defecto
-    public GroupPixie (TextureRegion texture, int filas, int columnas, int duracionFrame, boolean isEnlazado, boolean looping)
-    {   this (texture, filas, columnas, columnas, duracionFrame, isEnlazado, looping); }
+    public GroupPixie (TextureRegion texture, int filas, int columnas, int duracionFrame, boolean isEnlazado)
+    {   this (texture, filas, columnas, columnas, duracionFrame, isEnlazado); }
     
     public GroupPixie (TextureRegion texture, int filas, int columnas)
-    {   this (texture, filas, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false, true);}
+    {   this (texture, filas, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false);}
     
     public GroupPixie (TextureRegion texture, int columnas)
-    {   this (texture, 1, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false, true); }
+    {   this (texture, 1, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false); }
     
     //CONSTRUCTOR PARA ESTATICOS: Si no se especifan numero de columnas, es que no hay animacion, y se considera estatico
     public GroupPixie (TextureRegion texture)

@@ -80,10 +80,11 @@ public class Recursos
         Recursos.salvarBotas(0, "BotasGolem01");
         Recursos.salvarGuantes(0, "GuantesGolem01");
         Recursos.salvarPeto(0, "PetoGolem01");
+        Recursos.salvarPeto(0, "PetoGolem02");
+        Recursos.salvarPantalones(0, "PantalonesGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");
         //Recursos.salvarBotas(0, "Botas1");
-        
         //Recursos.salvarHombreras(0, "Hombreras1");
         //Recursos.salvarPantalones(0, "Pantalones1");
         
@@ -101,10 +102,10 @@ public class Recursos
         Recursos.salvarIcono("Editar");
         
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball01"));
-        Pixie fireball = new Pixie (texture, 1, 3, 3, 0.15f, false, true);
+        Pixie fireball = new Pixie (texture, 1, 3, 3, 0.15f, false);
         listaDeSpells.add(fireball);
         texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball02"));
-        fireball = new Pixie (texture, 1, 3, 3, 0.15f, true, false);
+        fireball = new Pixie (texture, 1, 3, 3, 0.15f, false);
         listaDeSpells.add(fireball);
         
         troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
@@ -119,7 +120,7 @@ public class Recursos
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }
@@ -134,7 +135,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+nombreCuerpo));
         Pixie pixieCuerpo = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);        
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);        
         listaDeRazas.get(numRaza).listaDeCuerpos.add(pixieCuerpo);
     }
     
@@ -142,7 +143,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+nombreCabeza));
         Pixie pixieCabeza = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);        
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);        
         listaDeRazas.get(numRaza).listaDeCabezas.add(pixieCabeza);
     }
     
@@ -150,7 +151,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeYelmos.add(pixieArmadura);
     }
         
@@ -158,7 +159,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeHombreras.add(pixieArmadura);
     }
     
@@ -166,7 +167,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDePetos.add(pixieArmadura);
     }
     
@@ -174,7 +175,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDePantalones.add(pixieArmadura);
     }
     
@@ -182,7 +183,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeGuantes.add(pixieArmadura);
     }
     
@@ -190,7 +191,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeBotas.add(pixieArmadura);
     }
     
@@ -198,7 +199,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeCapasTraseras.add(pixieArmadura);
     }
     
@@ -206,7 +207,7 @@ public class Recursos
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
         Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado, MiscData.PIXIE_Player_isLooping);
+                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
         listaDeRazas.get(numRaza).listaDeCapasFrontales.add(pixieArmadura);
     }
     
@@ -215,8 +216,7 @@ public class Recursos
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellIcons_LOC+nombreIcono));
         listaIconos.add(texture);
     }
-    
-    
+      
     
     public static void salvarTronco (String nombreTronco, int X1, int Y1, int X2, int Y2, int X3, int Y3)
     {
@@ -233,7 +233,7 @@ public class Recursos
     public static void salvarCopa (String nombreCopa)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Arboles_LOC+nombreCopa));
-        Pixie pixieCopa = new Pixie (texture, 1, 3, 3, 0.3f, false, true);
+        Pixie pixieCopa = new Pixie (texture, 1, 3, 3, 0.3f, false);
         listaDeCopas.add(pixieCopa);
     }
     

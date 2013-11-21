@@ -22,14 +22,14 @@ public class Bolt extends AbstractTipoSpell
         //Creamos un array con el tamaño del numero de Pixies que vamos a introducir:
         //En cada slot del Array introducimos todas los pixies posibles para ese tipo de animacion
         spellPixies = new SpellPixie[2];
-        SpellPixie spixie = new SpellPixie(); 
-        spixie.tipoAnimacion = "Proyectiles Bolt";
-        spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Proyectil));
-        spellPixies[0]=spixie;
-        
-        spixie = new SpellPixie();
+        SpellPixie spixie = new SpellPixie();
         spixie.tipoAnimacion = "Casteos Bolt";
         spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Casteo));
+        spellPixies[0]=spixie;
+        
+        spixie = new SpellPixie(); 
+        spixie.tipoAnimacion = "Proyectiles Bolt";
+        spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Proyectil));
         spellPixies[1]=spixie;
     }
     
@@ -43,8 +43,8 @@ public class Bolt extends AbstractTipoSpell
         convertirCoordenadasOrigen(caster);
         //Cargamos los pixies de las 2 animaciomes que necesita el spell, cada animacion tiene muchos pixies disponibles donde elegir
         //de indicarnos que pixie exacto usa este spell se encarga el array pixieSeleccionado:
-        Pixie proyectil = getPixie(0, spell.pixieSelecionado()[0]);
-        Pixie casteo = getPixie(1, spell.pixieSelecionado()[1]);
+        Pixie casteo = getPixie(0, spell.pixieSelecionado()[0]);
+        Pixie proyectil = getPixie(1, spell.pixieSelecionado()[1]);
         //Ajustamos la posicion de origen y destino para que que esa posicion coincida con el centro de gravedad del pixie:
         ajustarCoordenadasPorProyectil(proyectil);
         //Calculamos la direccion del proyectil en funcion de todas las coordenas previamente ajustadas:
@@ -58,8 +58,9 @@ public class Bolt extends AbstractTipoSpell
         pepo.setDaño(spell.spellStats()[1].valorBase);
         pepo.setVelocidad(spell.spellStats()[2].valorBase);
         pepo.setDuracionMaxima(spell.spellStats()[3].valorBase);
-                
+        //ponemos el pepo en el mundo, añadiendolo a la lista de entedidades y al Stage
         pepo.crear();
+        //Animamos un pixie con el grafico del casteo correspondiente a este Spell
         animarCasteo(casteo);
     }       
 }

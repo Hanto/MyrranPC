@@ -1,5 +1,4 @@
 package Pantallas;
-
 import Constantes.LoadData;
 import Constantes.MiscData;
 import Geo.Celda;
@@ -12,7 +11,6 @@ import static Main.Mundo.player;
 import Main.Myrran;
 import Mobiles.Player;
 import static Pantallas.AbstractPantalla.camara;
-import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -24,11 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import java.util.Comparator;
-
-/**
- * @author Ivan Delgado Huerta
- */
-
+// * @author Ivan Delgado Huerta
 public class PantallaJuego extends AbstractPantalla
 {
     public static Stage stageMundo;
@@ -69,11 +63,11 @@ public class PantallaJuego extends AbstractPantalla
         player.getPixiePC().setCuerpo(0);
         player.getPixiePC().setBotas(1);
         player.getPixiePC().setGuantes(1);
-        //player.getPixiePC().setPeto(1);
+        player.getPixiePC().setPeto(1);
+        player.getPixiePC().setPantalones(1);
         
         //player.getPixiePC().setCabeza(1);
         //player.getPixiePC().setYelmo(0);
-        //player.getPixiePC().setPantalones(1);
         //player.getPixiePC().setHombreras(1);
         //player.getPixiePC().setCapaFrontal(1);
         //player.getPixiePC().setCapaTrasera(1);

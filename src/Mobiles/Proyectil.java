@@ -28,7 +28,7 @@ public class Proyectil extends Mob
         this.pixie.addActor(new Pixie(pixie));
         this.pixie.setOrigin(pixie.getWidth()/2, pixie.getHeight()/2);
         this.pixie.setColor(0, 0, 0, 0);
-        this.pixie.addAction(Actions.fadeIn(0.3f));
+        this.pixie.addAction(Actions.fadeIn(0.1f));
     }
     
     public void expirar ()                                  { Mundo.eliminarProyectil(this); }

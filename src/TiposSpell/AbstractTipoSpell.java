@@ -9,7 +9,6 @@ import Skills.Spell.TipoSpell;
 import Skills.SpellStat;
 import Skills.SpellStat.SpellPixie;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 //@author Ivan Delgado Huerta
 public abstract class AbstractTipoSpell implements TipoSpell
 {
@@ -67,18 +66,19 @@ public abstract class AbstractTipoSpell implements TipoSpell
         this.destinoY = this.destinoY- proyectil.getHeight()/2;
         this.destinoX = this.destinoX- proyectil.getWidth()/2;
     }
-    
     protected void convertirCoordenadasANumeroDeTile ()
     {
         destinoX = (int)destinoX/MiscData.TILESIZE;
         destinoY = (int)destinoY/MiscData.TILESIZE;
     }
+    
     protected void calcularDireccion ()
     { direccion = Math.atan2(this.destinoY-origenY, this.destinoX-origenX); }
     
     protected void animarCasteo (Pixie pixie)
     {
         Pixie casteo = new Pixie (pixie);
+        casteo.setMediaAnimacion(true);
         casteo.setAnimarYEliminarActor(true);
         caster.getActor().addActor(casteo);
     }

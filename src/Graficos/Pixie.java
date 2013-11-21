@@ -30,6 +30,8 @@ public class Pixie extends Group
     public void setPausa()                              { isPausado = true; }
     public void setOffset (int X, int Y)                { Offset.set(X, Y); }
     public void setAnimarYEliminarActor (Boolean b)     { animarYEliminarActor = b; }
+    public void setMediaAnimacion (Boolean b)           { mediaAnimacion = b; }
+    public void setIsLooping (Boolean b)                { isLooping = b; }
  
     public Vector2 getOffset ()                         { return Offset; }
     
@@ -41,10 +43,9 @@ public class Pixie extends Group
     //framesEnlazados: cuando el ultimo frame no enlaza con el primero de forma que la animacion es solo la mitad de esta, y la otra mitad es la simetrica de lo ya hecho, es decir, una animacion enlazada seria 1,2,3,4... y repetir 1,2,3,4... y una
     //animacion no enlazada seria 1,2,3,4 y luego 3,2 para volver a empezar con 1,2,3,4... y luego 3,2. Por tanto cuando los frames no estan enlazados hay que acabar de construir la animacion simetrica.
     
-    public Pixie (TextureRegion texture, int filas, int columnas, int numFramesAnimacion, float duracionFrame, boolean isEnlazado, boolean isLooping)
+    public Pixie (TextureRegion texture, int filas, int columnas, int numFramesAnimacion, float duracionFrame, boolean isEnlazado)
     {
         this.isAnimado = true;
-        this.isLooping = isLooping;
         this.duracionFrame = duracionFrame;
         //Calculamos el tamaño de cada frame sabiendo el tamaño total de la textura y el numero de numFilas y numCols
         int anchoFrame = texture.getRegionWidth()/columnas;
@@ -86,14 +87,14 @@ public class Pixie extends Group
         stateTime = 0f;
     }
     //CONSTRUCTORES ALTERNATICOS: asumiendo parametros por defecto
-    public Pixie (TextureRegion texture, int filas, int columnas, int duracionFrame, boolean isEnlazado, boolean looping)
-    {   this (texture, filas, columnas, columnas, duracionFrame, isEnlazado, looping); }
+    public Pixie (TextureRegion texture, int filas, int columnas, int duracionFrame, boolean isEnlazado)
+    {   this (texture, filas, columnas, columnas, duracionFrame, isEnlazado); }
     
     public Pixie (TextureRegion texture, int filas, int columnas)
-    {   this (texture, filas, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false, true);}
+    {   this (texture, filas, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false);}
     
     public Pixie (TextureRegion texture, int columnas)
-    {   this (texture, 1, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false, true); }
+    {   this (texture, 1, columnas, columnas, MiscData.PIXIE_DuracionFrame_Medio, false); }
     
     //CONSTRUCTOR PARA ESTATICOS: Si no se especifan numero de numCols, es que no hay animacion, y se considera estatico
     public Pixie (TextureRegion texture)
