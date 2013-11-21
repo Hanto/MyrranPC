@@ -50,11 +50,11 @@ public class PantallaJuego extends AbstractPantalla
         
         stageMundo = new Stage (0,0, true);
         world = new World (new Vector2 (0, -9.8f), false);
-        RayHandler.useDiffuseLight(true);
-        rayHandler = new RayHandler (world);
-        rayHandler.setCombinedMatrix(camara.combined);
-        rayHandler.setAmbientLight(1f);
-        new PointLight(rayHandler, 10000, new Color(1,1,1,0.7f), 1000, 0, 0);
+        //RayHandler.useDiffuseLight(true);
+        //rayHandler = new RayHandler (world);
+        //rayHandler.setCombinedMatrix(camara.combined);
+        //rayHandler.setAmbientLight(1f);
+        //new PointLight(rayHandler, 10000, new Color(1,1,1,0.7f), 1000, 0, 0);
         
         Recursos.crearRecursos();
         crearMapa();
@@ -67,13 +67,14 @@ public class PantallaJuego extends AbstractPantalla
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
         
         player.getPixiePC().setCuerpo(0);
+        player.getPixiePC().setBotas(1);
+        player.getPixiePC().setGuantes(1);
+        player.getPixiePC().setPeto(1);
+        
         //player.getPixiePC().setCabeza(1);
-        //player.getPixiePC().setPeto(1);
         //player.getPixiePC().setYelmo(0);
-        //player.getPixiePC().setBotas(1);
         //player.getPixiePC().setPantalones(1);
         //player.getPixiePC().setHombreras(1);
-        //player.getPixiePC().setGuantes(1);
         //player.getPixiePC().setCapaFrontal(1);
         //player.getPixiePC().setCapaTrasera(1);
         
