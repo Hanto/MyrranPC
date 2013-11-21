@@ -80,7 +80,7 @@ public class Recursos
         Recursos.salvarBotas(0, "BotasGolem01");
         Recursos.salvarGuantes(0, "GuantesGolem01");
         Recursos.salvarPeto(0, "PetoGolem01");
-        Recursos.salvarPeto(0, "PetoGolem02");
+        Recursos.salvarHombreras(0, "HombrerasGolem02");
         Recursos.salvarPantalones(0, "PantalonesGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");
@@ -120,7 +120,7 @@ public class Recursos
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }

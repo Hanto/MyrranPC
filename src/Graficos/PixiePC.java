@@ -157,8 +157,8 @@ public class PixiePC extends Group
             cabeza.draw(batch, alpha);
             yelmo.draw(batch, alpha);
             peto.draw(batch, alpha);
-            hombreras.draw(batch, alpha);
             pantalones.draw(batch, alpha);
+            hombreras.draw(batch, alpha);
             guantes.draw(batch, alpha);
             botas.draw(batch, alpha);
         }

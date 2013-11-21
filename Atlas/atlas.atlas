@@ -78,21 +78,21 @@ Armaduras/GuantesGolem01
   orig: 288, 144
   offset: 0, 0
   index: -1
-Armaduras/PantalonesGolem01
+Armaduras/HombrerasGolem02
   rotate: false
   xy: 726, 292
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
-Armaduras/PetoGolem01
+Armaduras/PantalonesGolem01
   rotate: false
   xy: 436, 146
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
-Armaduras/PetoGolem02
+Armaduras/PetoGolem01
   rotate: false
   xy: 726, 146
   size: 288, 144
