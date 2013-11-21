@@ -79,7 +79,7 @@ public class Recursos
         Recursos.salvarCabeza(0, "Cabeza1");
         Recursos.salvarBotas(0, "BotasGolem01");
         Recursos.salvarGuantes(0, "GuantesGolem01");
-        Recursos.salvarPeto(0, "CapaGolem01");
+        Recursos.salvarPeto(0, "PetoGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");
         //Recursos.salvarBotas(0, "Botas1");
@@ -100,8 +100,11 @@ public class Recursos
         Recursos.salvarIcono("FireBall");
         Recursos.salvarIcono("Editar");
         
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball"));
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball01"));
         Pixie fireball = new Pixie (texture, 1, 3, 3, 0.15f, false, true);
+        listaDeSpells.add(fireball);
+        texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball02"));
+        fireball = new Pixie (texture, 1, 3, 3, 0.15f, true, false);
         listaDeSpells.add(fireball);
         
         troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));

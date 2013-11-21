@@ -69,7 +69,7 @@ public class PantallaJuego extends AbstractPantalla
         player.getPixiePC().setCuerpo(0);
         player.getPixiePC().setBotas(1);
         player.getPixiePC().setGuantes(1);
-        player.getPixiePC().setPeto(1);
+        //player.getPixiePC().setPeto(1);
         
         //player.getPixiePC().setCabeza(1);
         //player.getPixiePC().setYelmo(0);

@@ -9,6 +9,7 @@ import Skills.Spell.TipoSpell;
 import Skills.SpellStat;
 import Skills.SpellStat.SpellPixie;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 //@author Ivan Delgado Huerta
 public abstract class AbstractTipoSpell implements TipoSpell
 {
@@ -17,6 +18,7 @@ public abstract class AbstractTipoSpell implements TipoSpell
     protected float destinoX;
     protected float destinoY;
     protected double direccion;
+    protected Personaje caster;
     
     protected SpellStat [] spellStats;
     protected SpellPixie [] spellPixies;
@@ -73,4 +75,11 @@ public abstract class AbstractTipoSpell implements TipoSpell
     }
     protected void calcularDireccion ()
     { direccion = Math.atan2(this.destinoY-origenY, this.destinoX-origenX); }
+    
+    protected void animarCasteo (Pixie pixie)
+    {
+        Pixie casteo = new Pixie (pixie);
+        casteo.setAnimarYEliminarActor(true);
+        caster.getActor().addActor(casteo);
+    }
 }

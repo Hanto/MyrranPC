@@ -15,7 +15,9 @@ public class SpellData
     public static final float   BOLT_Velocidad_Valor = 250f;
     public static final String  BOLT_Duracion_String = "Duracion";
     public static final float   BOLT_Duracion_Valor = 4.0f;
-    public static final int     BOLT_Pixie = 0;
+    public static final int     BOLT_Pixie_Fireball_Proyectil = 0;
+    public static final int     BOLT_Pixie_Fireball_Casteo = 1;
+    public static final float   BOLT_Duracion_Animaciones = 0.15f;
     
     //EDITAR TERRENO:
     public static final int     EDITARTERRENO_ID = 1;

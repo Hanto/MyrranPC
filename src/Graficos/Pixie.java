@@ -24,10 +24,12 @@ public class Pixie extends Group
     private boolean isPausado = false;          //por si queremos pausar la animacion
     public boolean ininterrumpible = false;     //Si queremos que una animacion se vea completa ininterrumpidamente activamos este booleano. Ninguna otra animacion puede interrumpirla hasta que no acabe.
     private boolean mediaAnimacion= false;      //por si no queremos que empalme el final de la animacion con el inicio haciendo bucle. (para animaciones de disparo, salto, etc...)
+    private boolean animarYEliminarActor = false;//Despues de mostrar la animacion, eliminar el actor de su grupo/stage
     
     public void resetAnimacion ()                       { stateTime = 0; }
     public void setPausa()                              { isPausado = true; }
     public void setOffset (int X, int Y)                { Offset.set(X, Y); }
+    public void setAnimarYEliminarActor (Boolean b)     { animarYEliminarActor = b; }
  
     public Vector2 getOffset ()                         { return Offset; }
     
@@ -187,12 +189,16 @@ public class Pixie extends Group
                 {   //Como ya se ha mostrado la mitad de la animacion, si es ininterrumpible, debemos desactivarlo, para que otras animaciones puedan activarse
                     stateTime = 0;
                     if (ininterrumpible = true) ininterrumpible = false;
+                    if (animarYEliminarActor) this.getParent().removeActor(this);
                 }
             }
             else
             {   //En caso contrario, si hemos indicado que sea ininterrumpible, como ya se ha mostrado toda, debemos desactivarlo, para que otras animaciones puedan activarse
-                if (stateTime>duracionFrame*(frames[0].length) && ininterrumpible == true)
-                    ininterrumpible = false;
+                if (stateTime>duracionFrame*(frames[0].length))
+                { 
+                    if (ininterrumpible == true) ininterrumpible = false;
+                    if (animarYEliminarActor) this.getParent().removeActor(this);
+                }
             }
             //Cargamos el frame correspondiente a nuestro stateTime:
             frameActual = animation.getKeyFrame(stateTime, isLooping);          

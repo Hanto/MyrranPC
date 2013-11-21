@@ -114,8 +114,8 @@ public class Player extends PC
             angulo = angulo%360;
              
             if (!isCasteando) {pixiePC.setAnimacion(4, false, true, true); }
-            //Mundo.listaDeSpells.get(SpellData.FIREBOLT_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
-            Mundo.listaDeSpells.get(SpellData.TERRAFORMAR_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
+            Mundo.listaDeSpells.get(SpellData.FIREBOLT_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
+            //Mundo.listaDeSpells.get(SpellData.TERRAFORMAR_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
             /*
             if (67.5d<=angulo && angulo<112.5d)     { pixiePC.setAnimacion(16, false); } //Abajo
             if (22.5d<=angulo && angulo<67.5d)      { pixiePC.setAnimacion(17, false); } //AbajoDcha

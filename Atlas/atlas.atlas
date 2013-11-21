@@ -64,13 +64,6 @@ Armaduras/BotasGolem01
   orig: 288, 144
   offset: 0, 0
   index: -1
-Armaduras/CapaGolem01
-  rotate: false
-  xy: 436, 292
-  size: 288, 144
-  orig: 288, 144
-  offset: 0, 0
-  index: -1
 Armaduras/Desnudo
   rotate: false
   xy: 2, 148
@@ -79,6 +72,13 @@ Armaduras/Desnudo
   offset: 0, 0
   index: -1
 Armaduras/GuantesGolem01
+  rotate: false
+  xy: 436, 292
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+Armaduras/PetoGolem01
   rotate: false
   xy: 726, 292
   size: 288, 144
@@ -403,11 +403,18 @@ atlas11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Spell Sprites/Fireball
+Spell Sprites/Fireball01
   rotate: false
-  xy: 388, 492
+  xy: 774, 750
   size: 72, 24
   orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Sprites/Fireball02
+  rotate: false
+  xy: 388, 468
+  size: 144, 48
+  orig: 144, 48
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_01n
