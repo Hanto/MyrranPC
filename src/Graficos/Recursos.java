@@ -75,12 +75,11 @@ public class Recursos
         Recursos.salvarCapasTraseras(0, "Desnudo");
         Recursos.salvarCapasFrontales(0, "Desnudo");
         
-        
         Recursos.salvarCabeza(0, "Cabeza1");
         Recursos.salvarBotas(0, "BotasGolem01");
         Recursos.salvarGuantes(0, "GuantesGolem01");
         Recursos.salvarPeto(0, "PetoGolem01");
-        Recursos.salvarHombreras(0, "HombrerasGolem02");
+        Recursos.salvarHombreras(0, "HombrerasGolem01");
         Recursos.salvarPantalones(0, "PantalonesGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");

@@ -143,8 +143,8 @@ public class PixiePC extends Group
             yelmo.draw(batch, alpha);
             peto.draw(batch, alpha);
             pantalones.draw(batch, alpha);
-            hombreras.draw(batch, alpha);
             guantes.draw(batch, alpha);
+            hombreras.draw(batch, alpha);
             botas.draw(batch, alpha);
             capaTrasera.draw(batch, alpha);
         }
@@ -158,8 +158,8 @@ public class PixiePC extends Group
             yelmo.draw(batch, alpha);
             peto.draw(batch, alpha);
             pantalones.draw(batch, alpha);
-            hombreras.draw(batch, alpha);
             guantes.draw(batch, alpha);
+            hombreras.draw(batch, alpha);
             botas.draw(batch, alpha);
         }
     }
