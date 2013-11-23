@@ -6,6 +6,8 @@ import Geo.Mapa;
 import Graficos.PixieArbol;
 import Graficos.Recursos;
 import Graficos.Texto;
+import Interface.BarraSkills;
+import Interface.Barra;
 import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import java.util.Comparator;
 // * @author Ivan Delgado Huerta
@@ -99,6 +102,18 @@ public class PantallaJuego extends AbstractPantalla
         stageUI.addActor(fps);
                         
         //player.getActor().addAction(Actions.fadeOut(3.5f));
+        
+        /*BarraSkills barra = new BarraSkills(10);
+        barra.generarCasillaSkill(Mundo.listaDeSpells.get(0), 0);
+        barra.generarCasillaSkill(Mundo.listaDeSpells.get(1), 1);
+        stageUI.addActor(barra);
+        barra.setPosition(300, 20);*/
+        
+        Barra barra = new Barra(10);
+        stageUI.addActor(barra);
+        barra.setPosition(300,20);
+        barra.setSpell(0, Mundo.listaDeSpells.get(0));
+        barra.setSpell(1, Mundo.listaDeSpells.get(1));
     }
     
     @Override

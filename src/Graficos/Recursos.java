@@ -53,6 +53,7 @@ public class Recursos
     public static Image hojas;
     public static Image sombraArbol1;
     public static BitmapFont font14;  
+    public static TextureRegion casillero;
     
     public static void crearRecursos()
     {
@@ -83,10 +84,6 @@ public class Recursos
         Recursos.salvarPantalones(0, "PantalonesGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");
-        //Recursos.salvarBotas(0, "Botas1");
-        //Recursos.salvarHombreras(0, "Hombreras1");
-        //Recursos.salvarPantalones(0, "Pantalones1");
-        
         //Recursos.salvarCapasTraseras(0, "CapaTrasera1");
         //Recursos.salvarCapasFrontales(0, "CapaFrontal1");
         
@@ -112,6 +109,7 @@ public class Recursos
         sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1")); 
         font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
         grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
+        casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
         
         Mundo.añadirTerreno("Cesped");
         Mundo.añadirTerreno("Cesped2");
@@ -232,7 +230,7 @@ public class Recursos
     public static void salvarCopa (String nombreCopa)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Arboles_LOC+nombreCopa));
-        Pixie pixieCopa = new Pixie (texture, 1, 3, 3, 0.3f, false);
+        Pixie pixieCopa = new Pixie (texture, 1, 3, 3, 1.3f, false);
         listaDeCopas.add(pixieCopa);
     }
     

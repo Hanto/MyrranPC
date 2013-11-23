@@ -40,6 +40,7 @@ public class MiscData
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
     public final static String ATLAS_Arboles_LOC = "Arboles/";
+    public final static String ATLAS_UI_LOC = "UI/";
     
     //MOBILES:
     public final static float PLAYER_VelocidadMax_Pixeles_Sec = 80.0f;

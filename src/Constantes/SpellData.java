@@ -27,13 +27,13 @@ public class SpellData
     //SPELLS:
     //FIREBOLT:
     public static final int     FIREBOLT_ID = 0;
-    public static final String  FIREBOLT_Nombre = "Firebolt";
+    public static final String  FIREBOLT_Nombre = "Fire";
     public static final String  FIREBOLT_Descripcion = "Poderosa rafaga de energia concentrada en una bola de calor que abrasara a los enemigos del conjurador";
     public static final int     FIREBOLT_Icono = 0;
     
     //Terraformar
     public static final int     TERRAFORMAR_ID = 1;
-    public static final String  TERRAFORMAR_Nombre = "Terraformar";
+    public static final String  TERRAFORMAR_Nombre = "Terra";
     public static final String  TERRAFORMAR_Descripcion = "Terraforma el terreno";
     public static final int     TERRAFORMAR_Icono = 1;
 }

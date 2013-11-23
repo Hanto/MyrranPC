@@ -46,7 +46,7 @@ public class Proyectil extends Mob
     @Override public void setDireccion (double d)
     {   //al cambiar la direccion del proyectil, tambien tenemos que alterar su rotacion
         super.setDireccion(d);
-        this.pixie.rotate((float)Math.toDegrees(direccion)+90);
+        this.pixie.rotate((float)Math.toDegrees(direccion));
     }
     public void moverse(float delta)
     {
