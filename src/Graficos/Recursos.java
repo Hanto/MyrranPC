@@ -1,5 +1,6 @@
 package Graficos;
 import Constantes.MiscData;
+import Interface.BarraTerrenos;
 import Main.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -65,46 +66,43 @@ public class Recursos
         nameplateActual = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"NameplateFondo"));
         
         Recursos.añadirRaza();
-        Recursos.salvarCuerpo(0, "Golem");
-        Recursos.salvarCuerpo(0, "Golem2");
-        Recursos.salvarCuerpo(0, "Golem3");
+        Recursos.salvarCuerpo           (0, "Golem");
+        Recursos.salvarCuerpo           (0, "Golem2");
+        Recursos.salvarCuerpo           (0, "Golem3");
         
-        Recursos.salvarYelmo(0, "Desnudo");
-        Recursos.salvarBotas(0, "Desnudo");
-        Recursos.salvarGuantes(0, "Desnudo");
-        Recursos.salvarHombreras(0, "Desnudo");
-        Recursos.salvarPantalones(0, "Desnudo");
-        Recursos.salvarPeto(0, "Desnudo");
-        Recursos.salvarCapasTraseras(0, "Desnudo");
-        Recursos.salvarCapasFrontales(0, "Desnudo");
+        Recursos.salvarYelmo            (0, "Desnudo");
+        Recursos.salvarBotas            (0, "Desnudo");
+        Recursos.salvarGuantes          (0, "Desnudo");
+        Recursos.salvarHombreras        (0, "Desnudo");
+        Recursos.salvarPantalones       (0, "Desnudo");
+        Recursos.salvarPeto             (0, "Desnudo");
+        Recursos.salvarCapasTraseras    (0, "Desnudo");
+        Recursos.salvarCapasFrontales   (0, "Desnudo");
         
-        Recursos.salvarCabeza(0, "Cabeza1");
-        Recursos.salvarBotas(0, "BotasGolem01");
-        Recursos.salvarGuantes(0, "GuantesGolem01");
-        Recursos.salvarPeto(0, "PetoGolem01");
-        Recursos.salvarHombreras(0, "HombrerasGolem01");
-        Recursos.salvarPantalones(0, "PantalonesGolem01");
+        Recursos.salvarCabeza           (0, "Cabeza1");
+        Recursos.salvarBotas            (0, "BotasGolem01");
+        Recursos.salvarGuantes          (0, "GuantesGolem01");
+        Recursos.salvarPeto             (0, "PetoGolem01");
+        Recursos.salvarHombreras        (0, "HombrerasGolem01");
+        Recursos.salvarPantalones       (0, "PantalonesGolem01");
         
         //Recursos.salvarYelmo(0, "Casco1");
         //Recursos.salvarCapasTraseras(0, "CapaTrasera1");
         //Recursos.salvarCapasFrontales(0, "CapaFrontal1");
-        
         //Recursos.salvarCabeza(0, "Cabeza2");
         
-        Recursos.salvarTronco("Tronco2", -50, 50, -45, 65, 40, 65);
-        Recursos.salvarCopa("BolaGrandeArbol2");
-        Recursos.salvarCopa("BolaMedianaArbol2");
-        Recursos.salvarCopa("Bolapequeñaarbol2");
+        Recursos.salvarTronco           ("Tronco2", -50, 50, -45, 65, 40, 65);
+        Recursos.salvarCopa             ("BolaGrandeArbol2");
+        Recursos.salvarCopa             ("BolaMedianaArbol2");
+        Recursos.salvarCopa             ("Bolapequeñaarbol2");
         
-        Recursos.salvarIcono("FireBall");
-        Recursos.salvarIcono("Editar");
+        Recursos.salvarIcono            ("FireBall");
+        Recursos.salvarIcono            ("Editar");
         
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball01"));
-        Pixie fireball = new Pixie (texture, 1, 3, 3, 0.15f, false);
-        listaDeSpells.add(fireball);
-        texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+"Fireball02"));
-        fireball = new Pixie (texture, 1, 3, 3, 0.15f, false);
-        listaDeSpells.add(fireball);
+        Recursos.salvarEfectoDeSpell    ("Fireball01");
+        Recursos.salvarEfectoDeSpell    ("Fireball02");
+        Recursos.salvarEfectoDeSpell    ("FrostBolt01");
+        Recursos.salvarEfectoDeSpell    ("FrostBolt02");
         
         troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
         hojas = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Hojas1"));
@@ -115,13 +113,29 @@ public class Recursos
         rebindButtonOn = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOn"));
         rebindButtonOff = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOff"));
         
-        Mundo.añadirTerreno("Cesped");
-        Mundo.añadirTerreno("Cesped2");
+        Mundo.añadirTerreno             ("Cesped");
+        Mundo.añadirTerreno             ("Cesped2");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Baldosas");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Cesped");
+        Mundo.añadirTerreno             ("Cesped2");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Cesped");
+        Mundo.añadirTerreno             ("Cesped2");
+        Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Cesped");
+        Mundo.añadirTerreno             ("Cesped2");
+           
+        
+        Mundo.barraTerrenos = new BarraTerrenos();
     }
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }
@@ -218,6 +232,12 @@ public class Recursos
         listaIconos.add(texture);
     }
       
+    public static void salvarEfectoDeSpell(String nombreEfecto)
+    {
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
+        Pixie spellEffect = new Pixie (texture, 1, 3, 3, 0.15f, false);
+        listaDeSpells.add(spellEffect);
+    }
     
     public static void salvarTronco (String nombreTronco, int X1, int Y1, int X2, int Y2, int X3, int Y3)
     {

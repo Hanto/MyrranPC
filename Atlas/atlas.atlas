@@ -433,42 +433,63 @@ filter: Nearest,Nearest
 repeat: none
 Spell Sprites/Fireball01
   rotate: false
-  xy: 388, 468
+  xy: 388, 494
   size: 144, 48
   orig: 144, 48
   offset: 0, 0
   index: -1
 Spell Sprites/Fireball02
   rotate: false
-  xy: 774, 750
+  xy: 2, 2
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Sprites/FrostBolt01
+  rotate: false
+  xy: 774, 752
+  size: 144, 48
+  orig: 144, 48
+  offset: 0, 0
+  index: -1
+Spell Sprites/FrostBolt02
+  rotate: false
+  xy: 388, 468
+  size: 72, 24
+  orig: 72, 24
+  offset: 0, 0
+  index: -1
+Spell Sprites/Frostball
+  rotate: false
+  xy: 534, 518
   size: 72, 24
   orig: 72, 24
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_01n
   rotate: false
-  xy: 2, 518
+  xy: 2, 544
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_02n
   rotate: false
-  xy: 2, 260
+  xy: 2, 286
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_03n
   rotate: false
-  xy: 388, 518
+  xy: 388, 544
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Spell Sprites/SpellBalls_04n
   rotate: false
-  xy: 2, 2
+  xy: 2, 28
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
@@ -478,6 +499,13 @@ atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Terrenos/Baldosas
+  rotate: false
+  xy: 2, 126
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
 Terrenos/Cesped
   rotate: false
   xy: 2, 52
@@ -485,11 +513,25 @@ Terrenos/Cesped
   orig: 48, 72
   offset: 0, 0
   index: -1
+Terrenos/Cesped.OLD
+  rotate: false
+  xy: 2, 346
+  size: 96, 144
+  orig: 96, 144
+  offset: 0, 0
+  index: -1
 Terrenos/Cesped2
   rotate: false
-  xy: 52, 52
+  xy: 52, 126
   size: 48, 72
   orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Cesped2.OLD
+  rotate: false
+  xy: 2, 200
+  size: 96, 144
+  orig: 96, 144
   offset: 0, 0
   index: -1
 Terrenos/Suelo
@@ -506,9 +548,16 @@ Terrenos/Suelo2
   orig: 48, 48
   offset: 0, 0
   index: -1
+Terrenos/Tierra
+  rotate: false
+  xy: 52, 52
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
 Terrenos/grid
   rotate: false
-  xy: 102, 100
+  xy: 100, 466
   size: 24, 24
   orig: 24, 24
   offset: 0, 0

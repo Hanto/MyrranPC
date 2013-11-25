@@ -6,11 +6,13 @@ import Geo.Mapa;
 import Graficos.PixieArbol;
 import Graficos.Recursos;
 import Graficos.Texto;
+import Interface.BarraTerrenos;
 import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
 import Mobiles.Player;
 import static Pantallas.AbstractPantalla.camara;
+import Save.SaveData;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -21,7 +23,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import java.io.FileNotFoundException;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // * @author Ivan Delgado Huerta
 public class PantallaJuego extends AbstractPantalla
 {
@@ -59,6 +64,7 @@ public class PantallaJuego extends AbstractPantalla
         Mapa.crearTiledMap();
         
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
+        player.setPosition(500, 400);
         stageUI.addActor(player.barraSpells);
         
         player.barraSpells.setSpell(0, Mundo.listaDeSpells.get(0));
@@ -102,6 +108,8 @@ public class PantallaJuego extends AbstractPantalla
         
         fps = new Graficos.Texto("fps", Recursos.font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         stageUI.addActor(fps);
+        
+        Mundo.barraTerrenos.setNumColumnas(3);
     }
     
     @Override
@@ -209,6 +217,8 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.mapa[3][4]=celda2;
         Mundo.mapa[4][3]=celda2;
         Mundo.mapa[3][3]=celda2;
+        
+        SaveData.loadMap();
     }
     
     public void dibujarCelda (int x, int y, Celda celda)

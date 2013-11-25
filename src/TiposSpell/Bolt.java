@@ -25,11 +25,13 @@ public class Bolt extends AbstractTipoSpell
         SpellPixie spixie = new SpellPixie();
         spixie.tipoAnimacion = "Casteos Bolt";
         spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Casteo));
+        spixie.pixieArray.add(Recursos.listaDeSpells.get(FROSTBOLT_Pixie_Casteo));
         spellPixies[0]=spixie;
         
         spixie = new SpellPixie(); 
         spixie.tipoAnimacion = "Proyectiles Bolt";
         spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Proyectil));
+        spixie.pixieArray.add(Recursos.listaDeSpells.get(FROSTBOLT_Pixie_Proyectil));
         spellPixies[1]=spixie;
     }
     

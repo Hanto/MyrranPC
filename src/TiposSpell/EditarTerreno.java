@@ -1,12 +1,18 @@
 package TiposSpell;
 // @author Ivan Delgado Huerta
+import Constantes.MiscData;
 import static Constantes.SpellData.*;
 import Geo.Celda;
 import Geo.Mapa;
+import Interface.BarraTerrenos;
 import Main.Mundo;
 import Mobiles.Personaje;
+import Pantallas.AbstractPantalla;
+import Pantallas.PantallaJuego;
 import Skills.Spell;
 import Skills.SpellStat;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class EditarTerreno extends AbstractTipoSpell
 {
@@ -25,20 +31,23 @@ public class EditarTerreno extends AbstractTipoSpell
         int x = (int)destinoX;
         int y = (int)destinoY;
         
-        Celda celda2 = new Celda();
-        celda2.getTerreno()[0]=1;
-        celda2.getTerreno()[1]=1;
+        int numCapa = caster.getCapaTerrenoSeleccionada();
         
-        Mundo.mapa[x][y] = celda2;
+        Celda celda = new Celda ();
+        for (int i=0; i<Mundo.mapa[x][y].getTerreno().length;i++)
+        { celda.getTerreno()[i] = Mundo.mapa[x][y].getTerreno()[i];}
         
-        Mapa.crearTile(x, y, 1);
-        Mapa.crearTile(x+1, y, 1);
-        Mapa.crearTile(x-1, y, 1);
-        Mapa.crearTile(x, y+1, 1);
-        Mapa.crearTile(x, y-1, 1);
-        Mapa.crearTile(x+1, y+1, 1);
-        Mapa.crearTile(x-1, y-1, 1);
-        Mapa.crearTile(x-1, y+1, 1);
-        Mapa.crearTile(x+1, y-1, 1);
+        Mundo.mapa[x][y] = celda;
+        celda.getTerreno()[numCapa]=Mundo.player.getTerrenoSeleccionado();
+        
+        Mapa.crearTile(x, y, numCapa);
+        Mapa.crearTile(x+1, y, numCapa);
+        Mapa.crearTile(x-1, y, numCapa);
+        Mapa.crearTile(x, y+1, numCapa);
+        Mapa.crearTile(x, y-1, numCapa);
+        Mapa.crearTile(x+1, y+1, numCapa);
+        Mapa.crearTile(x-1, y-1, numCapa);
+        Mapa.crearTile(x-1, y+1, numCapa);
+        Mapa.crearTile(x+1, y-1, numCapa);
     }
 }

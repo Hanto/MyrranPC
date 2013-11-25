@@ -35,6 +35,15 @@ public class LoadData
         spell.setIcono(Recursos.listaIconos.get(SpellData.FIREBOLT_Icono));
         listaDeSpells.add(spell);
         
+        //FROSBOLT:
+        spell = new Spell(listaDeTiposSpell.get(SpellData.BOLT_ID));
+        spell.setNombre(SpellData.FROSTBOLT_Nombre);
+        spell.setDescripcion(SpellData.FROSTBOLT_Descripcion);
+        spell.setIcono(Recursos.listaIconos.get(SpellData.FROSTBOLT_Icono));
+        spell.pixieSelecionado()[1]=1;
+        spell.pixieSelecionado()[0]=1;
+        listaDeSpells.add(spell);
+        
         //TERRAFORMAR:
         spell = new Spell(listaDeTiposSpell.get(SpellData.EDITARTERRENO_ID));
         spell.setNombre(SpellData.TERRAFORMAR_Nombre);

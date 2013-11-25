@@ -2,6 +2,7 @@ package Main;
 import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Terreno;
+import Interface.BarraTerrenos;
 import Mobiles.Player;
 import Mobiles.Proyectil;
 import Skills.Spell;
@@ -27,6 +28,8 @@ public class Mundo
     public static TiledMap tiledMap = new TiledMap();
     public static OrthogonalTiledMapRenderer mapRenderer;
     public static Stage stageMundo;
+    
+    public static BarraTerrenos barraTerrenos;
     
     //Opciones varias:
     public static boolean dibujarNameplatesPlayer = true;

@@ -15,6 +15,8 @@ public class Personaje extends Mob
     protected int maxHPs=1000;
     
     protected int spellSeleccionado = 0;
+    protected int terrenoSeleccionado = 0;
+    protected int capaTerrenoSeleccionada = 0;
     
     protected boolean isCasteando = false;
     protected float actualCastingTime = 0;
@@ -31,6 +33,9 @@ public class Personaje extends Mob
     public boolean IsCasteando()                { return isCasteando; }
     public float getActualCastingTime ()        { return actualCastingTime; }
     public float getTotalCastingTime ()         { return totalCastingTime; }
+    public int getSpellSeleccionado ()          { return spellSeleccionado; }
+    public int getTerrenoSeleccionado ()        { return terrenoSeleccionado; }
+    public int getCapaTerrenoSeleccionada ()    { return capaTerrenoSeleccionada; }
     //SET
     public void setNombre(String s)             { nombre = s; }
     public void setActualHPs (int i)            { actualHPs = i; }
@@ -40,4 +45,6 @@ public class Personaje extends Mob
     public void setTotalCastingTime (float i)   { totalCastingTime = i; }
     public void setCastingTime (float actual, float total)  { actualCastingTime = actual; totalCastingTime = total;}
     public void setSpellSeleccionado (int spellID)          { spellSeleccionado = spellID; }
+    public void setTerrenoSeleccionado (int terrenoID)      { terrenoSeleccionado = terrenoID; }
+    public void setCapaTerrenoSelecionada (int capaTerreno) { capaTerrenoSeleccionada = capaTerreno; }
 }

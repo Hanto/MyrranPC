@@ -31,8 +31,16 @@ public class SpellData
     public static final String  FIREBOLT_Descripcion = "Poderosa rafaga de energia concentrada en una bola de calor que abrasara a los enemigos del conjurador";
     public static final int     FIREBOLT_Icono = 0;
     
+    //FROSTBOLT:
+    public static final int     FROSTBOLT_ID = 1;
+    public static final String  FROSTBOLT_Nombre = "Frost";
+    public static final String  FROSTBOLT_Descripcion = "Poderosa rafaga de energia concentrada en una bola de calor que abrasara a los enemigos del conjurador";
+    public static final int     FROSTBOLT_Icono = 1;
+    public static final int     FROSTBOLT_Pixie_Casteo = 2;
+    public static final int     FROSTBOLT_Pixie_Proyectil = 3;
+    
     //Terraformar
-    public static final int     TERRAFORMAR_ID = 1;
+    public static final int     TERRAFORMAR_ID = 2;
     public static final String  TERRAFORMAR_Nombre = "Terra";
     public static final String  TERRAFORMAR_Descripcion = "Terraforma el terreno";
     public static final int     TERRAFORMAR_Icono = 1;

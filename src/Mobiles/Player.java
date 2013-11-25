@@ -9,7 +9,8 @@ import com.badlogic.gdx.Input.Keys;
 // Player representa de todos los personajes controlados por el jugador, el que esta siendo usado localmente desde esta maquina
 public class Player extends PC
 {
-    public BarraSpells barraSpells = new BarraSpells(20);
+    public BarraSpells barraSpells = new BarraSpells(2, 9);
+    public boolean mostrarBarraTerrenos = false;
     //Teclas de Direccion para mover al personaje, remapeables:
     protected int teclaArriba = Keys.W;
     protected int teclaAbajo = Keys.S;

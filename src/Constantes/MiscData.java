@@ -18,7 +18,7 @@ public class MiscData
     
     //TERRENO:
     public final static String TERRENO_Nombre_Nuevo = "Terreno";
-    public final static int MAPA_Max_Capas_Terreno = 3;
+    public final static int MAPA_Max_Capas_Terreno = 5;
     
     //PIXIE
     public final static float PIXIE_DuracionFrame_Medio = 0.15f;

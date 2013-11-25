@@ -19,28 +19,31 @@ import com.badlogic.gdx.utils.Array;
 
 public class BarraSpells extends Group
 {   
-    public Array<Casilla> barra = new Array<>();
-    private DragAndDrop dad = new DragAndDrop ();
-    private int anchoSlot;
-    private int altoSlot;
-    private boolean rebindearSkills = false;
+    public Array<Casilla> barra = new Array<>();            //Array que contiene el casillero
+    private DragAndDrop dad = new DragAndDrop ();           //Clase que regula el drag and drop de las casillas
+    private int anchoSlot;                                  //ancho de cada casilla
+    private int altoSlot;                                   //alto de cada casilla
+    private int numFilas;
+    private int numColumnas;
+    private boolean rebindearSkills = false;                //para cuando queremos rebindear los skills
     
     public void setRebindearSkills (boolean b)              { rebindearSkills = b; }
     public boolean getRebindearSkills ()                    { return rebindearSkills; }
     
     public static class Casilla
     {
-        public Group apariencia = new Group();
-        public String keyBind;
-        public int keycode;
-        public int spellID;
+        public Group apariencia = new Group();              //Icono que se muestra en pantalla para esa casilla
+        public String keyBind;                              //Tecla bindeada a esa casilla
+        public int keycode;                                 //Keycode que corresponde a ese bind
+        public int spellID;                                 //spellID que corresponde a esa casilla
     }
     
-    public BarraSpells (int numSkills)
+    public BarraSpells (int numFilas, int numColumnas)
     {
         dad.setDragTime(0);
+        this.numFilas = numFilas; this.numColumnas = numColumnas;
         
-        for (int i=0; i<numSkills; i++)
+        for (int i=0; i<numFilas*numColumnas; i++)
         {
             final Casilla destino = new Casilla();
             
@@ -50,9 +53,14 @@ public class BarraSpells extends Group
             
             destino.spellID = -1;
             if (i<9){ destino.keyBind = String.valueOf(i+1); destino.keycode = i+8; }
+            islot.setColor(0, 0, 0, 0.1f);
             destino.apariencia.addActor(islot);
             if (destino.keyBind != null) Texto.printTexto(String.valueOf(destino.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, destino.apariencia);
-            destino.apariencia.setPosition(i*(anchoSlot+2), 0); //2 es el margen entre casillas
+            
+            int columna = (i)/numColumnas;
+            int fila = (i)%numColumnas;
+            
+            destino.apariencia.setPosition(fila*(anchoSlot+2), columna*(altoSlot+2)); //2 es el margen entre casillas
                         
             this.addActor(destino.apariencia);
             barra.add(destino);
@@ -93,8 +101,7 @@ public class BarraSpells extends Group
             rebindButtonOff.setPosition(-rebindButtonOff.getWidth()-2, 0);
             rebindButtonOff.addListener(new InputListener() 
             {
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+                @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
                 {   //Switch para activar y desactivar el rebindeo de Skills
                     rebindearSkills = false;
                     BarraSpells.this.getStage().setKeyboardFocus(null);
@@ -107,8 +114,7 @@ public class BarraSpells extends Group
             rebindButtonOn.setPosition(-rebindButtonOn.getWidth()-2, 0);
             rebindButtonOn.addListener(new InputListener() 
             {
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+                @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
                 {   //Switch para activar y desactivar el rebindeo de Skills
                     rebindearSkills = true;
                     rebindButtonOn.toBack();
@@ -168,10 +174,9 @@ public class BarraSpells extends Group
     public void setApariencia (Casilla casilla, Group group)
     {   //Genera la apariencia de la destino segun sus datos:
         group.clearChildren();
-        if (casilla.spellID <0) group.addActor(new Image (Recursos.casillero));
+        if (casilla.spellID <0) { Image slotvacio = new Image (Recursos.casillero); slotvacio.setColor(0,0,0,0.1f);group.addActor(slotvacio); }
         else { group.addActor(new Image (Mundo.listaDeSpells.get(casilla.spellID).getIcono())); }
         if (casilla.keyBind != null) Texto.printTexto(String.valueOf(casilla.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, group);
-        group.setPosition(barra.indexOf(casilla, true)*(anchoSlot+2), 0);
     }
     
     public Group setApariencia (Casilla casilla)

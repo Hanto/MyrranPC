@@ -16,7 +16,7 @@ public abstract class AbstractPantalla implements Screen
     protected final Myrran game;
     protected final SpriteBatch batch;
     protected final ShapeRenderer shape;
-    protected final Stage stageUI;
+    public static final Stage stageUI= new Stage(0, 0, true);
     protected final InputMultiplexer inputMultiplexer;
     public static OrthographicCamera camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());  //la OrthographicCamera se encarga de hacer la conversion entre las distancias de juego y los pixeles de pantalla
     
@@ -28,7 +28,7 @@ public abstract class AbstractPantalla implements Screen
         this.game = game;                           //Es necesario disponer de la clase game, para poder por ejemplo cambiar de pantalla con el metodo game.navegarA(screen)
         this.batch = new SpriteBatch ();            //El SpriteBatch es el encargado de dibujar Bitmaps en pantalla, no es una variable, es un motor de dibujado, lo creamos para tenerlo listo   
         this.shape = new ShapeRenderer ();          //El shapeRenderer es como el anterior pero encargado de dibujar lineas
-        this.stageUI = new Stage(0, 0, true);
+        //this.stageUI = new Stage(0, 0, true);
         this.inputMultiplexer = new InputMultiplexer();
     } 
     
