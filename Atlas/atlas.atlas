@@ -365,6 +365,13 @@ filter: Nearest,Nearest
 repeat: none
 Spell Icons/Editar
   rotate: false
+  xy: 36, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Spell Icons/Editar.OLD
+  rotate: false
   xy: 2, 2
   size: 32, 32
   orig: 32, 32
@@ -372,42 +379,49 @@ Spell Icons/Editar
   index: -1
 Spell Icons/Espectro
   rotate: false
-  xy: 36, 2
+  xy: 70, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Spell Icons/FireBall
   rotate: false
-  xy: 70, 2
+  xy: 138, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/IceBall
+Spell Icons/FireBall.OLD
   rotate: false
   xy: 104, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/Plantar
-  rotate: false
-  xy: 138, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-Spell Icons/PoisonBolt
+Spell Icons/IceBall
   rotate: false
   xy: 172, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/Renew
+Spell Icons/Plantar
   rotate: false
   xy: 206, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Spell Icons/PoisonBolt
+  rotate: false
+  xy: 240, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Spell Icons/Renew
+  rotate: false
+  xy: 274, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -506,8 +520,22 @@ filter: Nearest,Nearest
 repeat: none
 UI/Casillero
   rotate: false
-  xy: 2, 2
+  xy: 2, 25
   size: 32, 32
   orig: 32, 32
+  offset: 0, 0
+  index: -1
+UI/RebindOff
+  rotate: false
+  xy: 2, 2
+  size: 19, 21
+  orig: 19, 21
+  offset: 0, 0
+  index: -1
+UI/RebindOn
+  rotate: false
+  xy: 36, 36
+  size: 19, 21
+  orig: 19, 21
   offset: 0, 0
   index: -1

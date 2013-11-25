@@ -6,8 +6,6 @@ import Geo.Mapa;
 import Graficos.PixieArbol;
 import Graficos.Recursos;
 import Graficos.Texto;
-import Interface.BarraSkills;
-import Interface.Barra;
 import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
@@ -22,13 +20,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import java.util.Comparator;
 // * @author Ivan Delgado Huerta
 public class PantallaJuego extends AbstractPantalla
 {
-    public static Stage stageMundo;
     private static RayHandler rayHandler;
     private static World world;
     private Texto fps;
@@ -45,8 +41,9 @@ public class PantallaJuego extends AbstractPantalla
     {
         super (game);
         
-        stageMundo = new Stage (0,0, true);
+        Mundo.stageMundo = new Stage (0,0, true);
         world = new World (new Vector2 (0, -9.8f), false);
+        
         //RayHandler.useDiffuseLight(true);
         //rayHandler = new RayHandler (world);
         //rayHandler.setCombinedMatrix(camara.combined);
@@ -58,11 +55,16 @@ public class PantallaJuego extends AbstractPantalla
         LoadData.cargarListaDeTiposSpell();
         LoadData.cargarListaDeSpells();
         
-        Mapa.renderGrid = false;
+        Mapa.renderGrid = true;
         Mapa.crearTiledMap();
         
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
+        stageUI.addActor(player.barraSpells);
         
+        player.barraSpells.setSpell(0, Mundo.listaDeSpells.get(0));
+        player.barraSpells.setSpell(1, Mundo.listaDeSpells.get(1));
+        player.barraSpells.setPosition(60,5);
+                
         player.getPixiePC().setCuerpo(0);
         player.getPixiePC().setBotas(1);
         player.getPixiePC().setGuantes(1);
@@ -84,36 +86,22 @@ public class PantallaJuego extends AbstractPantalla
         PixieArbol parbol = new PixieArbol (0);
         parbol.setCopas(0, 1, 2);
         parbol.setPosition(100, 300);       
-        stageMundo.addActor(parbol);
+        Mundo.stageMundo.addActor(parbol);
         
         PixieArbol parbol2 = new PixieArbol (0);
         parbol2.setCopas(0, 1, 2);
         parbol2.setPosition(200, 200);
-        stageMundo.addActor(parbol2);
+        Mundo.stageMundo.addActor(parbol2);
         
         PixieArbol parbol3 = new PixieArbol(parbol);
         parbol3.setPosition(450, 150);
-        stageMundo.addActor(parbol3);
+        Mundo.stageMundo.addActor(parbol3);
                 
         Texto texto= new Graficos.Texto("-125", Recursos.font14, Color.RED, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
-        texto.scrollingCombatText(stageMundo, 2f);
+        texto.scrollingCombatText(Mundo.stageMundo, 2f);
         
         fps = new Graficos.Texto("fps", Recursos.font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         stageUI.addActor(fps);
-                        
-        //player.getActor().addAction(Actions.fadeOut(3.5f));
-        
-        /*BarraSkills barra = new BarraSkills(10);
-        barra.generarCasillaSkill(Mundo.listaDeSpells.get(0), 0);
-        barra.generarCasillaSkill(Mundo.listaDeSpells.get(1), 1);
-        stageUI.addActor(barra);
-        barra.setPosition(300, 20);*/
-        
-        Barra barra = new Barra(10);
-        stageUI.addActor(barra);
-        barra.setPosition(300,20);
-        barra.setSpell(0, Mundo.listaDeSpells.get(0));
-        barra.setSpell(1, Mundo.listaDeSpells.get(1));
     }
     
     @Override
@@ -130,13 +118,13 @@ public class PantallaJuego extends AbstractPantalla
                 
         super.render(delta);
         
-        stageMundo.getActors().sort(new ComparatorActor());
+        Mundo.stageMundo.getActors().sort(new ComparatorActor());
         
         zoom();
                 
         camara.position.x = player.getX()+player.getPixiePC().getWidth()/2;
         camara.position.y = player.getY()+player.getPixiePC().getWidth()/2;
-        stageMundo.setCamera(camara);
+        Mundo.stageMundo.setCamera(camara);
         Mundo.mapRenderer.setView(camara);
         Mundo.mapRenderer.render();
         
@@ -151,8 +139,8 @@ public class PantallaJuego extends AbstractPantalla
         
         batch.end();
         
-        stageMundo.act(delta);  
-        stageMundo.draw();
+        Mundo.stageMundo.act(delta);  
+        Mundo.stageMundo.draw();
            
         //rayHandler.updateAndRender();
         
@@ -165,7 +153,7 @@ public class PantallaJuego extends AbstractPantalla
     public void resize(int anchura, int altura) 
     {
         super.resize(anchura, altura);
-        stageMundo.setViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
+        Mundo.stageMundo.setViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
     }
     
     @Override
@@ -173,7 +161,7 @@ public class PantallaJuego extends AbstractPantalla
     {
         super.dispose();
         
-        if (stageMundo != null) stageMundo.dispose();
+        if (Mundo.stageMundo != null) Mundo.stageMundo.dispose();
         Recursos.liberarRecursos();
     }
     

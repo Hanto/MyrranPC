@@ -14,6 +14,8 @@ public class Personaje extends Mob
     protected int actualHPs=1000;
     protected int maxHPs=1000;
     
+    protected int spellSeleccionado = 0;
+    
     protected boolean isCasteando = false;
     protected float actualCastingTime = 0;
     protected float totalCastingTime = 0;
@@ -36,5 +38,6 @@ public class Personaje extends Mob
     public void setIsCasteando (boolean b)      { isCasteando = b; }
     public void setActualCastingTime (float i)  { actualCastingTime = i; }
     public void setTotalCastingTime (float i)   { totalCastingTime = i; }
-    public void setCastingTime (float actual, float total) { actualCastingTime = actual; totalCastingTime = total;}
+    public void setCastingTime (float actual, float total)  { actualCastingTime = actual; totalCastingTime = total;}
+    public void setSpellSeleccionado (int spellID)          { spellSeleccionado = spellID; }
 }

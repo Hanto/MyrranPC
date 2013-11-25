@@ -1,21 +1,18 @@
 package Main;
-
 import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Terreno;
 import Mobiles.Player;
 import Mobiles.Proyectil;
-import Pantallas.PantallaJuego;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-
-/**
- * @author Ivan Delgado Huerta
- */
+ //* @author Ivan Delgado Huerta
+ 
 public class Mundo 
 {
     public static Player player;
@@ -29,15 +26,17 @@ public class Mundo
     public static Celda [][] mapa = new Celda [MiscData.MAPA_Max_X][MiscData.MAPA_Max_Y];
     public static TiledMap tiledMap = new TiledMap();
     public static OrthogonalTiledMapRenderer mapRenderer;
+    public static Stage stageMundo;
     
     //Opciones varias:
     public static boolean dibujarNameplatesPlayer = true;
+    
     
     public static Player añadirPlayer (int numRaza, int posX, int posY, String nombre)
     {
         Player pc = new Player(0, posX, posY, nombre);
         Mundo.listaDePlayers.add(pc);
-        PantallaJuego.stageMundo.addActor(pc.getActor());
+        stageMundo.addActor(pc.getActor());
         return pc;
     }
     
@@ -46,13 +45,13 @@ public class Mundo
         Mundo.listaDeProyectiles.add(proyectil);
         //proyectil.getPixie().setColor(0f, 0f, 0f, 0f);
         //proyectil.getPixie().addAction(Actions.fadeOut(1.5f, Interpolation.linear));
-        PantallaJuego.stageMundo.addActor(proyectil.getPixie()); 
+        stageMundo.addActor(proyectil.getPixie()); 
     }
     
     public static void eliminarProyectil (Proyectil proyectil)
     {
         Mundo.listaDeProyectiles.removeValue(proyectil, true);
-        PantallaJuego.stageMundo.getRoot().removeActor(proyectil.getPixie());
+        stageMundo.getRoot().removeActor(proyectil.getPixie());
     }
         
     public static void actualizarPlayers (float delta)

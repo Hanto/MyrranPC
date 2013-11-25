@@ -54,6 +54,8 @@ public class Recursos
     public static Image sombraArbol1;
     public static BitmapFont font14;  
     public static TextureRegion casillero;
+    public static TextureRegion rebindButtonOn;
+    public static TextureRegion rebindButtonOff;
     
     public static void crearRecursos()
     {
@@ -110,6 +112,8 @@ public class Recursos
         font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
         grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
         casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
+        rebindButtonOn = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOn"));
+        rebindButtonOff = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOff"));
         
         Mundo.añadirTerreno("Cesped");
         Mundo.añadirTerreno("Cesped2");
@@ -117,7 +121,7 @@ public class Recursos
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }

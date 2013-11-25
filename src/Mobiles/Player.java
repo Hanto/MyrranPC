@@ -1,25 +1,21 @@
 package Mobiles;
-
 import Constantes.MiscData;
-import Constantes.SpellData;
+import Interface.BarraSpells;
 import Main.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
-
-/**
- * @author Ivan Delgado Huerta
- */
-
+//* @author Ivan Delgado Huerta
 // Player representa de todos los personajes controlados por el jugador, el que esta siendo usado localmente desde esta maquina
 public class Player extends PC
 {
+    public BarraSpells barraSpells = new BarraSpells(20);
     //Teclas de Direccion para mover al personaje, remapeables:
     protected int teclaArriba = Keys.W;
     protected int teclaAbajo = Keys.S;
     protected int teclaIzquierda = Keys.A;
     protected int teclaDerecha = Keys.D;
-    
+        
     //CONSTRUCTOR:
     public Player (final int numRaza, int posX, int posY, String nombre)
     {
@@ -112,9 +108,12 @@ public class Player extends PC
             double angulo;
             angulo = Math.toDegrees(alpha+2*(Math.PI));
             angulo = angulo%360;
-             
-            if (!isCasteando) {pixiePC.setAnimacion(4, false, true, true); }
-            Mundo.listaDeSpells.get(SpellData.FIREBOLT_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
+            
+            if (spellSeleccionado >=0) 
+            {
+                if (!isCasteando) {pixiePC.setAnimacion(4, false, true, true); }
+                Mundo.listaDeSpells.get(spellSeleccionado).castear(this, Gdx.input.getX(), Gdx.input.getY());
+            }
             //Mundo.listaDeSpells.get(SpellData.TERRAFORMAR_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
             /*
             if (67.5d<=angulo && angulo<112.5d)     { pixiePC.setAnimacion(16, false); } //Abajo

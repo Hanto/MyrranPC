@@ -12,7 +12,7 @@ public class SpellData
     public static final String  BOLT_Daño_String = "Daño";
     public static final float   BOLT_Daño_Valor = 100f;
     public static final String  BOLT_Velocidad_String = "Velocidad";
-    public static final float   BOLT_Velocidad_Valor = 250f;
+    public static final float   BOLT_Velocidad_Valor = 850f;
     public static final String  BOLT_Duracion_String = "Duracion";
     public static final float   BOLT_Duracion_Valor = 4.0f;
     public static final int     BOLT_Pixie_Fireball_Proyectil = 1;
