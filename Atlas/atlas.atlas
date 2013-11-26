@@ -543,23 +543,23 @@ Terrenos/Cesped2.OLD
   index: -1
 Terrenos/MuroBase
   rotate: false
-  xy: 100, 466
+  xy: 100, 437
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 Terrenos/MuroMedio
   rotate: false
-  xy: 100, 440
+  xy: 100, 411
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 Terrenos/MuroTecho
   rotate: false
-  xy: 100, 414
-  size: 24, 24
-  orig: 24, 24
+  xy: 100, 463
+  size: 24, 27
+  orig: 24, 27
   offset: 0, 0
   index: -1
 Terrenos/Suelo
@@ -585,7 +585,7 @@ Terrenos/Tierra
   index: -1
 Terrenos/grid
   rotate: false
-  xy: 100, 388
+  xy: 100, 385
   size: 24, 24
   orig: 24, 24
   offset: 0, 0

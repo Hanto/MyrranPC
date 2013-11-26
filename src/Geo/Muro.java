@@ -13,15 +13,15 @@ public class Muro extends Actor
     public Sprite muroMedio;
     public Sprite muroTecho;
     
-    public int alturaMinima = 12;
-    public int recorridoParallax = (MiscData.WINDOW_Vertical_Resolution-50)/2;
+    public int alturaMinima = 10;
+    public int recorridoParallax = (MiscData.WINDOW_Vertical_Resolution-100)/2;
     
     public Muro (TextureRegion base, TextureRegion medio, TextureRegion techo)
     {
         muroBase = new Sprite(base);
         muroMedio = new Sprite (medio);
         muroTecho = new Sprite (techo);
-        //muroTecho.setSize(26, 26);
+        //muroTecho.setSize(24, 24);
     }
     
     @Override public void draw (Batch batch, float alpha)
@@ -33,16 +33,12 @@ public class Muro extends Actor
         muroTecho.draw(batch, alpha);
     }
     
-    @Override
-    public void act(float delta)
+    @Override public void act(float delta)
     {
-        float alto = this.getHeight();
-        float ancho = this.getWidth();
-        
         super.act(delta);
         muroBase.setPosition(this.getX(), this.getY());
         muroMedio.setPosition(this.getX(), this.getY());
-        muroTecho.setPosition(this.getX(), this.getY());
+        muroTecho.setPosition(this.getX(), this.getY()-3);
     }
     
     public float getAjustePerspectiva ()
