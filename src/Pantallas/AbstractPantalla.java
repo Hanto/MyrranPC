@@ -1,5 +1,5 @@
 package Pantallas;
-import Interface.PlayerInput;
+import UI.PlayerInput;
 import Main.Myrran;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;

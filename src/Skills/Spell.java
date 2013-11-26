@@ -1,5 +1,6 @@
 package Skills;
 
+import Graficos.Recursos;
 import Main.Mundo;
 import Mobiles.Personaje;
 import Skills.SpellStat.SpellPixie;
@@ -28,6 +29,7 @@ public class Spell
     public void setNombre (String nombre)               { this.nombre = nombre; }
     public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
     public void setIcono (TextureRegion texture)        { icono = texture; }
+    public void setIcono (int iconoID)                  { icono = Recursos.listaIconos.get(iconoID); }
     //GET:
     public int getId ()                                 { return id; }
     public String getNombre ()                          { return nombre; }

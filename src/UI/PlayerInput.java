@@ -1,4 +1,4 @@
-package Interface;
+package UI;
 // @author Ivan Delgado Huerta
 import Main.Mundo;
 import com.badlogic.gdx.InputProcessor;

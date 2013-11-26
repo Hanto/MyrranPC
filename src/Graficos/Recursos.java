@@ -1,6 +1,6 @@
 package Graficos;
 import Constantes.MiscData;
-import Interface.BarraTerrenos;
+import UI.BarraTerrenos;
 import Main.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -58,12 +58,30 @@ public class Recursos
     public static TextureRegion rebindButtonOn;
     public static TextureRegion rebindButtonOff;
     
+    public static TextureRegion muroBase;
+    public static TextureRegion muroMedio;
+    public static TextureRegion muroTecho;
+    
+    
     public static void crearRecursos()
     {
         crearAtlas();
+        
         sombraPlayer = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Sombra"));
         nameplateTotal = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Nameplate"));
         nameplateActual = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"NameplateFondo"));
+        troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
+        hojas = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Hojas1"));
+        sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1")); 
+        font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
+        grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
+        casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
+        rebindButtonOn = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOn"));
+        rebindButtonOff = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOff"));
+        
+        muroBase = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroBase"));
+        muroMedio = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroMedio"));
+        muroTecho = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroTecho"));
         
         Recursos.añadirRaza();
         Recursos.salvarCuerpo           (0, "Golem");
@@ -80,6 +98,7 @@ public class Recursos
         Recursos.salvarCapasFrontales   (0, "Desnudo");
         
         Recursos.salvarCabeza           (0, "Cabeza1");
+        
         Recursos.salvarBotas            (0, "BotasGolem01");
         Recursos.salvarGuantes          (0, "GuantesGolem01");
         Recursos.salvarPeto             (0, "PetoGolem01");
@@ -97,21 +116,13 @@ public class Recursos
         Recursos.salvarCopa             ("Bolapequeñaarbol2");
         
         Recursos.salvarIcono            ("FireBall");
+        Recursos.salvarIcono            ("FrostBolt");
         Recursos.salvarIcono            ("Editar");
         
         Recursos.salvarEfectoDeSpell    ("Fireball01");
         Recursos.salvarEfectoDeSpell    ("Fireball02");
         Recursos.salvarEfectoDeSpell    ("FrostBolt01");
         Recursos.salvarEfectoDeSpell    ("FrostBolt02");
-        
-        troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
-        hojas = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Hojas1"));
-        sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1")); 
-        font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
-        grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
-        casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
-        rebindButtonOn = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOn"));
-        rebindButtonOff = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOff"));
         
         Mundo.añadirTerreno             ("Cesped");
         Mundo.añadirTerreno             ("Cesped2");

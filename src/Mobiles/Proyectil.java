@@ -1,6 +1,9 @@
 package Mobiles;
 import Graficos.Pixie;
 import Main.Mundo;
+import Pantallas.PantallaJuego;
+import box2dLight.PointLight;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 //@author Ivan Delgado Huerta
@@ -10,6 +13,7 @@ public class Proyectil extends Mob
     protected float daño;                       //Daño que inflinje el proyectil con el impacto
     protected float duracionActual=0;           //Tiempo de vida que lleva el proyectil en el mundo
     protected float duracionMaxima;             //Tiempo maximo en segundos que permanece el proyectil
+    protected PointLight luz;                   //Luz que genera el Proyectil
     
     protected Group pixie = new Group();        //por ahora incluimos la animacion en un grupo para poder ejecutar acciones
     
@@ -17,7 +21,7 @@ public class Proyectil extends Mob
     public void setDaño (float Daño)                        { daño = Daño; }
     public void setDuracionMaxima (float DuracionMaxima)    { duracionMaxima = DuracionMaxima; }
     public void setOwner (Personaje Owner)                  { owner = Owner; }
-    public void setPixie (Pixie pixie)                      { this.pixie = new Pixie(pixie); }
+    public void setPixie (Pixie pixie)                      { this.pixie.addActor(new Pixie(pixie)); }
     //GET:
     public Group getPixie()                                 { return pixie; }
     
@@ -29,9 +33,10 @@ public class Proyectil extends Mob
         this.pixie.setOrigin(pixie.getWidth()/2, pixie.getHeight()/2);
         this.pixie.setColor(0, 0, 0, 0);
         this.pixie.addAction(Actions.fadeIn(0.1f));
+        luz = new PointLight(PantallaJuego.rayHandler, 100, new Color(1,0.5f,0.5f,0.5f), 100, 0, 0);
     }
     
-    public void expirar ()                                  { Mundo.eliminarProyectil(this); }
+    public void expirar ()                                  { luz.remove(); Mundo.eliminarProyectil(this); }
     public void crear ()                                    { Mundo.añadirProyectil(this);  }
     public void consumirse(float delta)
     {
@@ -57,6 +62,7 @@ public class Proyectil extends Mob
         y=  (float)(y+ (Math.sin(direccion))*velocidad*velocidadMod*delta);
         
         pixie.setPosition(x, y);
+        luz.setPosition(x+pixie.getOriginX(), y+pixie.getOriginY());
     }
     public void actualizar (float delta)
     {

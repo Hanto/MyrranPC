@@ -6,10 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 //@author Ivan Delgado Huerta
 //La clase Pixie es un Sprite animado, pero puede usarse para dibujar imagenes estaticas tambien
-public class Pixie extends Group
+public class Pixie extends Actor
 {
     private TextureRegion[][] frames;           //lista con las distintas animaciones, hay una fila para cada una de las posibibles animaciones, y en cada una de ellas, en las numCols estan todos los frames de dichas animaciones
     private TextureRegion frameActual;          //Textura del frame actual

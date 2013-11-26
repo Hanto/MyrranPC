@@ -3,9 +3,10 @@ import static Graficos.Recursos.listaDeRazas;
 import Mobiles.PC;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 //* @author Ivan Delgado Huerta
-public class PixiePC extends Group
+public class PixiePC extends Actor
 {
     protected PC pc;                                //Personaje que se esta dibujando, se necesita para acceder a los HPs, por ej
     //DATOS Animacion:

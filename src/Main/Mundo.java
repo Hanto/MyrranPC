@@ -2,7 +2,7 @@ package Main;
 import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Terreno;
-import Interface.BarraTerrenos;
+import UI.BarraTerrenos;
 import Mobiles.Player;
 import Mobiles.Proyectil;
 import Skills.Spell;

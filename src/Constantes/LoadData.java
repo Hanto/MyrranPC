@@ -1,21 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Constantes;
-
-import Graficos.Recursos;
 import static Main.Mundo.listaDeSpells;
 import static Main.Mundo.listaDeTiposSpell;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
 import TiposSpell.Bolt;
 import TiposSpell.EditarTerreno;
+//* @author Ivan Delgado Huerta
 
-/**
- * @author Ivan Delgado Huerta
- */
 public class LoadData 
 {
     public static void cargarListaDeTiposSpell ()
@@ -32,14 +23,14 @@ public class LoadData
         Spell spell = new Spell(listaDeTiposSpell.get(SpellData.BOLT_ID));
         spell.setNombre(SpellData.FIREBOLT_Nombre);
         spell.setDescripcion(SpellData.FIREBOLT_Descripcion);
-        spell.setIcono(Recursos.listaIconos.get(SpellData.FIREBOLT_Icono));
+        spell.setIcono(SpellData.FIREBOLT_Icono);
         listaDeSpells.add(spell);
         
         //FROSBOLT:
         spell = new Spell(listaDeTiposSpell.get(SpellData.BOLT_ID));
         spell.setNombre(SpellData.FROSTBOLT_Nombre);
         spell.setDescripcion(SpellData.FROSTBOLT_Descripcion);
-        spell.setIcono(Recursos.listaIconos.get(SpellData.FROSTBOLT_Icono));
+        spell.setIcono(SpellData.FROSTBOLT_Icono);
         spell.pixieSelecionado()[1]=1;
         spell.pixieSelecionado()[0]=1;
         listaDeSpells.add(spell);
@@ -48,7 +39,7 @@ public class LoadData
         spell = new Spell(listaDeTiposSpell.get(SpellData.EDITARTERRENO_ID));
         spell.setNombre(SpellData.TERRAFORMAR_Nombre);
         spell.setDescripcion(SpellData.TERRAFORMAR_Descripcion);
-        spell.setIcono(Recursos.listaIconos.get(SpellData.TERRAFORMAR_Icono));
+        spell.setIcono(SpellData.TERRAFORMAR_Icono);
         listaDeSpells.add(spell);
     }
 }

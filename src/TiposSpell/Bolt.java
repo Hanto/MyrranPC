@@ -8,6 +8,7 @@ import Skills.Spell;
 import Skills.SpellStat;
 import Skills.SpellStat.SpellPixie;
 //* @author Ivan Delgado Huerta
+
 public class Bolt extends AbstractTipoSpell
 {   
     public Bolt ()
@@ -24,13 +25,13 @@ public class Bolt extends AbstractTipoSpell
         spellPixies = new SpellPixie[2];
         SpellPixie spixie = new SpellPixie();
         spixie.tipoAnimacion = "Casteos Bolt";
-        spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Casteo));
+        spixie.pixieArray.add(Recursos.listaDeSpells.get(FIREBOLT_Pixie_Casteo));
         spixie.pixieArray.add(Recursos.listaDeSpells.get(FROSTBOLT_Pixie_Casteo));
         spellPixies[0]=spixie;
         
         spixie = new SpellPixie(); 
         spixie.tipoAnimacion = "Proyectiles Bolt";
-        spixie.pixieArray.add(Recursos.listaDeSpells.get(BOLT_Pixie_Fireball_Proyectil));
+        spixie.pixieArray.add(Recursos.listaDeSpells.get(FIREBOLT_Pixie_Proyectil));
         spixie.pixieArray.add(Recursos.listaDeSpells.get(FROSTBOLT_Pixie_Proyectil));
         spellPixies[1]=spixie;
     }

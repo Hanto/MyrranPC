@@ -1,4 +1,4 @@
-package Interface;
+package UI;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
@@ -31,7 +31,7 @@ public class BarraTerrenos extends Group
     
     private int altoScrollPane=MiscData.TILESIZE*2*12;
     private static int numColumnas = 2;
-        
+    
     public static class CasillaTerreno
     {
         public Group apariencia = new Group();
@@ -80,7 +80,7 @@ public class BarraTerrenos extends Group
             
             //Añdimos un listener para el scroll, para configurar su velocidad, hay que parar su propagacion con event.stop() para que no salte el que esta programado de base
             @Override public boolean scrolled(InputEvent event, float x, float y, int amount) 
-            { scrollpane.setScrollY(scrollpane.getScrollY()+MiscData.TILESIZE*3*amount); event.stop();return true; }
+            { scrollpane.setScrollY(scrollpane.getScrollY()+MiscData.TILESIZE*3*amount); event.stop(); return true; }
         });
         
         //Selector de CAPAS:

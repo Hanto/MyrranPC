@@ -1,4 +1,4 @@
-package Interface;
+package UI;
 // @author Ivan Delgado Huerta
 import Constantes.MiscData;
 import Graficos.Recursos;

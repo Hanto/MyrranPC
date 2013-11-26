@@ -1,6 +1,6 @@
 package Mobiles;
 import Constantes.MiscData;
-import Interface.BarraSpells;
+import UI.BarraSpells;
 import Main.Mundo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;

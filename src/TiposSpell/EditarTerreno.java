@@ -4,7 +4,7 @@ import Constantes.MiscData;
 import static Constantes.SpellData.*;
 import Geo.Celda;
 import Geo.Mapa;
-import Interface.BarraTerrenos;
+import UI.BarraTerrenos;
 import Main.Mundo;
 import Mobiles.Personaje;
 import Pantallas.AbstractPantalla;
