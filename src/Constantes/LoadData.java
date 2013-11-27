@@ -4,6 +4,7 @@ import static Main.Mundo.listaDeTiposSpell;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
 import TiposSpell.Bolt;
+import TiposSpell.EditarMuro;
 import TiposSpell.EditarTerreno;
 //* @author Ivan Delgado Huerta
 
@@ -16,6 +17,9 @@ public class LoadData
         //EDITAR TERRENO:
         AbstractTipoSpell editar = new EditarTerreno();
         listaDeTiposSpell.add(editar);
+        //EDITAR MURO:
+        AbstractTipoSpell muro = new EditarMuro();
+        listaDeTiposSpell.add(muro);
     }
     
     public static void cargarListaDeSpells ()
@@ -40,6 +44,13 @@ public class LoadData
         spell.setNombre(SpellData.TERRAFORMAR_Nombre);
         spell.setDescripcion(SpellData.TERRAFORMAR_Descripcion);
         spell.setIcono(SpellData.TERRAFORMAR_Icono);
+        listaDeSpells.add(spell);
+        
+        //MUROFORMAR:
+        spell = new Spell(listaDeTiposSpell.get(SpellData.EDITARMURO_ID));
+        spell.setNombre(SpellData.MUROFORMAR_Nombre);
+        spell.setDescripcion(SpellData.MUROFORMAR_Descripcion);
+        spell.setIcono(SpellData.MUROFORMAR_Icono);
         listaDeSpells.add(spell);
     }
 }

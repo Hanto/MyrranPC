@@ -11,6 +11,8 @@ public class Player extends PC
 {
     public BarraSpells barraSpells = new BarraSpells(2, 9);
     public boolean mostrarBarraTerrenos = false;
+    public boolean inputCastear = false;
+    
     //Teclas de Direccion para mover al personaje, remapeables:
     protected int teclaArriba = Keys.W;
     protected int teclaAbajo = Keys.S;
@@ -103,7 +105,7 @@ public class Player extends PC
         if ( isCasteando ) { actualCastingTime = actualCastingTime + delta; }
         if ( isCasteando && actualCastingTime >= totalCastingTime) { isCasteando = false; actualCastingTime = 0; totalCastingTime =0;}
         
-        if (Gdx.input.isButtonPressed(Buttons.LEFT))
+        if (inputCastear)
         {
             double alpha = Math.atan2(Gdx.input.getY() -(MiscData.WINDOW_Vertical_Resolution/2)+48/2, Gdx.input.getX() -(MiscData.WINDOW_Horizontal_Resolution/2)-48/2);     
             double angulo;

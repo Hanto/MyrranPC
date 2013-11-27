@@ -55,7 +55,7 @@ public class Mapa
             {
                 for (int y = 0; y < MiscData.MAPA_Max_Y; y++)
                 {   //si contiene un ID a un terreno valido cargamos su textura, si no, lo ignoramos
-                    if (mapa[x][y].getTerreno()[numCapa] >=0) 
+                    if (mapa[x][y].getTerrenoID()[numCapa] >=0) 
                     {
                         generarTexturaCelda(x, y, numCapa);
 
@@ -105,7 +105,7 @@ public class Mapa
     
     public static void crearTile (int x, int y, int numCapa)
     {
-        int numTerreno = mapa[x][y].getTerreno()[numCapa];
+        int numTerreno = mapa[x][y].getTerrenoID()[numCapa];
         if (numTerreno<0) return;
         Mapa.generarTexturaCelda(x, y, numCapa);
         
@@ -135,27 +135,27 @@ public class Mapa
     public static void generarTexturaCelda (int X, int Y, int capa)
     {   //reseteamos sus adyacencias:
         resetAdyacencias();
-        int numTerreno = mapa[X][Y].getTerreno()[capa];
+        int numTerreno = mapa[X][Y].getTerrenoID()[capa];
         if (numTerreno <0) return;
         //Buscamos que terreno tiene esa celda
         Terreno terreno = listaDeTerrenos.get(numTerreno);        
         //Calculamos las adyacendias en todas las direcciones con terrenos de su mismo tipo
         if      ( Y+1 >= MiscData.MAPA_Max_Y)                                   { NOarriba = false; NEarriba = false; }
-        else if ( mapa[X][Y].getTerreno()[capa] == mapa[X][Y+1].getTerreno()[capa])   { NOarriba = true; NEarriba = true; }
+        else if ( mapa[X][Y].getTerrenoID()[capa] == mapa[X][Y+1].getTerrenoID()[capa])   { NOarriba = true; NEarriba = true; }
         if      (Y-1 < 0)                                                       { SOabajo = false; SEabajo = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X][Y-1].getTerreno()[capa])    { SOabajo = true; SEabajo = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X][Y-1].getTerrenoID()[capa])    { SOabajo = true; SEabajo = true; }
         if      (X-1 < 0)                                                       { NOizquierda = false; SOizquierda = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X-1][Y].getTerreno()[capa])    { NOizquierda = true; SOizquierda = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X-1][Y].getTerrenoID()[capa])    { NOizquierda = true; SOizquierda = true; }
         if      (X+1 >= MiscData.MAPA_Max_X)                                    { NEderecha = false; SEderecha = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X+1][Y].getTerreno()[capa])    { NEderecha = true; SEderecha = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X+1][Y].getTerrenoID()[capa])    { NEderecha = true; SEderecha = true; }
         if      (X+1 >= MiscData.MAPA_Max_X || Y+1 >= MiscData.MAPA_Max_Y)      { NEdiagonal = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X+1][Y+1].getTerreno()[capa])  { NEdiagonal = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X+1][Y+1].getTerrenoID()[capa])  { NEdiagonal = true; }
         if      (X-1<0 || Y-1<0)                                                { SOdiagonal = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X-1][Y-1].getTerreno()[capa])  { SOdiagonal = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X-1][Y-1].getTerrenoID()[capa])  { SOdiagonal = true; }
         if      (X-1 <0 || Y+1 >= MiscData.MAPA_Max_Y)                          { NOdiagonal = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X-1][Y+1].getTerreno()[capa])  { NOdiagonal = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X-1][Y+1].getTerrenoID()[capa])  { NOdiagonal = true; }
         if      (X+1 >= MiscData.MAPA_Max_X || Y-1<0)                           { SEdiagonal = false; }
-        else if (mapa[X][Y].getTerreno()[capa] == mapa[X+1][Y-1].getTerreno()[capa])  { SEdiagonal = true; }
+        else if (mapa[X][Y].getTerrenoID()[capa] == mapa[X+1][Y-1].getTerrenoID()[capa])  { SEdiagonal = true; }
         //generamos las texturas de sus 4 cuadrantes segun sus adyacencias:
         generarTexturaCuadrantes(terreno);
     }

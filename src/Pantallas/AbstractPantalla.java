@@ -1,6 +1,8 @@
 package Pantallas;
+import Main.Mundo;
 import UI.PlayerInput;
 import Main.Myrran;
+import UI.PlayerGestures;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 //* @author Ivan Delgado Huerta
 //Plantilla Screen Base sobre la que construir todas las Screens:
@@ -16,8 +19,9 @@ public abstract class AbstractPantalla implements Screen
     protected final Myrran game;
     protected final SpriteBatch batch;
     protected final ShapeRenderer shape;
-    public static final Stage stageUI= new Stage(0, 0, true);
     protected final InputMultiplexer inputMultiplexer;
+    
+    public static final Stage stageUI= new Stage(0, 0, true);
     public static OrthographicCamera camara = new OrthographicCamera (Gdx.graphics.getWidth(), Gdx.graphics.getHeight());  //la OrthographicCamera se encarga de hacer la conversion entre las distancias de juego y los pixeles de pantalla
     
     public String getNombrePantalla()           { return getClass().getSimpleName(); }
@@ -36,9 +40,10 @@ public abstract class AbstractPantalla implements Screen
     {
         Gdx.app.log( Myrran.LOG, "SHOW (Inicializando Screen): " + getNombrePantalla());
         //Para decirle que acepte Inputs de los actores
-        //Gdx.input.setInputProcessor(stageUI);
-        inputMultiplexer.addProcessor(new PlayerInput());
         inputMultiplexer.addProcessor(stageUI);
+        inputMultiplexer.addProcessor(Mundo.stageMundo);
+        inputMultiplexer.addProcessor(new GestureDetector(new PlayerGestures()));
+        inputMultiplexer.addProcessor(new PlayerInput());  
         Gdx.input.setInputProcessor(inputMultiplexer);
         //Esto hay que activarlo solo para para conseguir un sistema de coordenanas Y-UP
         //camara.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

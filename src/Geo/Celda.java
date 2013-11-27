@@ -12,14 +12,26 @@ import Constantes.MiscData;
  */
 public class Celda 
 {
-    private Integer[] terreno = new Integer[MiscData.MAPA_Max_Capas_Terreno];
+    private Integer[] terrenoID = new Integer[MiscData.MAPA_Max_Capas_Terreno];
+    private Integer muroID = -1;
+    
+    //SET
+    public void setMuro (int muroID)    { this.muroID = muroID; }
+    
+    //GET:
+    public Integer[] getTerrenoID()      { return terrenoID; }    
     
     //CONSTRUCTOR:
     public Celda ()
     {
-        for (int i=0; i<terreno.length; i++) terreno[i] = -1;         
+        for (int i=0; i<terrenoID.length; i++) terrenoID[i] = -1;         
     }
     
-    //GET:
-    public Integer[] getTerreno()      { return terreno; }    
+    public Celda(Celda celdaOrigen)
+    {
+        for (int i=0; i<celdaOrigen.terrenoID.length;i++)
+        { terrenoID[i] = celdaOrigen.terrenoID[i];}
+        muroID = celdaOrigen.muroID;
+    }
+        
 }

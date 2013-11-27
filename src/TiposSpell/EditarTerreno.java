@@ -1,18 +1,12 @@
 package TiposSpell;
 // @author Ivan Delgado Huerta
-import Constantes.MiscData;
 import static Constantes.SpellData.*;
 import Geo.Celda;
 import Geo.Mapa;
-import UI.BarraTerrenos;
 import Main.Mundo;
 import Mobiles.Personaje;
-import Pantallas.AbstractPantalla;
-import Pantallas.PantallaJuego;
 import Skills.Spell;
 import Skills.SpellStat;
-import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class EditarTerreno extends AbstractTipoSpell
 {
@@ -22,8 +16,7 @@ public class EditarTerreno extends AbstractTipoSpell
         SpellStat stat = new SpellStat  (EDITARTERRENO_CastingTime_String, EDITARTERRENO_CastingTime_Valor); spellStats[0]=stat;//CAST
     }
     
-    @Override
-    public void ejecutarCasteo(Spell spell, Personaje caster, float targetX, float targetY) 
+    @Override public void ejecutarCasteo(Spell spell, Personaje caster, float targetX, float targetY) 
     {
         convertirCoordenadasDestino(caster, targetX, targetY);
         convertirCoordenadasANumeroDeTile();
@@ -33,12 +26,10 @@ public class EditarTerreno extends AbstractTipoSpell
         
         int numCapa = caster.getCapaTerrenoSeleccionada();
         
-        Celda celda = new Celda ();
-        for (int i=0; i<Mundo.mapa[x][y].getTerreno().length;i++)
-        { celda.getTerreno()[i] = Mundo.mapa[x][y].getTerreno()[i];}
-        
+        Celda celda = new Celda (Mundo.mapa[x][y]);
         Mundo.mapa[x][y] = celda;
-        celda.getTerreno()[numCapa]=Mundo.player.getTerrenoSeleccionado();
+        
+        celda.getTerrenoID()[numCapa]=Mundo.player.getTerrenoSeleccionado();
         
         Mapa.crearTile(x, y, numCapa);
         Mapa.crearTile(x+1, y, numCapa);

@@ -20,6 +20,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -43,9 +48,9 @@ public class PantallaJuego extends AbstractPantalla
             float o1Y, o2Y;
             o1Y = o1.getY();
             o2Y = o2.getY();
-            if (o1 instanceof Muro && ((Muro)o1).getAjustePerspectiva()<0 )
+            if (o1 instanceof Muro && ((Muro)o1).perspectiva < 0 )
                 { o1Y = 768-((Muro)o1).muroTecho.getY(); }
-            if (o2 instanceof Muro && ((Muro)o2).getAjustePerspectiva()<0 )
+            if (o2 instanceof Muro && ((Muro)o2).perspectiva < 0 )
                 { o2Y = 768-((Muro)o2).muroTecho.getY(); }
             return (o1Y < o2Y ? 1 : (o1Y == o2Y ? 1 : -1)); 
         }
@@ -62,9 +67,9 @@ public class PantallaJuego extends AbstractPantalla
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler (world);
         rayHandler.setCombinedMatrix(camara.combined);
-        rayHandler.setAmbientLight(1f);
+        rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 1.0f);
         //luz = new PointLight(rayHandler, 100, new Color(1,1,1,0.7f), 150, 0, 0);
-        luzPlayer = new PointLight(rayHandler, 100, new Color(1,1,1,0.7f), 1050, 0, 0);
+        luzPlayer = new PointLight(rayHandler, 500, new Color(0.3f,0.3f,0.3f,1.0f), 550, 0, 0);
         
         Recursos.crearRecursos();
         crearMapa();
@@ -81,6 +86,7 @@ public class PantallaJuego extends AbstractPantalla
         player.barraSpells.setSpell(0, Mundo.listaDeSpells.get(0));
         player.barraSpells.setSpell(1, Mundo.listaDeSpells.get(1));
         player.barraSpells.setSpell(2, Mundo.listaDeSpells.get(2));
+        player.barraSpells.setSpell(3, Mundo.listaDeSpells.get(3));
         player.barraSpells.setPosition(60,5);
                 
         player.getPixiePC().setCuerpo(0);
@@ -104,16 +110,16 @@ public class PantallaJuego extends AbstractPantalla
         PixieArbol parbol = new PixieArbol (0);
         parbol.setCopas(0, 1, 2);
         parbol.setPosition(100, 300);       
-        Mundo.stageMundo.addActor(parbol);
+        //Mundo.stageMundo.addActor(parbol);
         
         PixieArbol parbol2 = new PixieArbol (0);
         parbol2.setCopas(0, 1, 2);
         parbol2.setPosition(200, 200);
-        Mundo.stageMundo.addActor(parbol2);
+        //Mundo.stageMundo.addActor(parbol2);
         
         PixieArbol parbol3 = new PixieArbol(parbol);
         parbol3.setPosition(450, 150);
-        Mundo.stageMundo.addActor(parbol3);
+        //Mundo.stageMundo.addActor(parbol3);
                 
         Texto texto= new Graficos.Texto("-125", Recursos.font14, Color.RED, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
         texto.scrollingCombatText(Mundo.stageMundo, 2f);
@@ -124,148 +130,170 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.barraTerrenos.setNumColumnas(1);
         
         Muro muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600, 400);
+        muro.setPosition(600, 400); crearFisico(600, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24, 400);
+        muro.setPosition(600+24, 400); crearFisico (600+24, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*2, 400);
+        muro.setPosition(600+24*2, 400); crearFisico (600+24*2, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*3, 400);
+        muro.setPosition(600+24*3, 400); crearFisico (600+24*3, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*4, 400);
+        muro.setPosition(600+24*4, 400); crearFisico (600+24*4, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*5, 400);
+        muro.setPosition(600+24*5, 400); crearFisico (600+24*5, 400);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400);
+        muro.setPosition(600+24*6, 400); crearFisico (600+24*6, 400);
         Mundo.stageMundo.addActor(muro);
         
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400-24*5);
+        muro.setPosition(600+24*6, 400-24*5); crearFisico (600+24*6, 400-24*5);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400-24*6);
+        muro.setPosition(600+24*6, 400-24*6); crearFisico (600+24*6, 400-24*6);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400-24*7);
+        muro.setPosition(600+24*6, 400-24*7); crearFisico (600+24*6, 400-24*7);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400-24*8);
+        muro.setPosition(600+24*6, 400-24*8); crearFisico (600+24*6, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*7, 400-24*8);
+        muro.setPosition(600+24*7, 400-24*8); crearFisico (600+24*7, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*8, 400-24*8);
+        muro.setPosition(600+24*8, 400-24*8); crearFisico (600+24*8, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*9, 400-24*8);
+        muro.setPosition(600+24*9, 400-24*8); crearFisico (600+24*9, 400-24*8);
+        Mundo.stageMundo.addActor(muro); 
+        muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
+        muro.setPosition(600+24*10, 400-24*8); crearFisico (600+24*10, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*10, 400-24*8);
+        muro.setPosition(600+24*11, 400-24*8); crearFisico (600+24*11, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*11, 400-24*8);
+        muro.setPosition(600+24*12, 400-24*8); crearFisico (600+24*12, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*12, 400-24*8);
+        muro.setPosition(600+24*13, 400-24*8); crearFisico (600+24*13, 400-24*8);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*8);
+        muro.setPosition(600+24*13, 400-24*7); crearFisico (600+24*13, 400-24*7);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*7);
+        muro.setPosition(600+24*13, 400-24*6); crearFisico (600+24*13, 400-24*6);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*6);
+        muro.setPosition(600+24*13, 400-24*5); crearFisico (600+24*13, 400-24*5);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*5);
+        muro.setPosition(600+24*13, 400-24*4); crearFisico (600+24*13, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*4);
+        muro.setPosition(600+24*13, 400-24*3); crearFisico (600+24*13, 400-24*3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*3);
+        muro.setPosition(600+24*13, 400-24*2); crearFisico (600+24*13, 400-24*2);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*2);
+        muro.setPosition(600+24*13, 400-24*1); crearFisico (600+24*13, 400-24*1);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*1);
+        muro.setPosition(600+24*13, 400-24*0); crearFisico (600+24*13, 400-24*0);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*0);
+        muro.setPosition(600+24*13, 400-24*-1); crearFisico (600+24*13, 400-24*-1);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*-1);
+        muro.setPosition(600+24*13, 400-24*-2); crearFisico (600+24*13, 400-24*-2);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*-2);
+        muro.setPosition(600+24*13, 400-24*-3); crearFisico (600+24*13, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*13, 400-24*-3);
+        muro.setPosition(600+24*12, 400-24*-3); crearFisico (600+24*12, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*12, 400-24*-3);
+        muro.setPosition(600+24*11, 400-24*-3); crearFisico (600+24*11, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*11, 400-24*-3);
+        muro.setPosition(600+24*10, 400-24*-3); crearFisico (600+24*10, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*10, 400-24*-3);
+        muro.setPosition(600+24*9, 400-24*-3); crearFisico (600+24*9, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*9, 400-24*-3);
+        muro.setPosition(600+24*8, 400-24*-3); crearFisico (600+24*8, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*8, 400-24*-3);
+        muro.setPosition(600+24*7, 400-24*-3); crearFisico (600+24*7, 400-24*-3);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*7, 400-24*-3);
+        muro.setPosition(600+24*7, 400-24*-2); crearFisico (600+24*7, 400-24*-2);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*7, 400-24*-2);
+        muro.setPosition(600+24*7, 400-24*-1); crearFisico (600+24*7, 400-24*-1);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*7, 400-24*-1);
-        Mundo.stageMundo.addActor(muro);
-        muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*7, 400-24*0);
+        muro.setPosition(600+24*7, 400-24*0); crearFisico (600+24*7, 400-24*0);
         Mundo.stageMundo.addActor(muro);
        
         
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600, 400-24*4);
+        muro.setPosition(600, 400-24*4); crearFisico (600, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24, 400-24*4);
+        muro.setPosition(600+24, 400-24*4); crearFisico (600+24, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*2, 400-24*4);
+        muro.setPosition(600+24*2, 400-24*4); crearFisico (600+24*2, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*3, 400-24*4);
+        muro.setPosition(600+24*3, 400-24*4); crearFisico (600+24*3, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*4, 400-24*4);
+        muro.setPosition(600+24*4, 400-24*4); crearFisico (600+24*4, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*5, 400-24*4);
+        muro.setPosition(600+24*5, 400-24*4); crearFisico (600+24*5, 400-24*4);
         Mundo.stageMundo.addActor(muro);
         muro = new Muro(Recursos.muroBase, Recursos.muroMedio, Recursos.muroTecho);
-        muro.setPosition(600+24*6, 400-24*4);
+        muro.setPosition(600+24*6, 400-24*4); crearFisico (600+24*6, 400-24*4);
         Mundo.stageMundo.addActor(muro);
-       
+    }
+    
+    private void crearFisico(int tileX, int tileY)
+    {
+        crearMiniFisico (tileX, tileY);   
+    }
+    
+    public static void crearMiniFisico(int tileX, int tileY)
+    {
+        PolygonShape tileShape = new PolygonShape();
+        tileShape.setAsBox(12f, 12f);
+
+        BodyDef tileBodyDef = new BodyDef();
+        tileBodyDef.type = BodyType.StaticBody;
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = tileShape;
+        fixtureDef.filter.groupIndex = 0;
         
+        tileBodyDef.position.set(tileX+12, tileY+12);
+        Body tileBody = world.createBody(tileBodyDef);
+        tileBody.createFixture(fixtureDef);
+    
+        tileShape.dispose();
     }
     
     @Override
@@ -342,14 +370,14 @@ public class PantallaJuego extends AbstractPantalla
             for (int y = 0; y < 200; y++)
             {
                 Celda celda = new Celda();
-                celda.getTerreno()[0]=0;
+                celda.getTerrenoID()[0]=0;
                 Mundo.mapa[x][y]=celda;
             }
         }
         
         Celda celda2 = new Celda();
-        celda2.getTerreno()[0]=0;
-        celda2.getTerreno()[1]=1;
+        celda2.getTerrenoID()[0]=0;
+        celda2.getTerrenoID()[1]=1;
               
         dibujarCelda(4,5,celda2);
         dibujarCelda(3,5,celda2);

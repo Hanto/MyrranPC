@@ -78,7 +78,6 @@ public class Recursos
         casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
         rebindButtonOn = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOn"));
         rebindButtonOff = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"RebindOff"));
-        
         muroBase = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroBase"));
         muroMedio = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroMedio"));
         muroTecho = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroTecho"));
@@ -139,7 +138,8 @@ public class Recursos
         Mundo.añadirTerreno             ("Tierra");
         Mundo.añadirTerreno             ("Cesped");
         Mundo.añadirTerreno             ("Cesped2");
-           
+        
+        Mundo.añadirMuro("MuroBase", "MuroMedio", "MuroTecho");
         
         Mundo.barraTerrenos = new BarraTerrenos();
     }

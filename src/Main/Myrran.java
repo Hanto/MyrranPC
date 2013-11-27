@@ -13,6 +13,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
 
 /**
  * @author Ivan Delgado Huerta

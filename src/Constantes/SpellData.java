@@ -23,6 +23,11 @@ public class SpellData
     public static final String  EDITARTERRENO_CastingTime_String = "Casting Time";
     public static final float   EDITARTERRENO_CastingTime_Valor = 0.01f;
     
+    //EDITAR MURO:
+    public static final int     EDITARMURO_ID = 2;
+    public static final String  EDITARMURO_CastingTime_String = "Casting Time";
+    public static final float   EDITARMURO_CastingTime_Valor = 0.01f;
+    
     //SPELLS:
     //FIREBOLT:
     public static final int     FIREBOLT_ID = 0;
@@ -45,4 +50,10 @@ public class SpellData
     public static final String  TERRAFORMAR_Nombre = "Terra";
     public static final String  TERRAFORMAR_Descripcion = "Terraforma el terreno";
     public static final int     TERRAFORMAR_Icono = 2;
+    
+    //Muroformar
+    public static final int     MUROFORMAR_ID = 3;
+    public static final String  MUROFORMAR_Nombre = "Muro";
+    public static final String  MUROFORMAR_Descripcion = "Muroforma el terreno";
+    public static final int     MUROFORMAR_Icono = 2;
 }

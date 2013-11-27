@@ -1,13 +1,16 @@
 package Main;
 import Constantes.MiscData;
 import Geo.Celda;
+import Geo.Muro;
 import Geo.Terreno;
+import static Graficos.Recursos.atlas;
 import UI.BarraTerrenos;
 import Mobiles.Player;
 import Mobiles.Proyectil;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,6 +24,7 @@ public class Mundo
     public static Array<Spell> listaDeSpells = new Array<>();
     public static Array<AbstractTipoSpell> listaDeTiposSpell = new Array<>();    
     public static Array<Terreno> listaDeTerrenos = new Array<>();
+    public static Array<Muro> listaDeMuros = new Array<>();
     public static Array<Player> listaDePlayers = new Array<>();
     public static Array<Proyectil> listaDeProyectiles = new Array<>();
         
@@ -69,7 +73,6 @@ public class Mundo
         { listaDeProyectiles.get(i).actualizar(delta); }
     }
     
-    
     public static void añadirTerreno (String nombreTerreno)
     {
         Terreno terreno = new Terreno();
@@ -77,5 +80,14 @@ public class Mundo
         terreno.setTextura(nombreTerreno);
         terreno.setColor(Color.GRAY);
         Mundo.listaDeTerrenos.add(terreno);
+    }
+    
+    public static void añadirMuro (String muroBase, String muroMedio, String muroTecho)
+    {
+        TextureRegion muroBaseTex = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+muroBase));
+        TextureRegion muroMedioTex = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+muroMedio));
+        TextureRegion muroTechoTex = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+muroTecho));
+        Muro muro = new Muro (muroBaseTex, muroMedioTex, muroTechoTex);
+        Mundo.listaDeMuros.add(muro);
     }
 }
