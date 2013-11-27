@@ -1,4 +1,4 @@
-package Geo;
+package Graficos;
 // @author Ivan Delgado Huerta
 import Constantes.MiscData;
 import com.badlogic.gdx.graphics.g2d.Batch;

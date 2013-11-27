@@ -1,7 +1,7 @@
 package Main;
 import Constantes.MiscData;
 import Geo.Celda;
-import Geo.Muro;
+import Graficos.Muro;
 import Geo.Terreno;
 import static Graficos.Recursos.atlas;
 import UI.BarraTerrenos;

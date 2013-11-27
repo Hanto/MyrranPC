@@ -3,7 +3,7 @@ import Constantes.LoadData;
 import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Mapa;
-import Geo.Muro;
+import Graficos.Muro;
 import Graficos.PixieArbol;
 import Graficos.Recursos;
 import Graficos.Texto;
@@ -69,14 +69,14 @@ public class PantallaJuego extends AbstractPantalla
         rayHandler.setCombinedMatrix(camara.combined);
         rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 1.0f);
         //luz = new PointLight(rayHandler, 100, new Color(1,1,1,0.7f), 150, 0, 0);
-        luzPlayer = new PointLight(rayHandler, 500, new Color(0.3f,0.3f,0.3f,1.0f), 550, 0, 0);
+        luzPlayer = new PointLight(rayHandler, 300, new Color(0.3f,0.3f,0.3f,1.0f), 550, 0, 0);
         
         Recursos.crearRecursos();
         crearMapa();
         LoadData.cargarListaDeTiposSpell();
         LoadData.cargarListaDeSpells();
         
-        Mapa.renderGrid = false;
+        Mapa.renderGrid = true;
         Mapa.crearTiledMap();
         
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
@@ -311,9 +311,7 @@ public class PantallaJuego extends AbstractPantalla
         super.render(delta);
        
         Mundo.stageMundo.getActors().sort(new ComparatorActor());
-        
-        zoom();
-                
+                        
         camara.position.x = player.getX()+player.getPixiePC().getWidth()/2;
         camara.position.y = player.getY()+player.getPixiePC().getWidth()/2;
         Mundo.stageMundo.setCamera(camara);
@@ -418,24 +416,6 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.mapa[x*2+1][y*2]=celda;
         Mundo.mapa[x*2+1][y*2+1]=celda;
     }       
-    
-    public void zoom()
-    {
-        if (Gdx.input.isKeyPressed(Input.Keys.P)) 
-        { 
-            if (camara.viewportHeight >= MiscData.WINDOW_Vertical_Resolution) 
-            { 
-                camara.viewportHeight = MiscData.WINDOW_Vertical_Resolution;
-                camara.viewportWidth = MiscData.WINDOW_Horizontal_Resolution;
-            }
-            else 
-            {
-                camara.viewportHeight = camara.viewportHeight*1.01f;
-                camara.viewportWidth = camara.viewportWidth*1.01f; 
-            }
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.O)) { camara.viewportHeight = camara.viewportHeight/1.01f; camara.viewportWidth = camara.viewportWidth/1.01f; }
-    }
     
     public void renderGrid ()
     {

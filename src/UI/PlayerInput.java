@@ -1,6 +1,8 @@
 package UI;
 // @author Ivan Delgado Huerta
+import Constantes.MiscData;
 import Main.Mundo;
+import static Pantallas.AbstractPantalla.camara;
 import com.badlogic.gdx.InputProcessor;
 public class PlayerInput implements InputProcessor
 {
@@ -27,5 +29,26 @@ public class PlayerInput implements InputProcessor
     
     @Override public boolean touchDragged(int screenX, int screenY, int pointer)            { return false; }
     @Override public boolean mouseMoved(int screenX, int screenY)                           { return false; }
-    @Override public boolean scrolled(int amount)                                           { return false; }
+    @Override public boolean scrolled(int amount)                                           
+    { 
+        if (amount>0) 
+        {
+            if (camara.viewportHeight >= MiscData.WINDOW_Vertical_Resolution) 
+            { 
+                camara.viewportHeight = MiscData.WINDOW_Vertical_Resolution;
+                camara.viewportWidth = MiscData.WINDOW_Horizontal_Resolution;
+            }
+            else 
+            {
+                camara.viewportHeight = camara.viewportHeight*1.02f;
+                camara.viewportWidth = camara.viewportWidth*1.02f; 
+            }
+        }
+        if (amount<0) 
+        {
+            camara.viewportHeight = camara.viewportHeight/1.02f; 
+            camara.viewportWidth = camara.viewportWidth/1.02f;
+        }
+        return false; 
+    }
 }

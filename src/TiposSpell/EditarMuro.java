@@ -8,7 +8,7 @@ package TiposSpell;
 import Constantes.MiscData;
 import Constantes.SpellData;
 import Geo.Celda;
-import Geo.Muro;
+import Graficos.Muro;
 import Main.Mundo;
 import Mobiles.Personaje;
 import Pantallas.PantallaJuego;
