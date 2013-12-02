@@ -2,6 +2,7 @@ package Mobiles;
 import Constantes.MiscData;
 import UI.BarraSpells;
 import Main.Mundo;
+import PlayerControl.PlayerControl;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
@@ -11,7 +12,16 @@ public class Player extends PC
 {
     public BarraSpells barraSpells = new BarraSpells(2, 9);
     public boolean mostrarBarraTerrenos = false;
-    public boolean inputCastear = false;
+    public int nivelDeZoom = 0;
+    
+    public PlayerControl playerControl;
+    public int numAnimacion = 0;
+    public boolean castear = false;
+    public boolean irCastear = false;
+    public boolean irNorte = false;
+    public boolean irSur = false;
+    public boolean irOeste = false;
+    public boolean irEste = false;
     
     //Teclas de Direccion para mover al personaje, remapeables:
     protected int teclaArriba = Keys.W;
@@ -24,6 +34,7 @@ public class Player extends PC
     {
         super(numRaza, nombre);
         inicializar (posX, posY);
+        playerControl = new PlayerControl(this);
     }
         
     private void inicializar (int posX, int posY)
@@ -49,55 +60,36 @@ public class Player extends PC
     }
     
     public void moverse (float delta)
-    {       
+    {   //Sur
         if (Gdx.input.isKeyPressed(teclaAbajo) && !Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaIzquierda))      
-        {   //Sur
-            setY((float)(y+ -(Math.sin(Math.toRadians(90d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(3, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(90d))*velocidadMax)*velocidadMod*delta)); }
+        //Norte
         else if (Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaIzquierda))
-        {   //Norte
-            setY((float)(y+ -(Math.sin(Math.toRadians(270d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(2, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(270d))*velocidadMax)*velocidadMod*delta)); }
+        //Este
         else if (Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaAbajo))       
-        {   //Este
-            setX((float)(x+ (Math.cos(Math.toRadians(0d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(1, false, false, false);
-        }
+        { setX((float)(x+ (Math.cos(Math.toRadians(0d))*velocidadMax)*velocidadMod*delta)); }
+        //Oeste
         else if (Gdx.input.isKeyPressed(teclaIzquierda) && !Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaAbajo))       
-        {   //Oeste
-            setX((float)(x+ (Math.cos(Math.toRadians(180d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(0, false, false, false);
-        }
+        { setX((float)(x+ (Math.cos(Math.toRadians(180d))*velocidadMax)*velocidadMod*delta)); }
+        //SurOeste
         else if (Gdx.input.isKeyPressed(teclaAbajo) && Gdx.input.isKeyPressed(teclaIzquierda))   
-        {   //SurOeste
-            setY((float)(y+ -(Math.sin(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta));
-            setX((float)(x+ (Math.cos(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(0, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta));
+          setX((float)(x+ (Math.cos(Math.toRadians(135d))*velocidadMax)*velocidadMod*delta)); }
+        //SurEste
         else if (Gdx.input.isKeyPressed(teclaAbajo) && Gdx.input.isKeyPressed(teclaDerecha))   
-        {   //SurEste
-            setY((float)(y+ -(Math.sin(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta));
-            setX((float)(x+ (Math.cos(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(1, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta));
+          setX((float)(x+ (Math.cos(Math.toRadians(45d))*velocidadMax)*velocidadMod*delta)); }
+        //NorOeste
         else if (Gdx.input.isKeyPressed(teclaArriba) && Gdx.input.isKeyPressed(teclaIzquierda))   
-        {   //NorOeste
-            setY((float)(y+ -(Math.sin(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta));
-            setX((float)(x+ (Math.cos(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(0, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta));
+          setX((float)(x+ (Math.cos(Math.toRadians(225d))*velocidadMax)*velocidadMod*delta)); }
+        //NorEste
         else if (Gdx.input.isKeyPressed(teclaArriba) && Gdx.input.isKeyPressed(teclaDerecha))   
-        {   //NorEste
-            setY((float)(y+ -(Math.sin(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta));
-            setX((float)(x+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta));
-            pixiePC.setAnimacion(1, false, false, false);
-        }       
-        if (!Gdx.input.isKeyPressed(teclaAbajo) && !Gdx.input.isKeyPressed(teclaArriba) && !Gdx.input.isKeyPressed(teclaDerecha) && !Gdx.input.isKeyPressed(teclaIzquierda))
-        {   //Animacion de Iddle (Sin pulsar ninguna tecla)
-            pixiePC.setAnimacion(5, false, false, false);
-        }
+        { setY((float)(y+ -(Math.sin(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta));
+          setX((float)(x+ (Math.cos(Math.toRadians(315d))*velocidadMax)*velocidadMod*delta)); }
+        
+        //pixiePC.setAnimacion(numAnimacion, false, false, false);
     }
     
     public void castear(float delta)
@@ -105,8 +97,8 @@ public class Player extends PC
         if ( isCasteando ) { actualCastingTime = actualCastingTime + delta; }
         if ( isCasteando && actualCastingTime >= totalCastingTime) { isCasteando = false; actualCastingTime = 0; totalCastingTime =0;}
         
-        if (inputCastear)
-        {
+        if (castear && !isCasteando)
+        {              
             double alpha = Math.atan2(Gdx.input.getY() -(MiscData.WINDOW_Vertical_Resolution/2)+48/2, Gdx.input.getX() -(MiscData.WINDOW_Horizontal_Resolution/2)-48/2);     
             double angulo;
             angulo = Math.toDegrees(alpha+2*(Math.PI));
@@ -114,9 +106,14 @@ public class Player extends PC
             
             if (spellSeleccionado >=0) 
             {
-                if (!isCasteando) {pixiePC.setAnimacion(4, false, true, true); }
+                irCastear = true;
+                playerControl.procesarInput();
+                irCastear= false;
+                //pixiePC.setAnimacion(4, false, true, true);
                 Mundo.listaDeSpells.get(spellSeleccionado).castear(this, Gdx.input.getX(), Gdx.input.getY());
             }
+            
+            
             //Mundo.listaDeSpells.get(SpellData.TERRAFORMAR_ID).castear(this, Gdx.input.getX(), Gdx.input.getY());
             /*
             if (67.5d<=angulo && angulo<112.5d)     { pixiePC.setAnimacion(16, false); } //Abajo
@@ -133,9 +130,10 @@ public class Player extends PC
     }
     
     public void actualizar (float delta)
-    {        
+    {   
+        playerControl.actualizar(delta);
         moverse(delta);
-        castear (delta);
+        //castear (delta);
     }
     
 }

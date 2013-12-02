@@ -26,6 +26,8 @@ public class PixiePC extends Actor
     //SPRITES ESPECIALES:
     protected Sprite sombra;                        //Imagen que Contiene la sombra del personaje            
     
+    public boolean getAnimacionAcabada()            { return cuerpo.animacionAcabada; }  
+    
     //CONSTRUCTOR: inicializa y crea la animacion base, con el cuerpo de humano y el set desnudo
     public PixiePC (int numRaza, PC pc)
     {

@@ -6,20 +6,27 @@
 package Geo;
 
 import Constantes.MiscData;
+import Graficos.Muro;
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.KryoSerializable;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
-/**
+/**w
  * @author Ivan Delgado Huerta
  */
-public class Celda 
+public class Celda implements KryoSerializable
 {
-    private Integer[] terrenoID = new Integer[MiscData.MAPA_Max_Capas_Terreno];
+    private int [] terrenoID = new int[MiscData.MAPA_Max_Capas_Terreno];
     private Integer muroID = -1;
+    public Muro muro;
     
     //SET
     public void setMuro (int muroID)    { this.muroID = muroID; }
     
     //GET:
-    public Integer[] getTerrenoID()      { return terrenoID; }    
+    public int [] getTerrenoID()        { return terrenoID; }    
+    public int getMuroID()              { return muroID; }   
     
     //CONSTRUCTOR:
     public Celda ()
@@ -33,5 +40,18 @@ public class Celda
         { terrenoID[i] = celdaOrigen.terrenoID[i];}
         muroID = celdaOrigen.muroID;
     }
-        
+
+    @Override
+    public void write(Kryo kryo, Output output) 
+    {
+        output.writeInts(terrenoID);
+        output.writeInt(muroID);
+    }
+
+    @Override
+    public void read(Kryo kryo, Input input) 
+    {
+        terrenoID = input.readInts(MiscData.MAPA_Max_Capas_Terreno);
+        muroID = input.readInt();
+    }    
 }

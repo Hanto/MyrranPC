@@ -1,9 +1,12 @@
 package Save;
 // @author Ivan Delgado Huerta
+import Graficos.Muro;
 import Main.Mundo;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.esotericsoftware.kryo.serializers.FieldSerializer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,7 +15,8 @@ public class SaveData
 {    
     public static void saveMap()
     {
-        Kryo kryo = new Kryo();
+        Kryo kryo = new Kryo();      
+        
         try 
         {
             Output output = new Output(new FileOutputStream("map.bin"));

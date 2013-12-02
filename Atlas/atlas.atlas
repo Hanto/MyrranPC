@@ -297,63 +297,70 @@ filter: Nearest,Nearest
 repeat: none
 Player Sprites/Cabeza1
   rotate: false
-  xy: 2, 208
+  xy: 2, 552
   size: 432, 288
   orig: 432, 288
   offset: 0, 0
   index: -1
 Player Sprites/Golem
   rotate: false
-  xy: 2, 62
+  xy: 2, 148
+  size: 288, 144
+  orig: 288, 144
+  offset: 0, 0
+  index: -1
+Player Sprites/Golem.OLD
+  rotate: false
+  xy: 436, 696
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
 Player Sprites/Golem2
   rotate: false
-  xy: 436, 94
+  xy: 726, 696
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
 Player Sprites/Golem3
   rotate: false
-  xy: 726, 94
+  xy: 2, 2
   size: 288, 144
   orig: 288, 144
   offset: 0, 0
   index: -1
 Player Sprites/Humo
   rotate: false
-  xy: 2, 9
+  xy: 436, 643
   size: 51, 51
   orig: 51, 51
   offset: 0, 0
   index: -1
 Player Sprites/Nameplate
   rotate: false
-  xy: 822, 491
+  xy: 292, 287
   size: 36, 5
   orig: 36, 5
   offset: 0, 0
   index: -1
 Player Sprites/NameplateFondo
   rotate: false
-  xy: 2, 2
+  xy: 1016, 835
   size: 1, 5
   orig: 1, 5
   offset: 0, 0
   index: -1
 Player Sprites/Player
   rotate: false
-  xy: 436, 240
+  xy: 2, 294
   size: 384, 256
   orig: 384, 256
   offset: 0, 0
   index: -1
 Player Sprites/Sombra
   rotate: false
-  xy: 292, 195
+  xy: 388, 539
   size: 31, 11
   orig: 31, 11
   offset: 0, 0
@@ -508,84 +515,119 @@ filter: Nearest,Nearest
 repeat: none
 Terrenos/Baldosas
   rotate: false
-  xy: 2, 126
+  xy: 2, 31
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped
   rotate: false
-  xy: 2, 52
+  xy: 198, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped.OLD
   rotate: false
-  xy: 2, 346
+  xy: 2, 105
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
 Terrenos/Cesped2
   rotate: false
-  xy: 52, 126
+  xy: 52, 31
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped2.OLD
   rotate: false
-  xy: 2, 200
+  xy: 100, 105
   size: 96, 144
   orig: 96, 144
   offset: 0, 0
   index: -1
+Terrenos/Cesped3
+  rotate: false
+  xy: 248, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Cesped4
+  rotate: false
+  xy: 102, 31
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Cesped5
+  rotate: false
+  xy: 298, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
 Terrenos/MuroBase
   rotate: false
-  xy: 100, 437
+  xy: 152, 79
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 Terrenos/MuroMedio
   rotate: false
-  xy: 100, 411
+  xy: 298, 151
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 Terrenos/MuroTecho
   rotate: false
-  xy: 100, 463
+  xy: 2, 2
   size: 24, 27
   orig: 24, 27
   offset: 0, 0
   index: -1
 Terrenos/Suelo
   rotate: false
-  xy: 2, 2
+  xy: 198, 127
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Suelo2
   rotate: false
-  xy: 52, 2
+  xy: 248, 127
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Tierra
   rotate: false
-  xy: 52, 52
+  xy: 348, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Tierra2
+  rotate: false
+  xy: 398, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Tierra3
+  rotate: false
+  xy: 448, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/grid
   rotate: false
-  xy: 100, 385
+  xy: 28, 5
   size: 24, 24
   orig: 24, 24
   offset: 0, 0

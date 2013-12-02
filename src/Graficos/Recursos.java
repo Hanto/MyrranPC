@@ -123,15 +123,15 @@ public class Recursos
         Recursos.salvarEfectoDeSpell    ("FrostBolt01");
         Recursos.salvarEfectoDeSpell    ("FrostBolt02");
         
-        Mundo.añadirTerreno             ("Cesped");
-        Mundo.añadirTerreno             ("Cesped2");
         Mundo.añadirTerreno             ("Tierra");
+        Mundo.añadirTerreno             ("Tierra2");
+        Mundo.añadirTerreno             ("Tierra3");
         Mundo.añadirTerreno             ("Baldosas");
-        Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Tierra");
         Mundo.añadirTerreno             ("Cesped");
         Mundo.añadirTerreno             ("Cesped2");
+        Mundo.añadirTerreno             ("Cesped3");
+        Mundo.añadirTerreno             ("Cesped4");
+        Mundo.añadirTerreno             ("Cesped5");
         Mundo.añadirTerreno             ("Tierra");
         Mundo.añadirTerreno             ("Cesped");
         Mundo.añadirTerreno             ("Cesped2");

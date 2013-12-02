@@ -33,7 +33,7 @@ public class Proyectil extends Mob
         this.pixie.setOrigin(pixie.getWidth()/2, pixie.getHeight()/2);
         this.pixie.setColor(0, 0, 0, 0);
         this.pixie.addAction(Actions.fadeIn(0.1f));
-        luz = new PointLight(PantallaJuego.rayHandler, 100, new Color(1,0.5f,0.5f,0.4f), 200, 0, 0);
+        luz = new PointLight(Mundo.rayHandler, 100, new Color(1,0.5f,0.5f,0.4f), 200, 0, 0);
     }
     
     public void expirar ()                                  { luz.remove(); Mundo.eliminarProyectil(this); }

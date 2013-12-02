@@ -9,10 +9,12 @@ import Mobiles.Player;
 import Mobiles.Proyectil;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
  //* @author Ivan Delgado Huerta
@@ -32,11 +34,14 @@ public class Mundo
     public static TiledMap tiledMap = new TiledMap();
     public static OrthogonalTiledMapRenderer mapRenderer;
     public static Stage stageMundo;
+    public static World world;
+    public static RayHandler rayHandler;
     
     public static BarraTerrenos barraTerrenos;
     
     //Opciones varias:
     public static boolean dibujarNameplatesPlayer = true;
+    
     
     
     public static Player añadirPlayer (int numRaza, int posX, int posY, String nombre)
@@ -54,6 +59,7 @@ public class Mundo
         //proyectil.getPixie().addAction(Actions.fadeOut(1.5f, Interpolation.linear));
         stageMundo.addActor(proyectil.getPixie()); 
     }
+    
     
     public static void eliminarProyectil (Proyectil proyectil)
     {

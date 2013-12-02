@@ -13,8 +13,8 @@ public class MiscData
     
     //MUNDO
     public final static int TILESIZE = 24;
-    public final static int MAPA_Max_X = 200;
-    public final static int MAPA_Max_Y = 200;
+    public final static int MAPA_Max_X = 500;
+    public final static int MAPA_Max_Y = 500;
     
     //TERRENO:
     public final static String TERRENO_Nombre_Nuevo = "Terreno";

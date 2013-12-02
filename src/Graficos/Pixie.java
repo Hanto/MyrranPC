@@ -27,12 +27,15 @@ public class Pixie extends Actor
     private boolean mediaAnimacion= false;      //por si no queremos que empalme el final de la animacion con el inicio haciendo bucle. (para animaciones de disparo, salto, etc...)
     private boolean animarYEliminarActor = false;//Despues de mostrar la animacion, eliminar el actor de su grupo/stage
     
+    public boolean animacionAcabada = false;
+    
     public void resetAnimacion ()                       { stateTime = 0; }
     public void setPausa()                              { isPausado = true; }
     public void setOffset (int X, int Y)                { Offset.set(X, Y); }
     public void setAnimarYEliminarActor (Boolean b)     { animarYEliminarActor = b; }
     public void setMediaAnimacion (Boolean b)           { mediaAnimacion = b; }
     public void setIsLooping (Boolean b)                { isLooping = b; }
+    
  
     public Vector2 getOffset ()                         { return Offset; }
     
@@ -151,6 +154,7 @@ public class Pixie extends Actor
                 animation = new Animation(duracionFrame, frames[numAnimacion]);
                 this.numAnimacion = numAnimacion;
                 stateTime = 0f;
+                animacionAcabada=false;
             }
         }
     }
@@ -190,6 +194,7 @@ public class Pixie extends Actor
                 if (stateTime>duracionFrame*(frames[0].length+2)/2) 
                 {   //Como ya se ha mostrado la mitad de la animacion, si es ininterrumpible, debemos desactivarlo, para que otras animaciones puedan activarse
                     stateTime = 0;
+                    animacionAcabada = true;
                     if (ininterrumpible = true) ininterrumpible = false;
                     if (animarYEliminarActor) this.getParent().removeActor(this);
                 }
@@ -198,6 +203,7 @@ public class Pixie extends Actor
             {   //En caso contrario, si hemos indicado que sea ininterrumpible, como ya se ha mostrado toda, debemos desactivarlo, para que otras animaciones puedan activarse
                 if (stateTime>duracionFrame*(frames[0].length))
                 { 
+                    animacionAcabada = true;
                     if (ininterrumpible == true) ininterrumpible = false;
                     if (animarYEliminarActor) this.getParent().removeActor(this);
                 }

@@ -10,6 +10,7 @@ import static Main.Mundo.tiledMap;
 import static Main.Mundo.mapRenderer;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
@@ -47,6 +48,11 @@ public class Mapa
         //aTileArray.add(tile);
         //aTileArray.add(tile2);
         //AnimatedTiledMapTile aTile = new AnimatedTiledMapTile(0.3f, aTileArray);
+        Cell cell;
+        StaticTiledMapTile tileNO;
+        StaticTiledMapTile tileNE;
+        StaticTiledMapTile tileSO;
+        StaticTiledMapTile tileSE;
         
         for (int numCapa=0; numCapa<MiscData.MAPA_Max_Capas_Terreno; numCapa++)
         {
@@ -59,12 +65,12 @@ public class Mapa
                     {
                         generarTexturaCelda(x, y, numCapa);
 
-                        StaticTiledMapTile tileNO = new StaticTiledMapTile(cuadranteNO);
-                        StaticTiledMapTile tileNE = new StaticTiledMapTile(cuadranteNE);
-                        StaticTiledMapTile tileSO = new StaticTiledMapTile(cuadranteSO);
-                        StaticTiledMapTile tileSE = new StaticTiledMapTile(cuadranteSE);
+                        tileNO = new StaticTiledMapTile(cuadranteNO);
+                        tileNE = new StaticTiledMapTile(cuadranteNE);
+                        tileSO = new StaticTiledMapTile(cuadranteSO);
+                        tileSE = new StaticTiledMapTile(cuadranteSE);
 
-                        TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
+                        cell = new Cell();
                         cell.setTile(tileNO);
                         suelo.setCell(x*2, y*2+1, cell);
 
@@ -88,7 +94,7 @@ public class Mapa
         {
             TiledMapTileLayer layerGrid = new TiledMapTileLayer (MiscData.MAPA_Max_X*2, MiscData.MAPA_Max_Y*2, MiscData.TILESIZE, MiscData.TILESIZE);
             StaticTiledMapTile grid = new StaticTiledMapTile(Recursos.grid);
-            TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
+            cell = new Cell();
 
             for (int x = 0; x < MiscData.MAPA_Max_X*2; x++)
             {

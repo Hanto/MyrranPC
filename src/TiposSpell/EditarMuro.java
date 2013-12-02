@@ -11,7 +11,6 @@ import Geo.Celda;
 import Graficos.Muro;
 import Main.Mundo;
 import Mobiles.Personaje;
-import Pantallas.PantallaJuego;
 import Skills.Spell;
 import Skills.SpellStat;
 
@@ -32,14 +31,17 @@ public class EditarMuro extends AbstractTipoSpell
         int y = (int)destinoY;
         
         Celda celda = new Celda (Mundo.mapa[x][y]);
-        Mundo.mapa[x][y] = celda;
         
-        celda.setMuro(0);
-        Muro muro = new Muro(Mundo.listaDeMuros.get(0));
-        Mundo.stageMundo.addActor(muro);
-        muro.setPosition(x*MiscData.TILESIZE, y*MiscData.TILESIZE);
-        
-        PantallaJuego.crearMiniFisico(x*MiscData.TILESIZE, y*MiscData.TILESIZE);
+        if (celda.getMuroID() != 0)
+        {
+            Mundo.mapa[x][y] = celda;
+            celda.setMuro(0);
+            
+            Muro muro = new Muro(Mundo.listaDeMuros.get(0));
+            celda.muro = muro;
+            Mundo.stageMundo.addActor(muro);
+            muro.setPosition(x*MiscData.TILESIZE, y*MiscData.TILESIZE);
+        }
     }
 
 }

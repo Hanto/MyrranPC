@@ -75,8 +75,8 @@ public class BarraTerrenos extends Group
             { scrollpane.getStage().setScrollFocus(scrollpane); }
             
             //para que no haga scroll cuando el raton este fuera de la ventana de terrenos
-            //@Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-            //{ scrollpane.getStage().setScrollFocus(null); } 
+            @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
+            { scrollpane.getStage().setScrollFocus(null); } 
             
             //Añdimos un listener para el scroll, para configurar su velocidad, hay que parar su propagacion con event.stop() para que no salte el que esta programado de base
             @Override public boolean scrolled(InputEvent event, float x, float y, int amount) 
