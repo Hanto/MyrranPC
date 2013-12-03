@@ -19,45 +19,26 @@ public class PlayerEstado
     //Estado QUIETO:
     public static class Quieto extends AbstractEstado
     {   public Quieto (PlayerEstado playerE) 
-        {   playerE.player.getPixiePC().setAnimacion(5, false, false, false); 
-            playerE.player.rumboNorte = false; 
+        {   playerE.player.rumboNorte = false; 
             playerE.player.rumboSur = false;
             playerE.player.rumboEste = false; 
             playerE.player.rumboOeste = false;
-        }        
-        @Override public void procesarInput(PlayerEstado playerE) 
-        {   if (playerE.player.castear)         { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
+            playerE.player.getPixiePC().setAnimacion(5, false, false, false); 
+        }
+        @Override public void procesarInput(PlayerEstado playerE)
+        {   if (playerE.player.castear && !playerE.player.isCasteando)
+            {   
+                castear(playerE);
+                playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
+                playerE.player.getPixiePC().setAnimacion(5, false, false, false);
+            } 
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
             if (playerE.player.irIzquierda)     { playerE.estado = new Oeste(playerE); return; }
             if (playerE.player.irArriba)        { playerE.estado = new Norte(playerE); return; }
-            if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); return; }
+            if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); }
         }
         @Override public void actualizar (PlayerEstado playerE) { }
-    }
-    
-    //Estado CASTEANDO:
-    public static class Casteando extends AbstractEstado
-    {   public Casteando (PlayerEstado playerE) 
-        {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); }        
-        
-        @Override public void procesarInput(PlayerEstado playerE) 
-        {   aplicarMovimiento(playerE);
-            if (playerE.player.castear)         { castear(playerE); }
-            if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
-            if (playerE.player.getPixiePC().isAnimacionAcabada() == true)
-            {   
-                if (playerE.player.isCasteando) { playerE.player.getPixiePC().setAnimacion(4, false, true, true); return; }   
-                if (playerE.player.irDerecha)   { playerE.estado = new Este(playerE); return; }
-                if (playerE.player.irIzquierda) { playerE.estado = new Oeste(playerE); return; }
-                if (playerE.player.irArriba)    { playerE.estado = new Norte(playerE); return; }
-                if (playerE.player.irAbajo)     { playerE.estado = new Sur(playerE); return; }
-                if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-                {   playerE.estado = new Quieto(playerE); }
-            }
-        }
-        @Override public void actualizar (PlayerEstado playerE) 
-        {   if (playerE.player.getPixiePC().isAnimacionAcabada() == true) procesarInput(playerE); }
     }
     
     //Estado DISPARANDO:
@@ -67,38 +48,49 @@ public class PlayerEstado
             playerE.player.rumboSur = false;
             playerE.player.rumboEste = false; 
             playerE.player.rumboOeste = false;
+            playerE.player.getPixiePC().setAnimacion(getAngulo(playerE), false, false, false);
         }
-        @Override public void procesarInput(PlayerEstado playerE) 
-        {   if (playerE.player.castear)             { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
-            if (playerE.player.disparar)            { playerE.player.getPixiePC().setAnimacion(getAngulo(playerE), false, false, false); }
-            else
+        @Override public void procesarInput(PlayerEstado playerE)
+        {   if (playerE.player.disparar)            
+            {
+                if (playerE.player.castear && !playerE.player.isCasteando)
+                {   
+                    castear(playerE);
+                    if (playerE.player.isCasteando) { playerE.player.getPixiePC().setAnimacion(4, false, true, true); }
+                }
+                playerE.player.getPixiePC().setAnimacion(getAngulo(playerE), false, false, false);
+            }
+            else if (!playerE.player.disparar)
             {   
                 if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
                 if (playerE.player.irIzquierda)     { playerE.estado = new Oeste(playerE); return; }
                 if (playerE.player.irArriba)        { playerE.estado = new Norte(playerE); return; }
                 if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); return; }
-                if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-                { playerE.estado = new Quieto(playerE); }
+                if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
             }
         }
         @Override public void actualizar(PlayerEstado playerE) 
-        { 
-            procesarInput(playerE);
-        }
+        {   procesarInput(playerE); }
     }
     
     //Estado ARRIBA:
     public static class Norte extends AbstractEstado
     {   public Norte (PlayerEstado playerE)    
-        {   playerE.player.getPixiePC().setAnimacion(2, false, false, false); 
-            playerE.player.rumboNorte = playerE.player.irArriba; 
+        {   playerE.player.rumboNorte = playerE.player.irArriba; 
             playerE.player.rumboSur = false;
             playerE.player.rumboEste = playerE.player.irDerecha; 
             playerE.player.rumboOeste = playerE.player.irIzquierda;
+            playerE.player.getPixiePC().setAnimacion(2, false, false, false);    
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   
-            if (playerE.player.castear)         { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
+        {   if (playerE.player.castear && !playerE.player.isCasteando)
+            {   
+                castear(playerE); 
+                if (playerE.player.isCasteando) 
+                {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
+                    playerE.player.getPixiePC().setAnimacion(2, false, false, false);
+                } 
+            }
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); return; }
             else if (!playerE.player.irArriba)
@@ -111,8 +103,7 @@ public class PlayerEstado
                 playerE.player.rumboOeste = playerE.player.irIzquierda;
                 playerE.player.rumboEste = playerE.player.irDerecha;
             }
-            if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-            { playerE.estado = new Quieto(playerE); }
+            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
         }
         @Override public void actualizar(PlayerEstado playerE)  { }
     }
@@ -120,14 +111,21 @@ public class PlayerEstado
     //Estado ABAJO:
     public static class Sur extends AbstractEstado
     {   public Sur(PlayerEstado playerE)        
-        {   playerE.player.getPixiePC().setAnimacion(3, false, false, false); 
-            playerE.player.rumboNorte = false; 
+        {   playerE.player.rumboNorte = false; 
             playerE.player.rumboSur = playerE.player.irAbajo;
             playerE.player.rumboEste = playerE.player.irDerecha; 
             playerE.player.rumboOeste = playerE.player.irIzquierda;
+            playerE.player.getPixiePC().setAnimacion(3, false, false, false); 
         }
         @Override public void procesarInput(PlayerEstado playerE)
-        {   if (playerE.player.castear)         { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
+        {   if (playerE.player.castear && !playerE.player.isCasteando)
+            {   
+                castear(playerE); 
+                if (playerE.player.isCasteando) 
+                {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
+                    playerE.player.getPixiePC().setAnimacion(3, false, false, false);
+                } 
+            }
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irArriba)        { playerE.estado = new Norte(playerE); return; }
             else if (!playerE.player.irAbajo)
@@ -140,8 +138,7 @@ public class PlayerEstado
                 playerE.player.rumboOeste = playerE.player.irIzquierda;
                 playerE.player.rumboEste = playerE.player.irDerecha;
             }
-            if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-            { playerE.estado = new Quieto(playerE); }
+            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
         }
         @Override public void actualizar(PlayerEstado playerE)  { }
     }
@@ -149,14 +146,21 @@ public class PlayerEstado
     //Estado IZQUIERDA:
     public static class Oeste extends AbstractEstado
     {   public Oeste (PlayerEstado playerE)     
-        {   playerE.player.getPixiePC().setAnimacion(0, false, false, false);
-            playerE.player.rumboNorte = playerE.player.irArriba; 
+        {   playerE.player.rumboNorte = playerE.player.irArriba; 
             playerE.player.rumboSur = playerE.player.irAbajo;
             playerE.player.rumboEste = false; 
             playerE.player.rumboOeste = playerE.player.irIzquierda;
+            playerE.player.getPixiePC().setAnimacion(0, false, false, false);
         }
         @Override public void procesarInput(PlayerEstado playerE) 
-        {   if (playerE.player.castear)         { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
+        {   if (playerE.player.castear && !playerE.player.isCasteando)
+            {   
+                castear(playerE); 
+                if (playerE.player.isCasteando) 
+                {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
+                    playerE.player.getPixiePC().setAnimacion(0, false, false, false);
+                } 
+            }
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
             else if (!playerE.player.irIzquierda)
@@ -169,8 +173,7 @@ public class PlayerEstado
                 playerE.player.rumboNorte = playerE.player.irArriba;
                 playerE.player.rumboSur = playerE.player.irAbajo;
             }
-            if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-            { playerE.estado = new Quieto(playerE); }
+            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
         }
         @Override public void actualizar(PlayerEstado playerE)  { }
     }
@@ -178,14 +181,21 @@ public class PlayerEstado
     //Estado DERECHA:
     public static class Este extends AbstractEstado
     {   public Este (PlayerEstado playerE)      
-        {   playerE.player.getPixiePC().setAnimacion(1, false, false, false); 
-            playerE.player.rumboNorte = playerE.player.irArriba; 
+        {   playerE.player.rumboNorte = playerE.player.irArriba; 
             playerE.player.rumboSur = playerE.player.irAbajo;
             playerE.player.rumboEste = playerE.player.irDerecha; 
             playerE.player.rumboOeste = false;
+            playerE.player.getPixiePC().setAnimacion(1, false, false, false); 
         }
         @Override public void procesarInput(PlayerEstado playerE) 
-        {   if (playerE.player.castear)         { castear(playerE); if (playerE.player.isCasteando) playerE.estado = new Casteando(playerE); return; }
+        {   if (playerE.player.castear && !playerE.player.isCasteando)
+            {   
+                castear(playerE); 
+                if (playerE.player.isCasteando) 
+                {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
+                    playerE.player.getPixiePC().setAnimacion(1, false, false, false);
+                } 
+            }
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irIzquierda)     { playerE.estado = new Oeste(playerE); return; }
             else if (!playerE.player.irDerecha)
@@ -198,8 +208,7 @@ public class PlayerEstado
                 playerE.player.rumboNorte = playerE.player.irArriba;
                 playerE.player.rumboSur = playerE.player.irAbajo;
             }    
-            if (!playerE.player.irArriba && !playerE.player.irAbajo && !playerE.player.irDerecha && !playerE.player.irIzquierda) 
-            { playerE.estado = new Quieto(playerE); }
+            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
         }
         @Override public void actualizar(PlayerEstado playerE)  { }
     }
