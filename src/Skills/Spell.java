@@ -56,7 +56,7 @@ public class Spell
     
     public void castear (Personaje caster, int targetX, int targetY)
     {
-        if (caster.IsCasteando()) {}
+        if (caster.isCasteando()) {}
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
             caster.setIsCasteando(true);                                    

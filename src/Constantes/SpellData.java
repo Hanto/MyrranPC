@@ -7,7 +7,7 @@ public class SpellData
     //BOLT: (el casting time siempre debe ir primero)
     public static final int     BOLT_ID = 0;
     public static final String  BOLT_CastingTime_String = "Casting Time";
-    public static final float   BOLT_CastingTime_Valor = 0.5f;
+    public static final float   BOLT_CastingTime_Valor = 0.4f;
     public static final String  BOLT_Daño_String = "Daño";
     public static final float   BOLT_Daño_Valor = 100f;
     public static final String  BOLT_Velocidad_String = "Velocidad";

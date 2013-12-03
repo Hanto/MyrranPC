@@ -80,6 +80,6 @@ public abstract class AbstractTipoSpell implements TipoSpell
         Pixie casteo = new Pixie (pixie);
         casteo.setMediaAnimacion(true);
         casteo.setAnimarYEliminarActor(true);
-        caster.getActor().addActor(casteo);
+        //caster.getActor().addActor(casteo);
     }
 }

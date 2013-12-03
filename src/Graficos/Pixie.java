@@ -18,6 +18,7 @@ public class Pixie extends Actor
     private Vector2 Offset = new Vector2(0,0);  //Rectificacion de la posicion de la animacion
     
     private int numAnimacion;                   //es la animacion que se esta mostrando en este momento de todas las posibles que hay en el vector de animaciones (frames)
+    private int siguienteNumAnimacion =-1;      //para cuando la animacion es ininterrumpible y asisnamos una animacion, esta se carga como la siguiente
     private float duracionFrame;                //Es el tiempo que se mostrara cada frame de nuestra animacion
     private float stateTime = 0f;               //es el contador que controla cuanto tiempo tiene que mostrarse cada frame, se reinicia al final de la animation, el tiempo de cada animation se define en el constructor de la clase Animation
     private boolean isLooping = true;           //por si queremos que la animation se repita indefinidamente
@@ -35,8 +36,7 @@ public class Pixie extends Actor
     public void setAnimarYEliminarActor (Boolean b)     { animarYEliminarActor = b; }
     public void setMediaAnimacion (Boolean b)           { mediaAnimacion = b; }
     public void setIsLooping (Boolean b)                { isLooping = b; }
-    
- 
+     
     public Vector2 getOffset ()                         { return Offset; }
     
     //CONSTRUCTOR PARA ANIMACIONES:
@@ -170,9 +170,16 @@ public class Pixie extends Actor
     
     public void setAnimacion (int numAnimacion, boolean forzarAnimacion, boolean ininterrumpible, boolean mediaAnimacion)
     {
-        if (this.ininterrumpible && !forzarAnimacion) return;
+        if (this.ininterrumpible && !forzarAnimacion) 
+            { siguienteNumAnimacion = numAnimacion; return; }
         this.ininterrumpible = false;
         this.mediaAnimacion = false;
+        if (forzarAnimacion)
+        {
+            this.animacionAcabada = false;
+            this.stateTime = 0f;
+        }
+        
         setAnimacion (numAnimacion, ininterrumpible, mediaAnimacion);
     }
     
@@ -195,7 +202,15 @@ public class Pixie extends Actor
                 {   //Como ya se ha mostrado la mitad de la animacion, si es ininterrumpible, debemos desactivarlo, para que otras animaciones puedan activarse
                     stateTime = 0;
                     animacionAcabada = true;
-                    if (ininterrumpible = true) ininterrumpible = false;
+                    if (ininterrumpible = true) 
+                    { 
+                        ininterrumpible = false;
+                        if (siguienteNumAnimacion>=0)
+                        {
+                            siguienteNumAnimacion = -1;
+                            setAnimacion(siguienteNumAnimacion);
+                        }
+                    }
                     if (animarYEliminarActor) this.getParent().removeActor(this);
                 }
             }
@@ -204,7 +219,15 @@ public class Pixie extends Actor
                 if (stateTime>duracionFrame*(frames[0].length))
                 { 
                     animacionAcabada = true;
-                    if (ininterrumpible == true) ininterrumpible = false;
+                    if (ininterrumpible == true) 
+                    { 
+                        ininterrumpible = false;
+                        if (siguienteNumAnimacion>=0)
+                        {
+                            siguienteNumAnimacion = -1;
+                            setAnimacion(siguienteNumAnimacion);
+                        }
+                    }
                     if (animarYEliminarActor) this.getParent().removeActor(this);
                 }
             }

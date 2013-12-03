@@ -4,6 +4,7 @@ import Constantes.MiscData;
 import Main.Mundo;
 import static Pantallas.AbstractPantalla.camara;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 public class PlayerInput implements InputProcessor
@@ -23,10 +24,10 @@ public class PlayerInput implements InputProcessor
         
         switch (keycode)
         {
-            case Keys.W:    Mundo.player.irNorte = true; break;
-            case Keys.S:    Mundo.player.irSur = true; break;
-            case Keys.A:    Mundo.player.irOeste = true; break;
-            case Keys.D:    Mundo.player.irEste = true; break;
+            case Keys.W:    Mundo.player.irArriba = true; break;
+            case Keys.S:    Mundo.player.irAbajo = true; break;
+            case Keys.A:    Mundo.player.irIzquierda = true; break;
+            case Keys.D:    Mundo.player.irDerecha = true; break;
         }
         Mundo.player.playerControl.procesarInput();
         return false;
@@ -36,10 +37,10 @@ public class PlayerInput implements InputProcessor
     { 
         switch (keycode)
         {
-            case Keys.W:    {Mundo.player.irNorte = false; break; }
-            case Keys.S:    {Mundo.player.irSur = false; break;}
-            case Keys.A:    {Mundo.player.irOeste = false; break;}
-            case Keys.D:    {Mundo.player.irEste = false; break;}
+            case Keys.W:    {Mundo.player.irArriba = false; break; }
+            case Keys.S:    {Mundo.player.irAbajo = false; break;}
+            case Keys.A:    {Mundo.player.irIzquierda = false; break;}
+            case Keys.D:    {Mundo.player.irDerecha = false; break;}
         }
         Mundo.player.playerControl.procesarInput();
         return false;
@@ -47,10 +48,16 @@ public class PlayerInput implements InputProcessor
     
     @Override public boolean keyTyped(char character)                                       { return false; }
     @Override public boolean touchDown(int screenX, int screenY, int pointer, int button)   
-    { Mundo.player.castear = true; return false; }
+    {   if (button == Buttons.LEFT )    { Mundo.player.castear = true; return false; }
+        if (button == Buttons.RIGHT)    { Mundo.player.disparar = true; return false; }
+        return true;
+    }
     
     @Override public boolean touchUp(int screenX, int screenY, int pointer, int button)     
-    { Mundo.player.castear = false; return false; }
+    {   if (button == Buttons.LEFT)     { Mundo.player.castear = false; return false; }
+        if (button == Buttons.RIGHT)    { Mundo.player.disparar = false; return false; }
+        return true;
+    }
     
     @Override public boolean touchDragged(int screenX, int screenY, int pointer)            { return false; }
     @Override public boolean mouseMoved(int screenX, int screenY)                           { return false; }

@@ -69,14 +69,14 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.rayHandler.setCombinedMatrix(camara.combined);
         Mundo.rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 1.0f);
         //luz = new PointLight(rayHandler, 100, new Color(1,1,1,0.7f), 150, 0, 0);
-        luzPlayer = new PointLight(Mundo.rayHandler, 500, new Color(0.3f,0.3f,0.3f,1.0f), 550, 0, 0);
+        luzPlayer = new PointLight(Mundo.rayHandler, 500, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
         
         Recursos.crearRecursos();
         crearMapa();
         LoadData.cargarListaDeTiposSpell();
         LoadData.cargarListaDeSpells();
         
-        Mapa.renderGrid = true;
+        Mapa.renderGrid = false;
         Mapa.crearTiledMap();
         
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");

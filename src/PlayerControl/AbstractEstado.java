@@ -1,40 +1,52 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PlayerControl;
 // @author Ivan Delgado Huerta
 
-import Constantes.MiscData;
 import Main.Mundo;
 import Mobiles.Player;
-import PlayerControl.PlayerControl.EstadoPlayer;
+import Pantallas.AbstractPantalla;
+import Pantallas.PantallaJuego;
+import PlayerControl.PlayerEstado.Estado;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector3;
 
-public abstract class AbstractEstado implements EstadoPlayer
+public abstract class AbstractEstado implements Estado
 {
-       
-    public void inicializar (PlayerControl playerControl)
+    public void castear (PlayerEstado playerE)
     {
-        
+        Player player = playerE.player;
+        if (player.castear && !player.isCasteando && player.getSpellSeleccionado() >=0)
+        {   Mundo.listaDeSpells.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY()); }
     }
     
-    @Override public void actualizar (PlayerControl estado, float delta)
-    { 
-        Player player = estado.player;
+    public void aplicarMovimiento (PlayerEstado playerE)
+    {
+        Player player = playerE.player; 
+        player.rumboNorte = player.irArriba;
+        player.rumboSur = player.irAbajo;
+        player.rumboEste = player.irDerecha;
+        player.rumboOeste = player.irIzquierda;
+    }
+    
+    public int getAngulo(PlayerEstado playerE)
+    {
+        Vector3 destino = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        PantallaJuego.camara.unproject(destino);
         
-        if ( player.IsCasteando() ) { player.setActualCastingTime (player.getActualCastingTime()+delta); }
-        if ( player.IsCasteando() && player.getActualCastingTime() >= player.getTotalCastingTime()) 
-        { player.setIsCasteando(false); player.setActualCastingTime(0); player.setTotalCastingTime(0); }
+        float origenX = playerE.player.getX()+playerE.player.getPixiePC().getWidth()/2;
+        float origenY = playerE.player.getY()+playerE.player.getPixiePC().getHeight()/2;
+     
+        double alpha = Math.atan2(destino.y -origenY, destino.x -origenX);     
+        double angulo = Math.toDegrees(alpha+2*(Math.PI))%360;
         
-        if (player.castear && !player.IsCasteando() && player.getSpellSeleccionado() >=0)
-        {
-            double alpha = Math.atan2(Gdx.input.getY() -(MiscData.WINDOW_Vertical_Resolution/2)+48/2, Gdx.input.getX() -(MiscData.WINDOW_Horizontal_Resolution/2)-48/2);     
-            double angulo;
-            angulo = Math.toDegrees(alpha+2*(Math.PI));
-            angulo = angulo%360;
-            Mundo.listaDeSpells.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY());
-            procesarInput(estado);
-        }
+        if (67.5d<=angulo && angulo<112.5d)     { return 11; } //Arriba
+        if (22.5d<=angulo && angulo<67.5d)      { return 13; } //ArribaDcha
+        if (112.5d<=angulo && angulo<157.5d)    { return 12; } //ArribaIzda
+        if (157.5d<=angulo && angulo<202.5d)    { return 6; } //Izda
+        if (22.5>angulo && angulo>=0)           { return 7; } //Dcha
+        if (337.5<=angulo && angulo<=360)       { return 7; } //Dcha
+        if (247.5<=angulo && angulo<292.5)      { return 10; } //Abajo
+        if (292.5<=angulo && angulo<337.5)      { return 9; } //AbajoDcha
+        if (202.5<=angulo && angulo<247.5)      { return 8;  } //AbajoIzda 
+        return 6;
     }
 }

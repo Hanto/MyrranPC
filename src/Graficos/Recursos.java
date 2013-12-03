@@ -123,21 +123,17 @@ public class Recursos
         Recursos.salvarEfectoDeSpell    ("FrostBolt01");
         Recursos.salvarEfectoDeSpell    ("FrostBolt02");
         
-        Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Tierra2");
-        Mundo.añadirTerreno             ("Tierra3");
-        Mundo.añadirTerreno             ("Baldosas");
         Mundo.añadirTerreno             ("Cesped");
         Mundo.añadirTerreno             ("Cesped2");
         Mundo.añadirTerreno             ("Cesped3");
-        Mundo.añadirTerreno             ("Cesped4");
-        Mundo.añadirTerreno             ("Cesped5");
+        Mundo.añadirTerreno             ("Baldosas3");
+        Mundo.añadirTerreno             ("Baldosas");
+        Mundo.añadirTerreno             ("Baldosas2");
+        Mundo.añadirTerreno             ("Tierra 3");
         Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Cesped");
-        Mundo.añadirTerreno             ("Cesped2");
-        Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Cesped");
-        Mundo.añadirTerreno             ("Cesped2");
+        Mundo.añadirTerreno             ("Tierra 2");
+        Mundo.añadirTerreno             ("Tierra 4");
+        Mundo.añadirTerreno             ("Arena");
         
         Mundo.añadirMuro("MuroBase", "MuroMedio", "MuroTecho");
         
@@ -146,7 +142,7 @@ public class Recursos
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }

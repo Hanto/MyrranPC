@@ -18,9 +18,9 @@ public class Personaje extends Mob
     protected int terrenoSeleccionado = 0;
     protected int capaTerrenoSeleccionada = 0;
     
-    protected boolean isCasteando = false;
-    protected float actualCastingTime = 0;
-    protected float totalCastingTime = 0;
+    public boolean isCasteando = false;
+    public float actualCastingTime = 0;
+    public float totalCastingTime = 0;
     
     protected Nameplate nameplate;
     
@@ -30,7 +30,7 @@ public class Personaje extends Mob
     public int getMaxHPs()                      { return maxHPs; }    
     public float getHPsPercent()                { return ((float)actualHPs/(float)maxHPs); }
     public float getCastingTimePercent()        { return ((float)actualCastingTime/(float)totalCastingTime); }
-    public boolean IsCasteando()                { return isCasteando; }
+    public boolean isCasteando()                { return isCasteando; }
     public float getActualCastingTime ()        { return actualCastingTime; }
     public float getTotalCastingTime ()         { return totalCastingTime; }
     public int getSpellSeleccionado ()          { return spellSeleccionado; }

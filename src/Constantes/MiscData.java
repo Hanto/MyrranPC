@@ -22,7 +22,7 @@ public class MiscData
     
     //PIXIE
     public final static float PIXIE_DuracionFrame_Medio = 0.15f;
-    public final static int PIXIE_Player_numFilas = 3;
+    public final static int PIXIE_Player_numFilas = 7;
     public final static int PIXIE_Player_numColumnas = 6;
     public final static float PIXIE_Player_DuracionFrame = 0.15f; //en segundos
     public final static int PIXIE_Player_numFramesAnimacion = 3;
