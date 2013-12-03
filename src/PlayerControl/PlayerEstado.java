@@ -16,6 +16,10 @@ public class PlayerEstado
     public void procesarInput ()                { estado.procesarInput(this); }
     public void actualizar ()                   { estado.actualizar(this); }
     
+    //Cada estado contiene un constructor con las restricciones iniciales de movimiento y con la animacion que usa ese estado
+    //Desde cada estado un mismo Input produce efectos diferentes y conduce a estados diferentes tambien
+    //cada estado dispone tambien de un metodo de Update, por si hay que actualizar barras de carga, o power ups, etc...
+    
     //Estado QUIETO:
     public static class Quieto extends AbstractEstado
     {   public Quieto (PlayerEstado playerE) 
@@ -27,11 +31,11 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {   if (playerE.player.castear && !playerE.player.isCasteando)
-            {   
-                castear(playerE);
+            {   //Castear no es un estado, solapa el estado actual, por tanto solo lanza el casteo y la animacion
+                castear(playerE); //cargamos una segunda animacion, para cuando que acabe el casteo se muestre
                 playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
                 playerE.player.getPixiePC().setAnimacion(5, false, false, false);
-            } 
+            }   //cualquier accion hace que cambie el estado:
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
             if (playerE.player.irIzquierda)     { playerE.estado = new Oeste(playerE); return; }
@@ -52,23 +56,23 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {   if (playerE.player.disparar)            
-            {
+            {   //podemos castear mientras disparamos, como se solapa al disparo, no implica un cambio de estado:
                 if (playerE.player.castear && !playerE.player.isCasteando)
-                {   
+                {   //no hace falta cargar una segunda animacion, puesto que la de respaldo sera la propia del disparo
                     castear(playerE);
                     if (playerE.player.isCasteando) { playerE.player.getPixiePC().setAnimacion(4, false, true, true); }
-                }
+                }//para averiguar que animacion de disparo cargar, debemos calcular el angulo entre player y puntero
                 playerE.player.getPixiePC().setAnimacion(getAngulo(playerE), false, false, false);
             }
             else if (!playerE.player.disparar)
-            {   
+            {   //si no disparamos hay que cambiar de estado:
                 if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
                 if (playerE.player.irIzquierda)     { playerE.estado = new Oeste(playerE); return; }
                 if (playerE.player.irArriba)        { playerE.estado = new Norte(playerE); return; }
                 if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); return; }
                 if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
             }
-        }
+        }   //como mientras disparamos vamos apuntando, hay que actualizar la animacion todo el rato:
         @Override public void actualizar(PlayerEstado playerE) 
         {   procesarInput(playerE); }
     }
@@ -84,26 +88,27 @@ public class PlayerEstado
         }
         @Override public void procesarInput(PlayerEstado playerE)
         {   if (playerE.player.castear && !playerE.player.isCasteando)
-            {   
+            {
                 castear(playerE); 
                 if (playerE.player.isCasteando) 
                 {   playerE.player.getPixiePC().setAnimacion(4, false, true, true); 
                     playerE.player.getPixiePC().setAnimacion(2, false, false, false);
                 } 
-            }
+            }   //cualquier accion que no implique ir en la direccion del Estado hara cambiar de estado:
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irAbajo)         { playerE.estado = new Sur(playerE); return; }
-            else if (!playerE.player.irArriba)
+            if (!playerE.player.irArriba)
             {   
                 if (playerE.player.irDerecha)   { playerE.estado = new Este(playerE); return; }
                 if (playerE.player.irIzquierda) { playerE.estado = new Oeste(playerE); return; }
             }
-            else if (playerE.player.irArriba)
-            {
+            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
+            if (playerE.player.irArriba)
+            {   //Si vamos hacia arriba, pero cambia el movimiento lateral, mantenemos el estado y cambiamos el rumbo
                 playerE.player.rumboOeste = playerE.player.irIzquierda;
                 playerE.player.rumboEste = playerE.player.irDerecha;
             }
-            if (estaQuieto(playerE))            { playerE.estado = new Quieto(playerE); }
+            
         }
         @Override public void actualizar(PlayerEstado playerE)  { }
     }
