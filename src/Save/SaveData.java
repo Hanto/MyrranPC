@@ -1,6 +1,6 @@
 package Save;
 // @author Ivan Delgado Huerta
-import Graficos.Muro;
+import Geo.Muro;
 import Main.Mundo;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;

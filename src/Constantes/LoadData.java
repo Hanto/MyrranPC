@@ -1,6 +1,6 @@
 package Constantes;
-import static Main.Mundo.listaDeSpells;
-import static Main.Mundo.listaDeTiposSpell;
+import Main.Mundo;
+import Main.Mundo;
 import Skills.Spell;
 import TiposSpell.AbstractTipoSpell;
 import TiposSpell.Bolt;
@@ -13,44 +13,44 @@ public class LoadData
     public static void cargarListaDeTiposSpell ()
     {   //BOLT:
         AbstractTipoSpell bolt = new Bolt();
-        listaDeTiposSpell.add(bolt);
+        Main.Mundo.listaDeTiposSpell.add(bolt);
         //EDITAR TERRENO:
         AbstractTipoSpell editar = new EditarTerreno();
-        listaDeTiposSpell.add(editar);
+        Main.Mundo.listaDeTiposSpell.add(editar);
         //EDITAR MURO:
         AbstractTipoSpell muro = new EditarMuro();
-        listaDeTiposSpell.add(muro);
+        Main.Mundo.listaDeTiposSpell.add(muro);
     }
     
     public static void cargarListaDeSpells ()
     {   //FIREBOLT:
-        Spell spell = new Spell(listaDeTiposSpell.get(SpellData.BOLT_ID));
+        Spell spell = new Spell(Main.Mundo.listaDeTiposSpell.get(SpellData.BOLT_ID));
         spell.setNombre(SpellData.FIREBOLT_Nombre);
         spell.setDescripcion(SpellData.FIREBOLT_Descripcion);
         spell.setIcono(SpellData.FIREBOLT_Icono);
-        listaDeSpells.add(spell);
+        Main.Mundo.listaDeSpells.add(spell);
         
         //FROSBOLT:
-        spell = new Spell(listaDeTiposSpell.get(SpellData.BOLT_ID));
+        spell = new Spell(Main.Mundo.listaDeTiposSpell.get(SpellData.BOLT_ID));
         spell.setNombre(SpellData.FROSTBOLT_Nombre);
         spell.setDescripcion(SpellData.FROSTBOLT_Descripcion);
         spell.setIcono(SpellData.FROSTBOLT_Icono);
-        spell.pixieSelecionado()[1]=1;
-        spell.pixieSelecionado()[0]=1;
-        listaDeSpells.add(spell);
+        spell.pixieSeleccionado()[1]=1;
+        spell.pixieSeleccionado()[0]=1;
+        Main.Mundo.listaDeSpells.add(spell);
         
         //TERRAFORMAR:
-        spell = new Spell(listaDeTiposSpell.get(SpellData.EDITARTERRENO_ID));
+        spell = new Spell(Main.Mundo.listaDeTiposSpell.get(SpellData.EDITARTERRENO_ID));
         spell.setNombre(SpellData.TERRAFORMAR_Nombre);
         spell.setDescripcion(SpellData.TERRAFORMAR_Descripcion);
         spell.setIcono(SpellData.TERRAFORMAR_Icono);
-        listaDeSpells.add(spell);
+        Main.Mundo.listaDeSpells.add(spell);
         
         //MUROFORMAR:
-        spell = new Spell(listaDeTiposSpell.get(SpellData.EDITARMURO_ID));
+        spell = new Spell(Main.Mundo.listaDeTiposSpell.get(SpellData.EDITARMURO_ID));
         spell.setNombre(SpellData.MUROFORMAR_Nombre);
         spell.setDescripcion(SpellData.MUROFORMAR_Descripcion);
         spell.setIcono(SpellData.MUROFORMAR_Icono);
-        listaDeSpells.add(spell);
+        Main.Mundo.listaDeSpells.add(spell);
     }
 }

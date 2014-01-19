@@ -1,13 +1,14 @@
 package Pantallas;
 import Constantes.LoadData;
+import Constantes.LoadRecursos;
 import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Mapa;
-import Graficos.Muro;
+import Geo.Muro;
 import Graficos.PixieArbol;
 import Graficos.Recursos;
 import static Graficos.Recursos.atlas;
-import Graficos.SPixie;
+import Graficos.Pixie;
 import Graficos.Texto;
 import Main.Mundo;
 import static Main.Mundo.player;
@@ -15,6 +16,9 @@ import Main.Myrran;
 import Mobiles.Player;
 import static Pantallas.AbstractPantalla.camara;
 import Save.SaveData;
+import Skills.Aura;
+import Skills.TipoSkills.TipoAura;
+import TiposAura.Dot;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
@@ -41,7 +45,6 @@ public class PantallaJuego extends AbstractPantalla
     
     static class ComparatorActor implements Comparator<Actor>
     {
-        
         @Override
         public int compare(Actor o1, Actor o2) 
         {   
@@ -69,9 +72,11 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.rayHandler.setCombinedMatrix(camara.combined);
         Mundo.rayHandler.setAmbientLight(0.4f, 0.4f, 0.4f, 1.0f);
         //luz = new PointLight(rayHandler, 100, new Color(1,1,1,0.7f), 150, 0, 0);
-        luzPlayer = new PointLight(Mundo.rayHandler, 500, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
+        luzPlayer = new PointLight(Mundo.rayHandler, 300, new Color(0.3f,0.3f,0.3f,1.0f), 350, 0, 0);
         
         Recursos.crearRecursos();
+        LoadRecursos.cargarRecursos();
+        
         crearMapa();
         LoadData.cargarListaDeTiposSpell();
         LoadData.cargarListaDeSpells();
@@ -81,13 +86,12 @@ public class PantallaJuego extends AbstractPantalla
         
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
         player.setPosition(500, 400);
-        stageUI.addActor(player.barraSpells);
         
         player.barraSpells.setSpell(0, Mundo.listaDeSpells.get(0));
         player.barraSpells.setSpell(1, Mundo.listaDeSpells.get(1));
         player.barraSpells.setSpell(2, Mundo.listaDeSpells.get(2));
         player.barraSpells.setSpell(3, Mundo.listaDeSpells.get(3));
-        player.barraSpells.setPosition(60,5);
+        
                 
         player.getPixiePC().setCuerpo(0);
         player.getPixiePC().setBotas(0);
@@ -110,16 +114,16 @@ public class PantallaJuego extends AbstractPantalla
         PixieArbol parbol = new PixieArbol (0);
         parbol.setCopas(0, 1, 2);
         parbol.setPosition(100, 300);       
-        //Mundo.stageMundo.addActor(parbol);
+        Mundo.stageMundo.addActor(parbol);
         
         PixieArbol parbol2 = new PixieArbol (0);
         parbol2.setCopas(0, 1, 2);
         parbol2.setPosition(200, 200);
-        //Mundo.stageMundo.addActor(parbol2);
+        Mundo.stageMundo.addActor(parbol2);
         
         PixieArbol parbol3 = new PixieArbol(parbol);
         parbol3.setPosition(450, 150);
-        //Mundo.stageMundo.addActor(parbol3);
+        Mundo.stageMundo.addActor(parbol3);
                 
         Texto texto= new Graficos.Texto("-125", Recursos.font14, Color.RED, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
         texto.scrollingCombatText(Mundo.stageMundo, 2f);
@@ -127,14 +131,9 @@ public class PantallaJuego extends AbstractPantalla
         fps = new Graficos.Texto("fps", Recursos.font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
         stageUI.addActor(fps);
         
-        Mundo.barraTerrenos.setNumColumnas(1);
+        Mundo.barraTerrenos.setNumColumnas(2);
         
-        SPixie spixie = new SPixie (new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Golem")), 3, 6, 3, 0.5f);
-        //spixie.añadirAnimacion("Caminar", new int []{0,1,2}, 2f);
-        //spixie.setAnimacion(4);
         
-        SPixie destino = new SPixie(spixie);
-        Mundo.stageMundo.addActor(destino);
         
     }
       
@@ -162,7 +161,7 @@ public class PantallaJuego extends AbstractPantalla
         Mundo.stageMundo.setCamera(camara);
         Mundo.mapRenderer.setView(camara);
         
-        //renderGrid();
+        
         
         batch.begin();
         
@@ -195,6 +194,10 @@ public class PantallaJuego extends AbstractPantalla
         
         if (Mundo.stageMundo != null) Mundo.stageMundo.dispose();
         if (Mundo.rayHandler != null) Mundo.rayHandler.dispose();
+        if (Mundo.tiledMap != null) Mundo.tiledMap.dispose();
+        if (Mundo.mapRenderer != null) Mundo.mapRenderer.dispose(); 
+        if (Mundo.world != null) Mundo.world.dispose();
+                
         Recursos.liberarRecursos();
     }
     
@@ -229,41 +232,13 @@ public class PantallaJuego extends AbstractPantalla
             }
         }
     }
-    
-    public void renderGrid ()
-    {
-        camara.position.x=Mundo.player.getX();
-        camara.position.y=Mundo.player.getY();
-        camara.update();
-        
-        shape.setProjectionMatrix(camara.combined);
-        shape.begin(ShapeRenderer.ShapeType.Line);
-        shape.setColor(Color.BLACK);
-        
-        Player player = Mundo.player;
-        int Ancho= MiscData.WINDOW_Horizontal_Resolution/2;
-        int Alto = MiscData.WINDOW_Vertical_Resolution/2;
-        int TileSize = MiscData.TILESIZE;
-        
-        for (int TileY=(player.getY()-Alto)/TileSize; TileY<(player.getY()+Alto)/TileSize+1; TileY++)
-        { 
-            for (int i=(player.getX()-Ancho);i<(player.getX()+Ancho)+MiscData.TILESIZE;i=i+2)
-            shape.line(i-player.getX()%30, TileY*MiscData.TILESIZE, i+1-player.getX()%30, TileY*MiscData.TILESIZE); 
-        }
-        for (int TileX=(player.getX()-Ancho)/TileSize; TileX<(player.getX()+Ancho)/TileSize+1; TileX++)
-        { 
-            for (int i=(player.getY()-Alto);i<(player.getY()+Alto)+MiscData.TILESIZE;i=i+2)
-            { shape.line(TileX*MiscData.TILESIZE, i-player.getY()%30, TileX*MiscData.TILESIZE, i+1-player.getY()%30); }
-        }
-        shape.end();
-    }
-    
+      
     public void modoEntrelazado ()
     {
         shape.setColor(Color.BLACK);
         shape.begin(ShapeRenderer.ShapeType.Line);
         
-        for (int i=0; i<MiscData.WINDOW_Vertical_Resolution;i=i+3)
+        for (int i=0; i<MiscData.WINDOW_Vertical_Resolution;i=i+4)
         {
             shape.line(0, i, MiscData.WINDOW_Horizontal_Resolution, i); 
         }

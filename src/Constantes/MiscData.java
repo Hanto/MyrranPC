@@ -8,13 +8,14 @@ import java.util.HashMap;
  */
 public class MiscData 
 {
-    public final static int WINDOW_Horizontal_Resolution = 1024;
-    public final static int WINDOW_Vertical_Resolution = 768;
+    public final static int WINDOW_Horizontal_Resolution = 1600;
+    public final static int WINDOW_Vertical_Resolution = 900;
     
     //MUNDO
     public final static int TILESIZE = 24;
     public final static int MAPA_Max_X = 500;
     public final static int MAPA_Max_Y = 500;
+    public final static float duracionTick = 1.0f;
     
     //TERRENO:
     public final static String TERRENO_Nombre_Nuevo = "Terreno";
@@ -28,6 +29,12 @@ public class MiscData
     public final static int PIXIE_Player_numFramesAnimacion = 3;
     public final static boolean PIXIE_Player_isEnlazado = false;
     public final static boolean PIXIE_Player_isLooping = true;
+    
+    public final static int PIXIE_SpellEffect_numFilas = 1;
+    public final static int PIXIE_SpellEffect_numColumnas = 3;
+    
+    public final static int PIXIE_Copas_numFilas = 1;
+    public final static int PIXIE_Copas_numColumnas = 3;
     
     //RESOURCES (ATLAS):
     public final static String ATLAS_Carpeta_Imagenes_Origen = "images/";

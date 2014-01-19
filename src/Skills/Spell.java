@@ -4,6 +4,7 @@ import Graficos.Recursos;
 import Main.Mundo;
 import Mobiles.Personaje;
 import Skills.SpellStat.SpellPixie;
+import Skills.TipoSkills.TipoSpell;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -11,13 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public class Spell 
 {
-    public interface TipoSpell
-    {
-        public void ejecutarCasteo (Spell spell, Personaje caster, float targetX, float targetY);
-        public SpellStat [] getSpellStats ();
-        public SpellPixie [] getSpellPixies();
-    }
-    
     protected int id;                                   //ID del Spell
     protected String nombre;                            //Nombre del Spell
     protected String descripcion;                       //Descripcion del Spell
@@ -36,7 +30,7 @@ public class Spell
     public String getDescripcion ()                     { return descripcion; }
     public SpellStat [] spellStats()                    { return spellStats; }
     public SpellPixie [] spellPixies()                  { return tipoSpell.getSpellPixies(); }
-    public Integer [] pixieSelecionado()                { return pixieSeleccionado; }
+    public Integer [] pixieSeleccionado()               { return pixieSeleccionado; }
     public TextureRegion getIcono ()                    { return icono; }
     
     //CONSTRUCTOR:

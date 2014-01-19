@@ -27,9 +27,13 @@ public class BarraTerrenos extends Group
 {
     private Table tablaTerrenos;
     private ScrollPane scrollpane;
-    private Array<CasillaTerreno> barra = new Array<>();
     
-    private int altoScrollPane=MiscData.TILESIZE*2*12;
+    private Array<CasillaTerreno> barra = new Array<>();
+    private Texto [] botonCapas = new Texto [MiscData.MAPA_Max_Capas_Terreno];
+    private Texto botonSave;
+    private Image botonBorrarTerreno;
+    
+    private int altoScrollPane=MiscData.TILESIZE*2*10;
     private static int numColumnas = 2;
     
     public static class CasillaTerreno
@@ -87,25 +91,44 @@ public class BarraTerrenos extends Group
         for (int i=0; i<MiscData.MAPA_Max_Capas_Terreno; i++)
         {   
             final int numCapa = i;
-            Group capa = new Texto("Capa "+numCapa, Recursos.font14, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
-            capa.setPosition(3, altoScrollPane+17*numCapa);
-            this.addActor(capa);
+            botonCapas[i] = new Texto("Capa "+numCapa, Recursos.font14, Color.ORANGE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+            botonCapas[i].setPosition(4, altoScrollPane+48+17*numCapa);
+            this.addActor(botonCapas[i]);
             
-            capa.addListener(new InputListener() 
+            botonCapas[i].addListener(new InputListener() 
             {
                 @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-                {   Mundo.player.setCapaTerrenoSelecionada(numCapa); return true; }
+                {   
+                    Mundo.player.setCapaTerrenoSelecionada(numCapa);
+                    for (int j=0; j<botonCapas.length; j++) 
+                    {   botonCapas[j].setColorNormal(Color.ORANGE); }
+                    botonCapas[numCapa].setColorNormal(Color.GREEN); 
+                    return true;
+                }
             });
         }
+        botonCapas[0].setColorNormal(Color.GREEN);
         
-        Group salvarMapa = new Texto("Save", Recursos.font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
-        salvarMapa.setPosition(50, altoScrollPane);
-        this.addActor(salvarMapa);
+        //Boton SALVAR mapa:
+        botonSave = new Texto("Save", Recursos.font14, Color.WHITE, Color.BLACK, 0, 0, Align.left, Align.bottom, 2);
+        botonSave.setPosition(4, altoScrollPane+48+MiscData.MAPA_Max_Capas_Terreno*17);
+        this.addActor(botonSave);
         
-        salvarMapa.addListener(new InputListener() 
+        botonSave.addListener(new InputListener() 
         {
             @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {   SaveData.saveMap(); return true; }
+        });
+        
+        //Boton BORRAR:
+        botonBorrarTerreno = new Image(Recursos.botonBorrarTerreno);
+        botonBorrarTerreno.setPosition(0, altoScrollPane);
+        this.addActor(botonBorrarTerreno);
+        
+        botonBorrarTerreno.addListener(new InputListener() 
+        {
+            @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {   Mundo.player.setTerrenoSeleccionado(-1); return true; }
         });
     }
     

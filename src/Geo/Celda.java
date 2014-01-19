@@ -6,7 +6,6 @@
 package Geo;
 
 import Constantes.MiscData;
-import Graficos.Muro;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;

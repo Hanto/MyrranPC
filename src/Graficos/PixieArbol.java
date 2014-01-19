@@ -13,9 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public class PixieArbol extends Actor
 { 
-    private Pixie copa1;                                                    //Pixie que contiene la animacion de las hojas de la copa1
-    private Pixie copa2;                                                    //Pixie que contiene la animacion de las hojas de la copa2
-    private Pixie copa3;                                                    //Pixie que contiene la animacion de las hojas de la copa3
+    private Pixie copa1;                                                   //Pixie que contiene la animacion de las hojas de la copa1
+    private Pixie copa2;                                                   //Pixie que contiene la animacion de las hojas de la copa2
+    private Pixie copa3;                                                   //Pixie que contiene la animacion de las hojas de la copa3
     private Image sombra = new Image (Recursos.sombraArbol1.getDrawable()); //Textura que contiene la sombra del arbol
     private Tronco tronco;                                                  //Clase que contiene los datos del tronco del arbol:
     

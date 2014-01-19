@@ -1,7 +1,6 @@
 package Mobiles;
 import Graficos.Pixie;
 import Main.Mundo;
-import Pantallas.PantallaJuego;
 import box2dLight.PointLight;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -21,7 +20,7 @@ public class Proyectil extends Mob
     public void setDaño (float Daño)                        { daño = Daño; }
     public void setDuracionMaxima (float DuracionMaxima)    { duracionMaxima = DuracionMaxima; }
     public void setOwner (Personaje Owner)                  { owner = Owner; }
-    public void setPixie (Pixie pixie)                      { this.pixie.addActor(new Pixie(pixie)); }
+    public void setPixie (Pixie pixie)                     { this.pixie.addActor(new Pixie(pixie)); }
     //GET:
     public Group getPixie()                                 { return pixie; }
     

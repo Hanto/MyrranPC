@@ -26,13 +26,12 @@ public class PixiePC extends Actor
     //SPRITES ESPECIALES:
     protected Sprite sombra;                        //Imagen que Contiene la sombra del personaje            
     
-    public boolean isAnimacionAcabada()             { return cuerpo.animacionAcabada; }  
+    public int getNumAnimacion()                    { return numAnimacion; };
     
     //CONSTRUCTOR: inicializa y crea la animacion base, con el cuerpo de humano y el set desnudo
     public PixiePC (int numRaza, PC pc)
     {
         this.numRaza = numRaza;
-        this.pc = pc;
         
         cuerpo = new Pixie (listaDeRazas.get(numRaza).listaDeCuerpos.get(0));
         cabeza = new Pixie (listaDeRazas.get(numRaza).listaDeCabezas.get(0));
@@ -51,23 +50,21 @@ public class PixiePC extends Actor
         this.setWidth(cuerpo.getWidth());
     }
     
-    public void setAnimacion (int numAnimacion, boolean forzarAnimacion, boolean ininterrumpible, boolean mediaAnimacion)
+    public void setAnimacion (int numAnimacion, boolean forzarAnimacion)
     {   //SELECCIONAR ANIMACION: Metodo para sincronizar todas las animaciones de todos los slots de armadura a la animacion que toque ejecutar segun el movimiento principal que ejecute el personaje
         if (this.numAnimacion == numAnimacion && !forzarAnimacion) return;  //Si la animacion no cambia, no hay que hacer nada, que todo se siga animando como siempre, asi se evita malgastar potencia de calculo
-        if (cuerpo.ininterrumpible == true && !forzarAnimacion) return;
-        
         this.numAnimacion = numAnimacion;                                   //En caso negativo, salvamos el valor de la nueva animacion para poderlo comprobar en un futuro, y aplicamos la nueva animacion a todas las partes
         
-        cuerpo.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        cabeza.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        yelmo.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        peto.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        pantalones.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        guantes.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        botas.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        hombreras.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        capaTrasera.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
-        capaFrontal.setAnimacion(numAnimacion, forzarAnimacion, ininterrumpible, mediaAnimacion);
+        cuerpo.setAnimacion(numAnimacion, forzarAnimacion);
+        cabeza.setAnimacion(numAnimacion, forzarAnimacion);
+        yelmo.setAnimacion(numAnimacion, forzarAnimacion);
+        peto.setAnimacion(numAnimacion, forzarAnimacion);
+        pantalones.setAnimacion(numAnimacion, forzarAnimacion);
+        guantes.setAnimacion(numAnimacion, forzarAnimacion);
+        botas.setAnimacion(numAnimacion, forzarAnimacion);
+        hombreras.setAnimacion(numAnimacion, forzarAnimacion);
+        capaTrasera.setAnimacion(numAnimacion, forzarAnimacion);
+        capaFrontal.setAnimacion(numAnimacion, forzarAnimacion);
     }
     
     //VESTIR SLOT ARMADURA: Metodos para vestirse un slot de armadura, carga esa armadura de la lista de armadura de Mundo, creando una copia de la pieza que deseamos
@@ -76,55 +73,55 @@ public class PixiePC extends Actor
     public void setCuerpo (int numCuerpo)           //CUERPO:      
     {   cuerpo = new Pixie (listaDeRazas.get(numRaza).listaDeCuerpos.get(numCuerpo)); 
         cuerpo.setPosition(getX(), getY());
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setCabeza (int numCabeza)           //CABEZA:
     {   cabeza = new Pixie (listaDeRazas.get(numRaza).listaDeCabezas.get(numCabeza)); 
         cabeza.setPosition(getX(), getY());
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setYelmo (int numArmadura)          //YELMO:
     {   yelmo = new Pixie (listaDeRazas.get(numRaza).listaDeYelmos.get(numArmadura)); 
         yelmo.setPosition(getX(), getY());
         yelmo.setOffset(-24, -24);
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setPeto (int numArmadura)           //PETO:
     {   peto = new Pixie (listaDeRazas.get(numRaza).listaDePetos.get(numArmadura)); 
         peto.setPosition(getX(), getY()); 
-        setAnimacion(numAnimacion, true, false, false); 
+        setAnimacion(numAnimacion, true); 
     }
     public void setPantalones (int numArmadura)     //PANTALONES:
     {   pantalones = new Pixie (listaDeRazas.get(numRaza).listaDePantalones.get(numArmadura)); 
         pantalones.setPosition(getX(), getY()); 
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setGuantes (int numArmadura)        //GUANTES:
     {   guantes = new Pixie (listaDeRazas.get(numRaza).listaDeGuantes.get(numArmadura)); 
         guantes.setPosition(getX(), getY()); 
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setBotas (int numArmadura)          //BOTAS:   
     {   botas = new Pixie (listaDeRazas.get(numRaza).listaDeBotas.get(numArmadura)); 
         botas.setPosition(getX(), getY()); 
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setHombreras (int numArmadura)      //HOMBRERAS:
     {   hombreras = new Pixie (listaDeRazas.get(numRaza).listaDeHombreras.get(numArmadura));
         hombreras.setPosition(getX(), getY());
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setCapaTrasera (int numArmadura)    //CAPA TRASERA:
     {   capaTrasera = new Pixie (listaDeRazas.get(numRaza).listaDeCapasTraseras.get(numArmadura));
         capaTrasera.setPosition(getX(), getY());
         capaTrasera.setOffset(-24, -24);
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
     public void setCapaFrontal (int numArmadura)    //CAPA FRONTAL:
     {   capaFrontal = new Pixie (listaDeRazas.get(numRaza).listaDeCapasFrontales.get(numArmadura));
         capaFrontal.setPosition(getX(), getY());
         capaFrontal.setOffset(-24, -24);
-        setAnimacion(numAnimacion, true, false, false);
+        setAnimacion(numAnimacion, true);
     }
        
     @Override

@@ -111,31 +111,45 @@ public class Mapa
     
     public static void crearTile (int x, int y, int numCapa)
     {
+        if (x<0 || y<0 || x>MiscData.MAPA_Max_X || y>MiscData.MAPA_Max_Y) { return; }
+        
         int numTerreno = mapa[x][y].getTerrenoID()[numCapa];
-        if (numTerreno<0) return;
-        Mapa.generarTexturaCelda(x, y, numCapa);
-        
-        StaticTiledMapTile tileNO = new StaticTiledMapTile(cuadranteNO);
-        StaticTiledMapTile tileNE = new StaticTiledMapTile(cuadranteNE);
-        StaticTiledMapTile tileSO = new StaticTiledMapTile(cuadranteSO);
-        StaticTiledMapTile tileSE = new StaticTiledMapTile(cuadranteSE);
-        
+        if (numTerreno<0) borrarCelda(x, y, numCapa);
+        else
+        {
+            Mapa.generarTexturaCelda(x, y, numCapa);
+
+            StaticTiledMapTile tileNO = new StaticTiledMapTile(cuadranteNO);
+            StaticTiledMapTile tileNE = new StaticTiledMapTile(cuadranteNE);
+            StaticTiledMapTile tileSO = new StaticTiledMapTile(cuadranteSO);
+            StaticTiledMapTile tileSE = new StaticTiledMapTile(cuadranteSE);
+
+            TiledMapTileLayer suelo = (TiledMapTileLayer)Mundo.tiledMap.getLayers().get(numCapa);
+            Cell cell = new Cell();
+            cell.setTile(tileNO);
+            suelo.setCell(x*2, y*2+1, cell);
+
+            cell = new Cell();
+            cell.setTile(tileNE);
+            suelo.setCell(x*2+1, y*2+1, cell);
+
+            cell = new Cell();
+            cell.setTile(tileSO);
+            suelo.setCell(x*2, y*2, cell);
+
+            cell = new Cell();
+            cell.setTile(tileSE);
+            suelo.setCell(x*2+1, y*2, cell);
+        }
+    }
+    
+    public static void borrarCelda(int x, int y, int numCapa)
+    {
         TiledMapTileLayer suelo = (TiledMapTileLayer)Mundo.tiledMap.getLayers().get(numCapa);
-        TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
-        cell.setTile(tileNO);
-        suelo.setCell(x*2, y*2+1, cell);
-
-        cell = new TiledMapTileLayer.Cell();
-        cell.setTile(tileNE);
-        suelo.setCell(x*2+1, y*2+1, cell);
-
-        cell = new TiledMapTileLayer.Cell();
-        cell.setTile(tileSO);
-        suelo.setCell(x*2, y*2, cell);
-
-        cell = new TiledMapTileLayer.Cell();
-        cell.setTile(tileSE);
-        suelo.setCell(x*2+1, y*2, cell);
+        suelo.setCell(x*2, y*2+1, null);
+        suelo.setCell(x*2+1, y*2+1, null);
+        suelo.setCell(x*2, y*2, null);
+        suelo.setCell(x*2+1, y*2, null);
     }
     
     public static void generarTexturaCelda (int X, int Y, int capa)

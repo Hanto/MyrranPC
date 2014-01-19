@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
@@ -26,7 +27,7 @@ public class BarraSpells extends Group
     private int numFilas;
     private int numColumnas;
     private boolean rebindearSkills = false;                //para cuando queremos rebindear los skills
-    
+
     public void setRebindearSkills (boolean b)              { rebindearSkills = b; }
     public boolean getRebindearSkills ()                    { return rebindearSkills; }
     
@@ -121,6 +122,7 @@ public class BarraSpells extends Group
                     return true;
                 }
             });
+            
             //Codigo DRAG AND DROP:
             dad.addSource(new Source(destino.apariencia) 
             {
@@ -158,8 +160,9 @@ public class BarraSpells extends Group
                     setApariencia(origen, origen.apariencia);  
                 }
             });
-            
         }
+        this.setWidth(numColumnas*(anchoSlot+2));
+        this.setHeight(numFilas*(altoSlot+2));
     }
     
     public void setSpell (int slot, Spell spell)
@@ -176,6 +179,7 @@ public class BarraSpells extends Group
         group.clearChildren();
         if (casilla.spellID <0) { Image slotvacio = new Image (Recursos.casillero); slotvacio.setColor(0,0,0,0.1f);group.addActor(slotvacio); }
         else { group.addActor(new Image (Mundo.listaDeSpells.get(casilla.spellID).getIcono())); }
+        if (casilla.spellID == Mundo.player.getSpellSeleccionado()) group.addActor(new Image(Recursos.spellSeleccionado));
         if (casilla.keyBind != null) Texto.printTexto(String.valueOf(casilla.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, group);
     }
     
@@ -184,5 +188,11 @@ public class BarraSpells extends Group
         Group group = new Group();
         setApariencia (casilla, group);
         return group;
+    }
+    
+    public void actualizarApariencia (int spellID)
+    {
+        for (int i=0; i<barra.size;i++)
+        {   if (barra.get(i).spellID == spellID) setApariencia(barra.get(i),barra.get(i).apariencia); }
     }
 }

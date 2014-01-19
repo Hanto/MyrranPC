@@ -1,13 +1,15 @@
 package Main;
 import Constantes.MiscData;
 import Geo.Celda;
-import Graficos.Muro;
+import Geo.Muro;
 import Geo.Terreno;
 import static Graficos.Recursos.atlas;
 import UI.BarraTerrenos;
 import Mobiles.Player;
 import Mobiles.Proyectil;
+import Skills.Aura;
 import Skills.Spell;
+import Skills.TipoSkills.TipoAura;
 import TiposSpell.AbstractTipoSpell;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
@@ -24,7 +26,9 @@ public class Mundo
     public static Player player;
         
     public static Array<Spell> listaDeSpells = new Array<>();
-    public static Array<AbstractTipoSpell> listaDeTiposSpell = new Array<>();    
+    public static Array<Aura> listaDeAuras = new Array<>();
+    public static Array<AbstractTipoSpell> listaDeTiposSpell = new Array<>();
+    public static Array<TipoAura> listaDeTiposAura = new Array<>();
     public static Array<Terreno> listaDeTerrenos = new Array<>();
     public static Array<Muro> listaDeMuros = new Array<>();
     public static Array<Player> listaDePlayers = new Array<>();

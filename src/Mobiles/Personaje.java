@@ -1,6 +1,8 @@
 package Mobiles;
 
 import Graficos.Nameplate;
+import Skills.Aura.BDebuff;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * @author Ivan Delgado Huerta
@@ -23,6 +25,8 @@ public class Personaje extends Mob
     public float totalCastingTime = 0;
     
     protected Nameplate nameplate;
+    
+    public Array<BDebuff> listaDeAuras = new Array<>();
     
     //GET
     public String getNombre()                   { return nombre; }

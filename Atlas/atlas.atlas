@@ -419,23 +419,30 @@ Spell Icons/IceBall
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/Plantar
+Spell Icons/Muros
   rotate: false
   xy: 240, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/PoisonBolt
+Spell Icons/Plantar
   rotate: false
   xy: 274, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/Renew
+Spell Icons/PoisonBolt
   rotate: false
   xy: 308, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Spell Icons/Renew
+  rotate: false
+  xy: 342, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -513,16 +520,30 @@ atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Terrenos/Baldosas
+Terrenos/Arena1
   rotate: false
   xy: 2, 31
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
-Terrenos/Cesped
+Terrenos/Baldosas1
   rotate: false
   xy: 198, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Baldosas2
+  rotate: false
+  xy: 52, 31
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Baldosas3
+  rotate: false
+  xy: 248, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -534,9 +555,23 @@ Terrenos/Cesped.OLD
   orig: 96, 144
   offset: 0, 0
   index: -1
+Terrenos/Cesped1
+  rotate: false
+  xy: 102, 31
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
 Terrenos/Cesped2
   rotate: false
-  xy: 52, 31
+  xy: 298, 177
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Cesped4
+  rotate: false
+  xy: 298, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -550,21 +585,14 @@ Terrenos/Cesped2.OLD
   index: -1
 Terrenos/Cesped3
   rotate: false
-  xy: 248, 177
-  size: 48, 72
-  orig: 48, 72
-  offset: 0, 0
-  index: -1
-Terrenos/Cesped4
-  rotate: false
-  xy: 102, 31
+  xy: 348, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Cesped5
   rotate: false
-  xy: 298, 177
+  xy: 398, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -578,7 +606,7 @@ Terrenos/MuroBase
   index: -1
 Terrenos/MuroMedio
   rotate: false
-  xy: 298, 151
+  xy: 448, 151
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -592,35 +620,42 @@ Terrenos/MuroTecho
   index: -1
 Terrenos/Suelo
   rotate: false
-  xy: 198, 127
+  xy: 348, 127
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Terrenos/Suelo2
   rotate: false
-  xy: 248, 127
+  xy: 398, 127
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-Terrenos/Tierra
+Terrenos/Tierra1
   rotate: false
-  xy: 348, 177
+  xy: 448, 177
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Tierra2
   rotate: false
-  xy: 398, 177
+  xy: 198, 103
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 Terrenos/Tierra3
   rotate: false
-  xy: 448, 177
+  xy: 248, 103
+  size: 48, 72
+  orig: 48, 72
+  offset: 0, 0
+  index: -1
+Terrenos/Tierra4
+  rotate: false
+  xy: 298, 103
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
@@ -637,24 +672,38 @@ atlas13.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+UI/Borrar
+  rotate: false
+  xy: 2, 9
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
 UI/Casillero
   rotate: false
-  xy: 2, 25
+  xy: 52, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 UI/RebindOff
   rotate: false
-  xy: 2, 2
+  xy: 52, 2
   size: 19, 21
   orig: 19, 21
   offset: 0, 0
   index: -1
 UI/RebindOn
   rotate: false
-  xy: 36, 36
+  xy: 73, 2
   size: 19, 21
   orig: 19, 21
+  offset: 0, 0
+  index: -1
+UI/Select
+  rotate: false
+  xy: 86, 25
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1

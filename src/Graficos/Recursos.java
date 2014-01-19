@@ -1,15 +1,15 @@
 package Graficos;
 import Constantes.MiscData;
-import UI.BarraTerrenos;
 import Main.Mundo;
+import UI.BarraTerrenos;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 import com.badlogic.gdx.utils.Array;
+
 //@author Ivan Delgado Huerta
 //Esta clase se encarga de generar las texturas a partir de ficheros sueltos, asi como de cargarlas en memoria
 //Todas las texturas, graficos y animaciones se guardan y se acceden desde aqui:
@@ -33,6 +33,7 @@ public class Recursos
         public Array<Pixie> listaDeCapasFrontales = new Array<>();
     }
     public static Array<Pixie> listaDeSpells = new Array<>();
+    public static Array<Pixie> listaDeCasteos = new Array<>();
     public static Array<TextureRegion> listaIconos = new Array<>();
     
     public static Array<TroncoTemplate> listaDeTroncos = new Array<>();
@@ -57,10 +58,14 @@ public class Recursos
     public static TextureRegion casillero;
     public static TextureRegion rebindButtonOn;
     public static TextureRegion rebindButtonOff;
+    public static TextureRegion botonBorrarTerreno;
+    public static TextureRegion spellSeleccionado;
     
     public static TextureRegion muroBase;
     public static TextureRegion muroMedio;
     public static TextureRegion muroTecho;
+    
+    public static Pixie polvoPasos;
     
     
     public static void crearRecursos()
@@ -81,68 +86,17 @@ public class Recursos
         muroBase = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroBase"));
         muroMedio = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroMedio"));
         muroTecho = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"MuroTecho"));
+        botonBorrarTerreno = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Borrar"));
+        spellSeleccionado = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Select"));
         
-        Recursos.añadirRaza();
-        Recursos.salvarCuerpo           (0, "Golem");
-        Recursos.salvarCuerpo           (0, "Golem2");
-        Recursos.salvarCuerpo           (0, "Golem3");
-        
-        Recursos.salvarYelmo            (0, "Desnudo");
-        Recursos.salvarBotas            (0, "Desnudo");
-        Recursos.salvarGuantes          (0, "Desnudo");
-        Recursos.salvarHombreras        (0, "Desnudo");
-        Recursos.salvarPantalones       (0, "Desnudo");
-        Recursos.salvarPeto             (0, "Desnudo");
-        Recursos.salvarCapasTraseras    (0, "Desnudo");
-        Recursos.salvarCapasFrontales   (0, "Desnudo");
-        
-        Recursos.salvarCabeza           (0, "Cabeza1");
-        
-        Recursos.salvarBotas            (0, "BotasGolem01");
-        Recursos.salvarGuantes          (0, "GuantesGolem01");
-        Recursos.salvarPeto             (0, "PetoGolem01");
-        Recursos.salvarHombreras        (0, "HombrerasGolem01");
-        Recursos.salvarPantalones       (0, "PantalonesGolem01");
-        
-        //Recursos.salvarYelmo(0, "Casco1");
-        //Recursos.salvarCapasTraseras(0, "CapaTrasera1");
-        //Recursos.salvarCapasFrontales(0, "CapaFrontal1");
-        //Recursos.salvarCabeza(0, "Cabeza2");
-        
-        Recursos.salvarTronco           ("Tronco2", -50, 50, -45, 65, 40, 65);
-        Recursos.salvarCopa             ("BolaGrandeArbol2");
-        Recursos.salvarCopa             ("BolaMedianaArbol2");
-        Recursos.salvarCopa             ("Bolapequeñaarbol2");
-        
-        Recursos.salvarIcono            ("FireBall");
-        Recursos.salvarIcono            ("FrostBolt");
-        Recursos.salvarIcono            ("Editar");
-        
-        Recursos.salvarEfectoDeSpell    ("Fireball01");
-        Recursos.salvarEfectoDeSpell    ("Fireball02");
-        Recursos.salvarEfectoDeSpell    ("FrostBolt01");
-        Recursos.salvarEfectoDeSpell    ("FrostBolt02");
-        
-        Mundo.añadirTerreno             ("Cesped");
-        Mundo.añadirTerreno             ("Cesped2");
-        Mundo.añadirTerreno             ("Cesped3");
-        Mundo.añadirTerreno             ("Baldosas3");
-        Mundo.añadirTerreno             ("Baldosas");
-        Mundo.añadirTerreno             ("Baldosas2");
-        Mundo.añadirTerreno             ("Tierra 3");
-        Mundo.añadirTerreno             ("Tierra");
-        Mundo.añadirTerreno             ("Tierra 2");
-        Mundo.añadirTerreno             ("Tierra 4");
-        Mundo.añadirTerreno             ("Arena");
-        
-        Mundo.añadirMuro("MuroBase", "MuroMedio", "MuroTecho");
-        
-        Mundo.barraTerrenos = new BarraTerrenos();
+        polvoPasos = new Pixie(new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"Humo")),3,3);
+        polvoPasos.añadirAnimacion("polvo lateral",    new int []{0,1,2},      0.15f, false);
+        polvoPasos.animaciones().get(0).animarYEliminar = true;
     }
         
     public static void crearAtlas()
     {   //Creamos un atlas con todas las imagenes que tengamos sueltas, util para el modo edicion/desarrollador
-        TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
+        //TexturePacker2.process(MiscData.ATLAS_Carpeta_Imagenes_Origen, MiscData.ATLAS_Carpeta_Imagenes_Destino, MiscData.ATLAS_Atlas_Extension);
         //Cargamos el atlas en memoria
         atlas = new TextureAtlas(Gdx.files.internal(MiscData.ATLAS_Carpeta_Imagenes_Destino+MiscData.ATLAS_Atlas_Extension+".atlas"));
     }
@@ -152,98 +106,256 @@ public class Recursos
         ArrayPixies aPixes = new ArrayPixies();
         listaDeRazas.add(aPixes);
     }
-            
+   
     public static void salvarCuerpo (int numRaza, String nombreCuerpo)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+nombreCuerpo));
-        Pixie pixieCuerpo = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);        
+        Pixie pixieCuerpo = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieCuerpo.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieCuerpo.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieCuerpo.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieCuerpo.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieCuerpo.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeCuerpos.add(pixieCuerpo);
     }
     
     public static void salvarCabeza (int numRaza, String nombreCabeza)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+nombreCabeza));
-        Pixie pixieCabeza = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);        
-        listaDeRazas.get(numRaza).listaDeCabezas.add(pixieCabeza);
+        Pixie pixieCuerpo = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieCuerpo.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieCuerpo.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieCuerpo.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieCuerpo.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieCuerpo.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieCuerpo.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieCuerpo.animaciones().get(4).ininterrumpible = true;
+        listaDeRazas.get(numRaza).listaDeCabezas.add(pixieCuerpo);
     }
     
     public static void salvarYelmo (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeYelmos.add(pixieArmadura);
     }
         
     public static void salvarHombreras (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie( texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeHombreras.add(pixieArmadura);
     }
     
     public static void salvarPeto (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDePetos.add(pixieArmadura);
     }
     
     public static void salvarPantalones (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDePantalones.add(pixieArmadura);
     }
     
     public static void salvarGuantes (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeGuantes.add(pixieArmadura);
     }
     
     public static void salvarBotas (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeBotas.add(pixieArmadura);
     }
     
     public static void salvarCapasTraseras (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeCapasTraseras.add(pixieArmadura);
     }
     
     public static void salvarCapasFrontales (int numRaza, String nombreArmadura)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Armaduras_LOC+nombreArmadura));
-        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas, MiscData.PIXIE_Player_numFramesAnimacion, 
-                                                            MiscData.PIXIE_Player_DuracionFrame, MiscData.PIXIE_Player_isEnlazado);
+        Pixie pixieArmadura = new Pixie (texture, MiscData.PIXIE_Player_numFilas, MiscData.PIXIE_Player_numColumnas);
+        pixieArmadura.añadirAnimacion("izquierda",    new int []{0,1,2},      0.15f, true);
+        pixieArmadura.añadirAnimacion("derecha",      new int []{3,4,5},      0.15f, true);
+        pixieArmadura.añadirAnimacion("arriba",       new int []{6,7,8},      0.15f, true);
+        pixieArmadura.añadirAnimacion("abajo",        new int []{9,10,11},    0.15f, true);
+        pixieArmadura.añadirAnimacion("castear",      new int []{12,13,14},   0.15f, false);
+        pixieArmadura.añadirAnimacion("quieto",       new int []{15,16,17},   0.80f, true);
+        pixieArmadura.añadirAnimacion("dispararO",    new int []{18,19,20},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararE",    new int []{21,22,23},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSO",   new int []{24,25,26},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararSE",   new int []{27,28,29},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararS",    new int []{30,31,32},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararN",    new int []{33,34,35},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNO",   new int []{36,37,38},   0.15f, true);
+        pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
+        pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeCapasFrontales.add(pixieArmadura);
+    }
+    
+    public static void salvarEfectoDeSpell(String nombreEfecto)
+    {
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
+        Pixie spellEffect = new Pixie (texture, MiscData.PIXIE_SpellEffect_numFilas, MiscData.PIXIE_SpellEffect_numColumnas);
+        spellEffect.añadirAnimacion("casteo",       new int[] {0,1,2},      0.15f, false);
+        listaDeSpells.add(spellEffect);
+    }
+    
+    public static void salvarCasteo (String nombreEfecto)
+    {
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
+        Pixie spellCasteo = new Pixie (texture, MiscData.PIXIE_SpellEffect_numFilas, MiscData.PIXIE_SpellEffect_numColumnas);
+        spellCasteo.añadirAnimacion("casteo",       new int[] {0,1,2},      0.15f, false);
+        spellCasteo.animaciones().get(0).animarYEliminar = true;
+        listaDeCasteos.add(spellCasteo);
+    }
+    
+    public static void salvarCopa (String nombreCopa)
+    {
+        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Arboles_LOC+nombreCopa));
+        Pixie pixieCopa = new Pixie (texture, MiscData.PIXIE_Copas_numFilas, MiscData.PIXIE_Copas_numColumnas);
+        pixieCopa.añadirAnimacion("viento",         new int[] {0,1,2},      1.30f, false);
+        listaDeCopas.add(pixieCopa);
     }
     
     public static void salvarIcono (String nombreIcono)
     {
         TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellIcons_LOC+nombreIcono));
         listaIconos.add(texture);
-    }
-      
-    public static void salvarEfectoDeSpell(String nombreEfecto)
-    {
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
-        Pixie spellEffect = new Pixie (texture, 1, 3, 3, 0.15f, false);
-        listaDeSpells.add(spellEffect);
     }
     
     public static void salvarTronco (String nombreTronco, int X1, int Y1, int X2, int Y2, int X3, int Y3)
@@ -258,17 +370,9 @@ public class Recursos
         listaDeTroncos.add(tronco);
     }
     
-    public static void salvarCopa (String nombreCopa)
-    {
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_Arboles_LOC+nombreCopa));
-        Pixie pixieCopa = new Pixie (texture, 1, 3, 3, 1.3f, false);
-        listaDeCopas.add(pixieCopa);
-    }
-    
     public static void liberarRecursos ()
     {
         if (atlas != null) atlas.dispose();
-        if (Mundo.tiledMap != null) Mundo.tiledMap.dispose();
-        if (Mundo.mapRenderer != null) Mundo.mapRenderer.dispose(); 
+        if (font14 != null) font14.dispose();
     }
 }

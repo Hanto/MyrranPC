@@ -67,21 +67,20 @@ public class Texto extends Group
     public void setCentrado ( int centradoHorizontal, int centradoVertical)
     {
         float posX,posY;
-        
         switch (centradoHorizontal)
         {//Segun el tipo de centradoHorizontal ajustamos el eje de coordenadas X:
             case Align.right:   { posX = this.getX() - (int)textoNormal.getWidth(); break; }
             case Align.center:  { posX = this.getX() - (int)textoNormal.getWidth()/2; break; }
-            case Align.left:    { posX = this.getX(); break; }
-            default:            { posX = this.getX(); break; }
+            case Align.left:    { posX = 0; break; }
+            default:            { posX = 0; break; }
         }
         
         switch (centradoVertical)
         {//Segun el tipo de centradoVertical ajustamos el eje de coordenadas Y:
             case Align.top:     { posY = this.getY() -(int)textoNormal.getHeight(); break; }
             case Align.center:  { posY = this.getY() -(int)textoNormal.getHeight()/2; break; }
-            case Align.bottom:  { posY = this.getY(); break; }
-            default:            { posY = this.getY(); break; }
+            case Align.bottom:  { posY = 0; break; }
+            default:            { posY = 0; break; }
         }
         //Situamos el texto normal y el texto sombra en las coordenadas generadas segun el tipo de centrado, y añadimos ambos textos al grupo grupoTexto:
         textoSombra.setPosition(posX+relieveSombra, posY-relieveSombra);
@@ -96,7 +95,6 @@ public class Texto extends Group
         Label ltexto = new Label (texto, estiloNormal);
         textoNormal.setWidth(ltexto.getWidth());
         textoSombra.setWidth(ltexto.getWidth());
-        
         setCentrado (this.centradoHorizontal, this.centradoVertical);
     }
     

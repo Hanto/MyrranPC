@@ -1,6 +1,7 @@
 package Mobiles;
 import Constantes.MiscData;
-import PlayerControl.PlayerEstado;
+import MobileEstados.PlayerEstado;
+import Pantallas.PantallaJuego;
 import UI.BarraSpells;
 import com.badlogic.gdx.Input.Keys;
 //* @author Ivan Delgado Huerta
@@ -11,7 +12,7 @@ public class Player extends PC
     public boolean mostrarBarraTerrenos = false;
     public int nivelDeZoom = 0;
     
-    public PlayerEstado playerControl;
+    protected PlayerEstado estado;
     public int numAnimacion = 0;
     public boolean castear = false;
     public boolean disparar = false;
@@ -30,17 +31,21 @@ public class Player extends PC
     protected int teclaAbajo = Keys.S;
     protected int teclaIzquierda = Keys.A;
     protected int teclaDerecha = Keys.D;
-        
+    
+    public void procesarInput()                 { estado.procesarInput(); }
+    
     //CONSTRUCTOR:
     public Player (final int numRaza, int posX, int posY, String nombre)
     {   super(numRaza, nombre);
         inicializar (posX, posY);
-        playerControl = new PlayerEstado(this);
+        estado = new PlayerEstado(this);
     }
         
     private void inicializar (int posX, int posY)
     {   velocidadMax = MiscData.PLAYER_VelocidadMax_Pixeles_Sec;
         setPosition (posX, posY);
+        barraSpells.setPosition(MiscData.WINDOW_Horizontal_Resolution/2-barraSpells.getWidth()/2, 5);
+        PantallaJuego.stageUI.addActor(barraSpells);
     }
     
     public void setPosition (float X, float Y)
@@ -93,38 +98,16 @@ public class Player extends PC
         if ( isCasteando && actualCastingTime >= totalCastingTime) { isCasteando = false; actualCastingTime = 0; totalCastingTime =0;}
     }
     
-    public void ejecutarCasteo ()
+    public void castear ()
     {
-        if (castear && !isCasteando && spellSeleccionado >= 0)
-        {   playerControl.procesarInput(); }
-        
-        if (disparar)
-        {   playerControl.procesarInput(); }
+        if (castear && !isCasteando && spellSeleccionado >= 0) { estado.procesarInput(); }
     }
-           
+    
     public void actualizar (float delta)
     {   
-        playerControl.actualizar();
+        estado.actualizar();
         moverse(delta);
         actualizarCastingTime (delta);
-        ejecutarCasteo();
+        castear();
     }
 }
-
-    /*double alpha = Math.atan2(Gdx.input.getY() -(MiscData.WINDOW_Vertical_Resolution/2)+48/2, Gdx.input.getX() -(MiscData.WINDOW_Horizontal_Resolution/2)-48/2);     
-    double angulo;
-    angulo = Math.toDegrees(alpha+2*(Math.PI));
-    angulo = angulo%360;
-
-    //Mundo.listaDeSpells.get(SpellData.TERRAFORMAR_ID).actualizarCastingTime(this, Gdx.input.getX(), Gdx.input.getY());
-
-    if (67.5d<=angulo && angulo<112.5d)     { pixiePC.setAnimacion(16, false); } //Abajo
-    if (22.5d<=angulo && angulo<67.5d)      { pixiePC.setAnimacion(17, false); } //AbajoDcha
-    if (112.5d<=angulo && angulo<157.5d)    { pixiePC.setAnimacion(15, false); } //AbajoIzda
-    if (157.5d<=angulo && angulo<202.5d)    { pixiePC.setAnimacion(12, false); } //Izda
-    if (22.5>angulo && angulo>=0)           { pixiePC.setAnimacion(14, false); } //Dcha
-    if (337.5<=angulo && angulo<=360)       { pixiePC.setAnimacion(14, false); } //Dcha
-    if (247.5<=angulo && angulo<292.5)      { pixiePC.setAnimacion(10, false); } //Arriba
-    if (292.5<=angulo && angulo<337.5)      { pixiePC.setAnimacion(11, false); } //ArribaDcha
-    if (202.5<=angulo && angulo<247.5)      { pixiePC.setAnimacion(9, false);  } //ArribaIzda   
-    */

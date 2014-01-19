@@ -17,9 +17,15 @@ public class PlayerInput implements InputProcessor
         for (int i=0;i<barraspells.barra.size;i++)
         { if (barraspells.barra.get(i).keycode == keycode) 
             {
+                int antiguoSpellSeleccionado = Mundo.player.getSpellSeleccionado();
                 Mundo.player.setSpellSeleccionado(barraspells.barra.get(i).spellID);
-                BarraTerrenos.mostrarOcultarBarraTerreno(); //Si seleccionamos el spell EditarTerreno tenemos que mostrar la barra de Terrenos:
-            }                                               //Y si seleccionamos otro spell y la barra esta mostrada, hay que ocultarla:
+                //le ponemos reborde al spell seleccionado y se lo quitamos al que estaba seleccionado:
+                barraspells.actualizarApariencia(Mundo.player.getSpellSeleccionado());
+                barraspells.actualizarApariencia(antiguoSpellSeleccionado);
+                //Si seleccionamos el spell EditarTerreno tenemos que mostrar la barra de Terrenos:
+                //Y si seleccionamos otro spell y la barra esta mostrada, hay que ocultarla:
+                BarraTerrenos.mostrarOcultarBarraTerreno();
+            }                                               
         }
         
         switch (keycode)
@@ -29,7 +35,7 @@ public class PlayerInput implements InputProcessor
             case Keys.A:    Mundo.player.irIzquierda = true; break;
             case Keys.D:    Mundo.player.irDerecha = true; break;
         }
-        Mundo.player.playerControl.procesarInput();
+        Mundo.player.procesarInput();
         return false;
     }
     
@@ -42,20 +48,20 @@ public class PlayerInput implements InputProcessor
             case Keys.A:    {Mundo.player.irIzquierda = false; break;}
             case Keys.D:    {Mundo.player.irDerecha = false; break;}
         }
-        Mundo.player.playerControl.procesarInput();
+        Mundo.player.procesarInput();
         return false;
     }
     
     @Override public boolean keyTyped(char character)                                       { return false; }
     @Override public boolean touchDown(int screenX, int screenY, int pointer, int button)   
-    {   if (button == Buttons.LEFT )    { Mundo.player.castear = true; return false; }
-        if (button == Buttons.RIGHT)    { Mundo.player.disparar = true; return false; }
+    {   if (button == Buttons.LEFT )    { Mundo.player.castear = true; Mundo.player.procesarInput(); return false; }
+        if (button == Buttons.RIGHT)    { Mundo.player.disparar = true; Mundo.player.procesarInput(); return false; }
         return true;
     }
     
     @Override public boolean touchUp(int screenX, int screenY, int pointer, int button)     
-    {   if (button == Buttons.LEFT)     { Mundo.player.castear = false; return false; }
-        if (button == Buttons.RIGHT)    { Mundo.player.disparar = false; return false; }
+    {   if (button == Buttons.LEFT)     { Mundo.player.castear = false; Mundo.player.procesarInput(); return false; }
+        if (button == Buttons.RIGHT)    { Mundo.player.disparar = false; Mundo.player.procesarInput(); return false; }
         return true;
     }
     
