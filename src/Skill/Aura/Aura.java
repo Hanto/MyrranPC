@@ -2,7 +2,7 @@ package Skill.Aura;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
-import Mobiles.Mobs.Personaje;
+import Actores.Mobs.Personaje;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

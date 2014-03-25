@@ -1,9 +1,9 @@
-package Mobiles.Mobs.Personajes;
+package Actores.Mobs.Personajes;
 import Graficos.Nameplate;
 import Graficos.PixiePC;
 import Graficos.Texto;
-import Mobiles.Mobs.Personaje;
-import Recursos.Recursos;
+import Actores.Mobs.Personaje;
+import Resources.Recursos;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 //* @author Ivan Delgado Huerta
@@ -31,5 +31,8 @@ public class PC extends Personaje
         
         actor.addActor(pixiePC);
         actor.addActor(nameplate);
+        
+        actor.setWidth(pixiePC.getWidth());
+        actor.setHeight(pixiePC.getHeight());
     }
 }

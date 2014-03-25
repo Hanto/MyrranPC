@@ -1,5 +1,5 @@
-package Mobiles.Mobs.Personajes.PCs;
-import Mobiles.Mobs.Personajes.PC;
+package Actores.Mobs.Personajes.PCs;
+import Actores.Mobs.Personajes.PC;
 import Constantes.MiscData;
 import MobileEstados.Player.PlayerEstado;
 import Pantallas.PantallaJuego;

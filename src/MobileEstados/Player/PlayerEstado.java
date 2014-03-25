@@ -1,8 +1,8 @@
 package MobileEstados.Player;
 // @author Ivan Delgado Huertaimp
 import Graficos.Pixie;
-import Recursos.Recursos;
-import Mobiles.Mobs.Personajes.PCs.Player;
+import Resources.Recursos;
+import Actores.Mobs.Personajes.PCs.Player;
 import com.badlogic.gdx.Gdx;
 
 public class PlayerEstado

@@ -2,7 +2,7 @@ package Skill.Aura;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
-import Mobiles.Mobs.Personaje;
+import Actores.Mobs.Personaje;
 import Skill.SkillStat;
 import com.badlogic.gdx.Gdx;
 
@@ -25,10 +25,13 @@ public class BDebuff
     { 
         duracion = duracion + Gdx.graphics.getDeltaTime();
         
-        int tickActual = Math.round(duracion / MiscData.duracionTick);
+        int tickActual = (int)(duracion / MiscData.duracionTick);
         
         for (int i=ticksAplicados; i<tickActual;i++)
-        {   aura.actualizarTick(this); }
+        {   
+            ticksAplicados++;
+            aura.actualizarTick(this); 
+        }
         
         if (duracion >= duracionMax)  { target.listaDeAuras.removeValue(this, true); }
     }

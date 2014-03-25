@@ -1,4 +1,4 @@
-package Mobiles;
+package Actores;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 
@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
  */
 
 //La clase Mob incluye todas las entidades que se mueven del juego: (Jugadores, NPCs, Proyectiles)
-public abstract class Mob 
+public abstract class Mob
 {
     //Posicion:
     protected float x;                      // Coordenadas X:

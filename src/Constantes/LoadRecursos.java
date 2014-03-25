@@ -6,7 +6,7 @@ package Constantes;
 // @author Ivan Delgado Huerta
 
 import Main.Mundo;
-import Recursos.Recursos;
+import Resources.Recursos;
 import Skill.SkillRecursos;
 import UI.BarraTerrenos;
 

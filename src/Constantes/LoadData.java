@@ -1,85 +1,120 @@
 package Constantes;
 import Constantes.Skills.AurasData;
-import Constantes.Skills.TipoSkillsData;
+import Constantes.Skills.TipoSpellsData;
 import Constantes.Skills.TipoAurasData;
-import Constantes.Skills.SkillsData;
+import Constantes.Skills.SpellsData;
 import Skill.Aura.Aura;
 import Skill.Aura.TipoAura;
+import Skill.Aura.TiposAura.Bomba;
 import Skill.Aura.TiposAura.Dot;
-import Skill.SpellBook;
-import Skill.Skill.Skill;
-import Skill.Skill.TipoSkill;
-import Skill.Skill.TiposSkill.EditarMuro;
-import Skill.Skill.TiposSkill.EditarTerreno;
-import Skill.Skill.TiposSkill.Proyectil;
+import Skill.SkillBook;
+import Skill.Spell.Spell;
+import Skill.Spell.TipoSpell;
+import Skill.Spell.TiposSpell.EditarMuro;
+import Skill.Spell.TiposSpell.EditarTerreno;
+import Skill.Spell.TiposSpell.Bolt;
+import Skill.Spell.TiposSpell.Heal;
 //* @author Ivan Delgado Huerta
 
 public class LoadData 
 {
-    public static void cargarListaDeTiposSpell ()
-    {   //BOLT:
-        TipoSkill proyectil = new Proyectil(TipoSkillsData.BOLT_ID);
-        SpellBook.añadirTipoSkill(proyectil);
-        //EDITAR TERRENO:
-        TipoSkill editar = new EditarTerreno(TipoSkillsData.EDITARTERRENO_ID);
-        SpellBook.añadirTipoSkill(editar);
-        //EDITAR MURO:
-        TipoSkill muro = new EditarMuro(TipoSkillsData.EDITARMURO_ID);
-        SpellBook.añadirTipoSkill(muro);
+    public static void LoadAll ()
+    {
+        cargarListaDeTiposAura();
+        cargarListaDeAuras();
+        cargarListaDeTiposSpell();
+        cargarListaDeSpells();
     }
     
-    public static void cargarListaDeSpells ()
-    {   //FIREBOLT: (Bolt)
-        Skill skill = new Skill(SpellBook.listaDeTiposSkill.get(TipoSkillsData.BOLT_ID));
-        skill.setId(SkillsData.FIREBOLT_ID);
-        skill.setNombre(SkillsData.FIREBOLT_Nombre);
-        skill.setDescripcion(SkillsData.FIREBOLT_Descripcion);
-        skill.setIcono(SkillsData.FIREBOLT_Icono);
-        skill.pixieSeleccionado()[1]=0;
-        skill.pixieSeleccionado()[0]=0;
-        SpellBook.añadirSkill(skill);
-        
-        //FROSBOLT: (Bolt)
-        skill = new Skill(SpellBook.listaDeTiposSkill.get(TipoSkillsData.BOLT_ID));
-        skill.setId(SkillsData.FROSTBOLT_ID);
-        skill.setNombre(SkillsData.FROSTBOLT_Nombre);
-        skill.setDescripcion(SkillsData.FROSTBOLT_Descripcion);
-        skill.setIcono(SkillsData.FROSTBOLT_Icono);
-        skill.pixieSeleccionado()[1]=1;
-        skill.pixieSeleccionado()[0]=1;
-        SpellBook.añadirSkill(skill);
-        
-        //TERRAFORMAR: (Editar Terreno)
-        skill = new Skill(SpellBook.listaDeTiposSkill.get(TipoSkillsData.EDITARMURO_ID));
-        skill.setId(SkillsData.TERRAFORMAR_ID);
-        skill.setNombre(SkillsData.TERRAFORMAR_Nombre);
-        skill.setDescripcion(SkillsData.TERRAFORMAR_Descripcion);
-        skill.setIcono(SkillsData.TERRAFORMAR_Icono);
-        SpellBook.añadirSkill(skill);
-        
-        //MUROFORMAR: (Editar Muro)
-        skill = new Skill(SpellBook.listaDeTiposSkill.get(TipoSkillsData.EDITARMURO_ID));
-        skill.setId(SkillsData.MUROFORMAR_ID);
-        skill.setNombre(SkillsData.MUROFORMAR_Nombre);
-        skill.setDescripcion(SkillsData.MUROFORMAR_Descripcion);
-        skill.setIcono(SkillsData.MUROFORMAR_Icono);
-        SpellBook.añadirSkill(skill);
-    }
-    
-    public static void cargarListaDeTiposAura ()
+    private static void cargarListaDeTiposAura ()
     {
         //DOT:
         TipoAura tipoAura = new Dot(TipoAurasData.DOT_ID);
-        SpellBook.añadirTipoAura(tipoAura);
+        SkillBook.añadirTipoAura(tipoAura);
+        //BOMBA:
+        tipoAura = new Bomba(TipoAurasData.BOMBA_ID);
+        SkillBook.añadirTipoAura(tipoAura);
     }
     
-    public static void cargarListaDeAuras ()
+    private static void cargarListaDeAuras ()
     {
         //POISON DOT:
-        Aura aura = new Aura (SpellBook.listaDeTiposAura.get(TipoAurasData.DOT_ID));
+        Aura aura = new Aura (SkillBook.listaDeTiposAura.get(TipoAurasData.DOT_ID));
         aura.setId(AurasData.POISON_ID);
         aura.setNombre(AurasData.POISON_Nombre);
-        aura.setDescripcion(AurasData.Poison_Descripcion);
-        SpellBook.añadirAura(aura);
+        aura.setDescripcion(AurasData.POISON_Descripcion);
+        SkillBook.añadirAura(aura);
+        
+        //BOMBARETARDADA:
+        aura = new Aura (SkillBook.listaDeTiposAura.get(TipoAurasData.BOMBA_ID));
+        aura.setId(AurasData.DELAYBOMB_ID);
+        aura.setNombre(AurasData.DELAYBOMB_Nombre);
+        aura.setDescripcion(AurasData.DELAYBOMB_Descripcion);
+        SkillBook.añadirAura(aura);
     }
+    
+    
+    private static void cargarListaDeTiposSpell ()
+    {   //BOLT:
+        TipoSpell proyectil = new Bolt(TipoSpellsData.BOLT_ID);
+        SkillBook.añadirTipoSpell(proyectil);
+        //EDITAR TERRENO:
+        TipoSpell editar = new EditarTerreno(TipoSpellsData.EDITARTERRENO_ID);
+        SkillBook.añadirTipoSpell(editar);
+        //EDITAR MURO:
+        TipoSpell muro = new EditarMuro(TipoSpellsData.EDITARMURO_ID);
+        SkillBook.añadirTipoSpell(muro);
+        //HEAL:
+        TipoSpell Heal = new Heal(TipoSpellsData.HEAL_ID);
+        SkillBook.añadirTipoSpell(Heal);
+    }
+    
+    private static void cargarListaDeSpells ()
+    {   //FIREBOLT: (Bolt)
+        Spell skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.BOLT_ID));
+        skill.setId(SpellsData.FIREBOLT_ID);
+        skill.setNombre(SpellsData.FIREBOLT_Nombre);
+        skill.setDescripcion(SpellsData.FIREBOLT_Descripcion);
+        skill.setIcono(SpellsData.FIREBOLT_Icono);
+        skill.pixieSeleccionado()[1]=0;
+        skill.pixieSeleccionado()[0]=0;
+        SkillBook.añadirSpell(skill);
+        
+        //FROSBOLT: (Bolt)
+        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.BOLT_ID));
+        skill.setId(SpellsData.FROSTBOLT_ID);
+        skill.setNombre(SpellsData.FROSTBOLT_Nombre);
+        skill.setDescripcion(SpellsData.FROSTBOLT_Descripcion);
+        skill.setIcono(SpellsData.FROSTBOLT_Icono);
+        skill.pixieSeleccionado()[1]=1;
+        skill.pixieSeleccionado()[0]=1;
+        SkillBook.añadirSpell(skill);
+        
+        //TERRAFORMAR: (Editar Terreno)
+        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.EDITARMURO_ID));
+        skill.setId(SpellsData.TERRAFORMAR_ID);
+        skill.setNombre(SpellsData.TERRAFORMAR_Nombre);
+        skill.setDescripcion(SpellsData.TERRAFORMAR_Descripcion);
+        skill.setIcono(SpellsData.TERRAFORMAR_Icono);
+        SkillBook.añadirSpell(skill);
+        
+        //MUROFORMAR: (Editar Muro)
+        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.EDITARMURO_ID));
+        skill.setId(SpellsData.MUROFORMAR_ID);
+        skill.setNombre(SpellsData.MUROFORMAR_Nombre);
+        skill.setDescripcion(SpellsData.MUROFORMAR_Descripcion);
+        skill.setIcono(SpellsData.MUROFORMAR_Icono);
+        SkillBook.añadirSpell(skill);
+        
+        //INSTAHEAL:
+        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.HEAL_ID));
+        skill.setId(SpellsData.INSTAHEAL_ID);
+        skill.setNombre(SpellsData.INSTAHEAL_Nombre);
+        skill.setDescripcion(SpellsData.INSTAHEAL_Descripcion);
+        skill.setIcono(SpellsData.INSTAHEAL_Icono);
+        skill.añadirAura(SkillBook.listaDeAuras.get(AurasData.POISON_ID));
+        SkillBook.añadirSpell(skill);
+    }
+    
+    
 }

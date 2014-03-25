@@ -1,18 +1,18 @@
-package Skill.Skill.TiposSkill;
+package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Skill.Skill.TipoSkill;
+import Skill.Spell.TipoSpell;
 import Constantes.MiscData;
-import Constantes.Skills.TipoSkillsData;
+import Constantes.Skills.TipoSpellsData;
 import Geo.Celda;
 import Geo.Muro;
 import Main.Mundo;
-import Mobiles.Mobs.Personaje;
-import Skill.Skill.Skill;
+import Actores.Mobs.Personaje;
+import Skill.Spell.Spell;
 import Skill.SkillStat;
 import com.badlogic.gdx.math.Vector2;
 
-public class EditarMuro extends TipoSkill
+public class EditarMuro extends TipoSpell
 {
     public EditarMuro (String id)                   { super(id); }
     public EditarMuro ()                            { } 
@@ -20,12 +20,12 @@ public class EditarMuro extends TipoSkill
     @Override public void inicializarSkillStats() 
     {
         skillStats = new SkillStat [1]; 
-        SkillStat stat = new SkillStat  (TipoSkillsData.EDITARMURO_CastingTime_String, TipoSkillsData.EDITARMURO_CastingTime_Valor); skillStats[0]=stat;//CAST
+        SkillStat stat = new SkillStat  (TipoSpellsData.EDITARMURO_CastingTime_String, TipoSpellsData.EDITARMURO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
     }
 
     @Override public void inicializarSkillPixies()  {}
 
-    @Override public void ejecutarCasteo(Skill skill, Personaje caster, float targetX, float targetY) 
+    @Override public void ejecutarCasteo(Spell skill, Personaje caster, float targetX, float targetY) 
     {
         Vector2 destino = convertirCoordenadasDestino(caster, targetX, targetY);
         destino = convertirCoordenadasANumeroDeTile(destino);

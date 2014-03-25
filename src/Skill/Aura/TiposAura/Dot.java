@@ -2,24 +2,28 @@ package Skill.Aura.TiposAura;
 // @author Ivan Delgado Huerta
 
 import Constantes.Skills.TipoAurasData;
-import Mobiles.Mobs.Personaje;
+import Actores.Mobs.Personaje;
 import Skill.Aura.TipoAura;
 import Skill.Aura.BDebuff;
 import Skill.SkillStat;
+import com.badlogic.gdx.graphics.Color;
 
 public class Dot extends TipoAura
-{   //Constructor:
+{   
+    public static final int STAT_Daño = 1;
+    
+    //Constructor:
     public Dot (String id)          { super(id); }
     public Dot ()                   { }
     
     @Override public void inicializarSkillStats() 
     {
         isDebuff = true;
-        stacksMaximos = 2;
+        stacksMaximos = 3;
         
         skillStats = new SkillStat [2];
-        SkillStat stat = new SkillStat  (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Daño_Valor); skillStats[0] = stat;       //DURACION
-        stat = new SkillStat            (TipoAurasData.DOT_Daño_String, TipoAurasData.DOT_Daño_Valor); skillStats[1] = stat; //DAÑO
+        SkillStat stat = new SkillStat  (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
+        stat = new SkillStat            (TipoAurasData.DOT_Daño_String, TipoAurasData.DOT_Daño_Valor); skillStats[STAT_Daño] = stat; //DAÑO
     }
 
     @Override public void inicializarSkillPixies() 
@@ -30,13 +34,9 @@ public class Dot extends TipoAura
 
     @Override public void actualizarTick(BDebuff debuff) 
     {
-        float dañoPorTick = debuff.skillStats()[1].valorBase * debuff.stacks;
+        float dañoPorTick = debuff.skillStats()[STAT_Daño].valorBase * debuff.stacks;
         Personaje target = debuff.target;
                 
-        target.setActualHPs(target.getActualHPs()- (int)dañoPorTick);
-            
-        //Falta mostrar el SCROLLING COMBAT TEXT
-        //FALTA FALTA FALTA
-        //FALTA FALTA FALTA
+        target.modificarHps((int)-dañoPorTick, Color.RED);
     }
 } 

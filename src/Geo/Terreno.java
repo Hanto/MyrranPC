@@ -1,7 +1,7 @@
 package Geo;
 
 import Constantes.MiscData;
-import static Recursos.Recursos.atlas;
+import static Resources.Recursos.atlas;
 import Main.Mundo;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public abstract class TipoAura implements TipoAuraInterface
 {
+    public static final int STAT_Duracion = 0;
+    
     protected String id;
     protected String nombre;
     protected String descripcion;

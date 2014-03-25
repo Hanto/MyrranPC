@@ -1,17 +1,17 @@
-package Skill.Skill.TiposSkill;
+package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 import Constantes.MiscData;
-import Constantes.Skills.TipoSkillsData;
+import Constantes.Skills.TipoSpellsData;
 import Geo.Celda;
 import Geo.Mapa;
 import Main.Mundo;
-import Mobiles.Mobs.Personaje;
-import Skill.Skill.Skill;
-import Skill.Skill.TipoSkill;
+import Actores.Mobs.Personaje;
+import Skill.Spell.Spell;
+import Skill.Spell.TipoSpell;
 import Skill.SkillStat;
 import com.badlogic.gdx.math.Vector2;
 
-public class EditarTerreno extends TipoSkill
+public class EditarTerreno extends TipoSpell
 {
     public EditarTerreno (String id)                { super(id); }
     public EditarTerreno ()                         { }
@@ -19,12 +19,12 @@ public class EditarTerreno extends TipoSkill
     @Override public void inicializarSkillStats() 
     {
         skillStats = new SkillStat [1]; 
-        SkillStat stat = new SkillStat  (TipoSkillsData.EDITARTERRENO_CastingTime_String, TipoSkillsData.EDITARTERRENO_CastingTime_Valor); skillStats[0]=stat;//CAST
+        SkillStat stat = new SkillStat  (TipoSpellsData.EDITARTERRENO_CastingTime_String, TipoSpellsData.EDITARTERRENO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
     }
 
     @Override public void inicializarSkillPixies()  {}
 
-    @Override public void ejecutarCasteo(Skill skill, Personaje caster, float targetX, float targetY) 
+    @Override public void ejecutarCasteo(Spell skill, Personaje caster, float targetX, float targetY) 
     {
         Vector2 destino = convertirCoordenadasDestino(caster, targetX, targetY);
         destino = convertirCoordenadasANumeroDeTile(destino);
@@ -49,5 +49,6 @@ public class EditarTerreno extends TipoSkill
         Mapa.crearTile(x+1, y+1, numCapa);
         Mapa.crearTile(x-1, y-1, numCapa);
         Mapa.crearTile(x-1, y+1, numCapa);
-        Mapa.crearTile(x+1, y-1, numCapa);}
+        Mapa.crearTile(x+1, y-1, numCapa);
+    }
 }

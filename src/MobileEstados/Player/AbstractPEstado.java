@@ -2,10 +2,10 @@ package MobileEstados.Player;
 // @author Ivan Delgado Huerta
 
 import Main.Mundo;
-import Mobiles.Mobs.Personajes.PCs.Player;
+import Actores.Mobs.Personajes.PCs.Player;
 import Pantallas.PantallaJuego;
 import MobileEstados.Player.PlayerEstado.Estado;
-import Skill.SpellBook;
+import Skill.SkillBook;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 
@@ -16,7 +16,7 @@ public abstract class AbstractPEstado implements Estado
         Player player = playerE.player;
         if (player.castear && !player.isCasteando && player.getSpellSeleccionado().length() > 0)
         {   
-            SpellBook.listaDeSkills.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY());
+            SkillBook.listaDeSpells.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY());
         }
     }
     

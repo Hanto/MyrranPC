@@ -23,14 +23,14 @@ public class SkillStat
     }
     
     //CONSTRUCTOR: (constructor Copia)
-    public SkillStat (SkillStat spellStat)
+    public SkillStat (SkillStat skillStat)
     {
-        this.nombre = spellStat.nombre;
-        this.valorBase = spellStat.valorBase;
-        this.talentoMaximo = spellStat.talentoMaximo;
-        this.costeTalento = spellStat.costeTalento;
-        this.bonoTalento = spellStat.bonoTalento;
-        this.isMejorable = spellStat.isMejorable;
+        this.nombre = skillStat.nombre;
+        this.valorBase = skillStat.valorBase;
+        this.talentoMaximo = skillStat.talentoMaximo;
+        this.costeTalento = skillStat.costeTalento;
+        this.bonoTalento = skillStat.bonoTalento;
+        this.isMejorable = skillStat.isMejorable;
     }
             
     public void setStat (String nombre, float valor)

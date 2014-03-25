@@ -1,4 +1,4 @@
-package Recursos;
+package Resources;
 import Constantes.MiscData;
 import Graficos.Pixie;
 import com.badlogic.gdx.Gdx;

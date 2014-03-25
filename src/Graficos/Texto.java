@@ -1,5 +1,7 @@
 package Graficos;
 
+import Pantallas.AbstractPantalla;
+import Pantallas.PantallaJuego;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -123,7 +125,15 @@ public class Texto extends Group
     public void scrollingCombatText (Stage stage, float duracion)
     {
         stage.addActor(this);
-        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.fadeOut(1f), Actions.removeActor()));
+        this.addAction(Actions.sequence(Actions.fadeOut(0), Actions.fadeIn(duracion/4), Actions.delay(duracion/4*2), Actions.fadeOut(duracion/4)));
+        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
+    }
+    
+    public void scrollingCombatText (Group group, float duracion)
+    {
+        this.addAction(Actions.sequence(Actions.fadeOut(0), Actions.fadeIn(duracion/4), Actions.delay(duracion/4*2), Actions.fadeOut(duracion/4)));
+        this.addAction(Actions.sequence(Actions.moveBy(0f, 40f, duracion), Actions.removeActor()));
+        group.addActor(this);
     }
     
     //Para cuando no queremos crear la entidad para su posterior modificabilidad, si no que queremos crearla rapido:

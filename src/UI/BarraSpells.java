@@ -3,9 +3,9 @@ package UI;
 import Constantes.MiscData;
 import Graficos.Texto;
 import Main.Mundo;
-import Recursos.Recursos;
-import Skill.SpellBook;
-import Skill.Skill.Skill;
+import Resources.Recursos;
+import Skill.SkillBook;
+import Skill.Spell.Spell;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -166,7 +166,7 @@ public class BarraSpells extends Group
         this.setHeight(numFilas*(altoSlot+2));
     }
     
-    public void setSkill (int slot, Skill skill)
+    public void setSkill (int slot, Spell skill)
     {   //Cogemos la destino correspondiente a ese SLOT:
         Casilla casilla = barra.get(slot);
         //SpellID, salvamos el ID del skill en la destino:
@@ -184,7 +184,7 @@ public class BarraSpells extends Group
             slotvacio.setColor(0,0,0,0.1f);
             group.addActor(slotvacio); 
         }
-        else { group.addActor(new Image (SpellBook.listaDeSkills.get(casilla.spellID).getIcono())); }
+        else { group.addActor(new Image (SkillBook.listaDeSpells.get(casilla.spellID).getIcono())); }
         if (casilla.spellID.equals(Mundo.player.getSpellSeleccionado())) group.addActor(new Image(Recursos.spellSeleccionado));
         if (casilla.keyBind != null) Texto.printTexto(String.valueOf(casilla.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, group);
     }

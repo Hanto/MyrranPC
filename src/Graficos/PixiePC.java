@@ -1,7 +1,7 @@
 package Graficos;
-import Recursos.Recursos;
-import static Recursos.Recursos.listaDeRazas;
-import Mobiles.Mobs.Personajes.PC;
+import Resources.Recursos;
+import static Resources.Recursos.listaDeRazas;
+import Actores.Mobs.Personajes.PC;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;

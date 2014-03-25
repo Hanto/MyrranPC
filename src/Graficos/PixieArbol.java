@@ -1,7 +1,7 @@
 package Graficos;
 
-import Recursos.Recursos;
-import Recursos.Recursos.TroncoTemplate;
+import Resources.Recursos;
+import Resources.Recursos.TroncoTemplate;
 import Main.Mundo;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

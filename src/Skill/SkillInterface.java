@@ -1,9 +1,9 @@
 package Skill;
 // @author Ivan Delgado Huerta
 
-import Mobiles.Mobs.Personaje;
+import Actores.Mobs.Personaje;
 import Skill.Aura.BDebuff;
-import Skill.Skill.Skill;
+import Skill.Spell.Spell;
 
 public class SkillInterface 
 {
@@ -11,7 +11,7 @@ public class SkillInterface
     {
         public void inicializarSkillStats ();
         public void inicializarSkillPixies ();
-        public void ejecutarCasteo (Skill skill, Personaje caster, float targetX, float targetY);
+        public void ejecutarCasteo (Spell spell, Personaje caster, float targetX, float targetY);
     }
     
     public interface TipoAuraInterface

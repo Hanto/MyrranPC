@@ -1,7 +1,7 @@
 package Constantes.Skills;
  //* @author Ivan Delgado Huerta
 
-public class SkillsData 
+public class SpellsData 
 {
     //SPELLS:
     //FIREBOLT:
@@ -31,4 +31,10 @@ public class SkillsData
     public static final String  MUROFORMAR_Nombre = "Muro";
     public static final String  MUROFORMAR_Descripcion = "Muroforma el terreno";
     public static final int     MUROFORMAR_Icono = 3;
+    
+    //InstaHeal
+    public static final String  INSTAHEAL_ID = "InstaHeal";
+    public static final String  INSTAHEAL_Nombre = "InstaHeal";
+    public static final String  INSTAHEAL_Descripcion = "Curacion instantanea";
+    public static final int     INSTAHEAL_Icono = 3;
 }

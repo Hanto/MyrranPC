@@ -2,7 +2,7 @@ package Pantallas;
 import Constantes.LoadData;
 import Constantes.LoadRecursos;
 import Constantes.MiscData;
-import Constantes.Skills.SkillsData;
+import Constantes.Skills.SpellsData;
 import Geo.Celda;
 import Geo.Mapa;
 import Geo.Muro;
@@ -12,9 +12,9 @@ import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
 import static Pantallas.AbstractPantalla.camara;
-import Recursos.Recursos;
+import Resources.Recursos;
 import Save.SaveData;
-import Skill.SpellBook;
+import Skill.SkillBook;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
@@ -69,8 +69,7 @@ public class PantallaJuego extends AbstractPantalla
         LoadRecursos.cargarRecursos();
         
         crearMapa();
-        LoadData.cargarListaDeTiposSpell();
-        LoadData.cargarListaDeSpells();
+        LoadData.LoadAll();
         
         Mapa.renderGrid = false;
         Mapa.crearTiledMap();
@@ -78,12 +77,14 @@ public class PantallaJuego extends AbstractPantalla
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
         player.setPosition(500, 400);
         
-        player.barraSpells.setSkill(0, SpellBook.listaDeSkills.get(SkillsData.FIREBOLT_ID));
-        player.barraSpells.setSkill(1, SpellBook.listaDeSkills.get(SkillsData.FROSTBOLT_ID));
-        player.barraSpells.setSkill(2, SpellBook.listaDeSkills.get(SkillsData.MUROFORMAR_ID));
-        player.barraSpells.setSkill(3, SpellBook.listaDeSkills.get(SkillsData.TERRAFORMAR_ID));
+        player.barraSpells.setSkill(0, SkillBook.listaDeSpells.get(SpellsData.FIREBOLT_ID));
+        player.barraSpells.setSkill(1, SkillBook.listaDeSpells.get(SpellsData.FROSTBOLT_ID));
+        player.barraSpells.setSkill(2, SkillBook.listaDeSpells.get(SpellsData.MUROFORMAR_ID));
+        player.barraSpells.setSkill(3, SkillBook.listaDeSpells.get(SpellsData.TERRAFORMAR_ID));
+        player.barraSpells.setSkill(4, SkillBook.listaDeSpells.get(SpellsData.INSTAHEAL_ID));
         
-                
+        player.setActualHPs(1);
+        
         player.getPixiePC().setCuerpo(0);
         player.getPixiePC().setBotas(0);
         player.getPixiePC().setGuantes(0);
@@ -138,6 +139,7 @@ public class PantallaJuego extends AbstractPantalla
     {
         Mundo.actualizarPlayers(delta);
         Mundo.actualizarProyectiles(delta);
+        Mundo.actualizarAurasPlayers(delta);
                 
         super.render(delta);
        

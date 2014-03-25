@@ -3,9 +3,10 @@ import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Muro;
 import Geo.Terreno;
-import Mobiles.Mobs.Personajes.PCs.Player;
-import Mobiles.Mobs.Proyectil;
-import static Recursos.Recursos.atlas;
+import Actores.Mobs.Personajes.PCs.Player;
+import Actores.Mobs.Proyectil;
+import static Resources.Recursos.atlas;
+import Skill.Aura.BDebuff;
 import UI.BarraTerrenos;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
@@ -75,6 +76,16 @@ public class Mundo
     {
         for (int i=0; i<listaDeProyectiles.size; i++)
         { listaDeProyectiles.get(i).actualizar(delta); }
+    }
+    
+    public static void actualizarAurasPlayers (float delta)
+    {
+        for (int i=0; i<listaDePlayers.size; i++)
+        {
+            Array<BDebuff> listaDeAuras = listaDePlayers.get(i).listaDeAuras;
+            for (int j=0; j<listaDeAuras.size;j++)
+            {   listaDeAuras.get(j).actualizarDebuff(); }
+        }
     }
     
     public static void añadirTerreno (String nombreTerreno)

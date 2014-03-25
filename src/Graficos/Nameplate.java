@@ -1,9 +1,9 @@
 package Graficos;
 import Constantes.MiscData;
 import Main.Mundo;
-import Mobiles.Mobs.Personaje;
-import Mobiles.Mobs.Personajes.PC;
-import Recursos.Recursos;
+import Actores.Mobs.Personaje;
+import Actores.Mobs.Personajes.PC;
+import Resources.Recursos;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Group;

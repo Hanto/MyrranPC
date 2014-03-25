@@ -1,11 +1,11 @@
-package Skill.Skill;
+package Skill.Spell;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
 import Graficos.Pixie;
-import Mobiles.Mobs.Personajes.PC;
-import Mobiles.Mobs.Personaje;
-import Mobiles.Mobs.Personajes.PCs.Player;
+import Actores.Mobs.Personajes.PC;
+import Actores.Mobs.Personaje;
+import Actores.Mobs.Personajes.PCs.Player;
 import Pantallas.PantallaJuego;
 import Skill.SkillInterface.TipoSkillInterface;
 import Skill.SkillStat;
@@ -15,8 +15,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import java.util.UUID;
 
-public abstract class TipoSkill implements TipoSkillInterface 
+public abstract class TipoSpell implements TipoSkillInterface 
 {
+    public static final int STAT_Cast = 0;
+    
     protected String id;
     protected String nombre;
     protected String descripcion;
@@ -39,14 +41,14 @@ public abstract class TipoSkill implements TipoSkillInterface
     public TextureRegion getIcono ()                    { return icono; }
     
     //CONSTRUCTOR:
-    public TipoSkill (String id)
+    public TipoSpell (String id)
     {   //Si especificamos un ID, lo usamos como ID del tipo
         this.id = id;
         inicializarSkillStats(); 
         inicializarSkillPixies();
     }
     
-    public TipoSkill ()
+    public TipoSpell ()
     {   //Si no especificamos ID generamos un ID unico con la libreria UUID
         UUID idUUID = UUID.randomUUID();
         id = idUUID.toString();

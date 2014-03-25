@@ -1,6 +1,6 @@
 package Constantes.Skills;
 // @author Ivan Delgado Huerta
-public class TipoSkillsData 
+public class TipoSpellsData 
 {
     //TIPOSSPELL:
     //BOLT: (el casting time siempre debe ir primero)
@@ -24,4 +24,11 @@ public class TipoSkillsData
     public static final String  EDITARMURO_ID = "Editar Muro";
     public static final String  EDITARMURO_CastingTime_String = "Casting Time";
     public static final float   EDITARMURO_CastingTime_Valor = 0.005f;
+    
+    //HEAL:
+    public static final String  HEAL_ID = "Heal";
+    public static final String  HEAL_CastingTime_String = "Casting Time";
+    public static final float   HEAL_CastingTime_Valor = 1.0f;
+    public static final String  HEAL_Curacion_String = "Curacion";
+    public static final float   HEAL_Curacion_Valor = 500f;
 }
