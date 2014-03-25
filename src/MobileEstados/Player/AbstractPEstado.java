@@ -1,10 +1,11 @@
-package MobileEstados;
+package MobileEstados.Player;
 // @author Ivan Delgado Huerta
 
 import Main.Mundo;
-import Mobiles.Player;
+import Mobiles.Mobs.Personajes.PCs.Player;
 import Pantallas.PantallaJuego;
-import MobileEstados.PlayerEstado.Estado;
+import MobileEstados.Player.PlayerEstado.Estado;
+import Skill.SpellBook;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 
@@ -13,8 +14,10 @@ public abstract class AbstractPEstado implements Estado
     public void castear (PlayerEstado playerE)
     {
         Player player = playerE.player;
-        if (player.castear && !player.isCasteando && player.getSpellSeleccionado() >=0)
-        {   Mundo.listaDeSpells.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY()); }
+        if (player.castear && !player.isCasteando && player.getSpellSeleccionado().length() > 0)
+        {   
+            SpellBook.listaDeSkills.get(player.getSpellSeleccionado()).castear(player, Gdx.input.getX(), Gdx.input.getY());
+        }
     }
     
     public void aplicarMovimiento (PlayerEstado playerE)

@@ -1,29 +1,31 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package TiposSpell;
+package Skill.Skill.TiposSkill;
 // @author Ivan Delgado Huerta
 
+import Skill.Skill.TipoSkill;
 import Constantes.MiscData;
-import Constantes.SpellData;
+import Constantes.Skills.TipoSkillsData;
 import Geo.Celda;
 import Geo.Muro;
 import Main.Mundo;
-import Mobiles.Personaje;
-import Skills.Spell;
-import Skills.SpellStat;
+import Mobiles.Mobs.Personaje;
+import Skill.Skill.Skill;
+import Skill.SkillStat;
 import com.badlogic.gdx.math.Vector2;
 
-public class EditarMuro extends AbstractTipoSpell
+public class EditarMuro extends TipoSkill
 {
-    public EditarMuro ()
-    {
-        spellStats = new SpellStat [1]; 
-        SpellStat stat = new SpellStat  (SpellData.EDITARMURO_CastingTime_String, SpellData.EDITARMURO_CastingTime_Valor); spellStats[0]=stat;//CAST
-    }
+    public EditarMuro (String id)                   { super(id); }
+    public EditarMuro ()                            { } 
     
-    @Override public void ejecutarCasteo(Spell spell, Personaje caster, float targetX, float targetY) 
+    @Override public void inicializarSkillStats() 
+    {
+        skillStats = new SkillStat [1]; 
+        SkillStat stat = new SkillStat  (TipoSkillsData.EDITARMURO_CastingTime_String, TipoSkillsData.EDITARMURO_CastingTime_Valor); skillStats[0]=stat;//CAST
+    }
+
+    @Override public void inicializarSkillPixies()  {}
+
+    @Override public void ejecutarCasteo(Skill skill, Personaje caster, float targetX, float targetY) 
     {
         Vector2 destino = convertirCoordenadasDestino(caster, targetX, targetY);
         destino = convertirCoordenadasANumeroDeTile(destino);
@@ -44,5 +46,4 @@ public class EditarMuro extends AbstractTipoSpell
             muro.setPosition(x*MiscData.TILESIZE, y*MiscData.TILESIZE);
         }
     }
-
 }

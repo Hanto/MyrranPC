@@ -2,7 +2,7 @@ package Geo;
 
 import Constantes.MiscData;
 import static Constantes.MiscData.TILESIZE;
-import Graficos.Recursos;
+import Recursos.Recursos;
 import Main.Mundo;
 import static Main.Mundo.listaDeTerrenos;
 import static Main.Mundo.mapa;

@@ -1,6 +1,7 @@
-package Mobiles;
+package Mobiles.Mobs.Personajes.PCs;
+import Mobiles.Mobs.Personajes.PC;
 import Constantes.MiscData;
-import MobileEstados.PlayerEstado;
+import MobileEstados.Player.PlayerEstado;
 import Pantallas.PantallaJuego;
 import UI.BarraSpells;
 import com.badlogic.gdx.Input.Keys;
@@ -100,7 +101,7 @@ public class Player extends PC
     
     public void castear ()
     {
-        if (castear && !isCasteando && spellSeleccionado >= 0) { estado.procesarInput(); }
+        if (castear && !isCasteando && spellSeleccionado.length() > 0) { estado.procesarInput(); }
     }
     
     public void actualizar (float delta)

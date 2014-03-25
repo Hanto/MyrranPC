@@ -2,8 +2,8 @@ package UI;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
-import Constantes.SpellData;
-import Graficos.Recursos;
+import Constantes.Skills.SkillsData;
+import Recursos.Recursos;
 import Graficos.Texto;
 import Main.Mundo;
 import Pantallas.PantallaJuego;
@@ -178,7 +178,7 @@ public class BarraTerrenos extends Group
     //Oculta o muestra la barra de Terrenos
     public static void mostrarOcultarBarraTerreno ()
     {
-        if (Mundo.player.getSpellSeleccionado() == SpellData.TERRAFORMAR_ID)
+        if (Mundo.player.getSpellSeleccionado() == SkillsData.TERRAFORMAR_ID)
         {
             if (Mundo.player.mostrarBarraTerrenos == false)
             {

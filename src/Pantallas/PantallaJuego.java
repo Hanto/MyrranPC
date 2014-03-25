@@ -2,35 +2,25 @@ package Pantallas;
 import Constantes.LoadData;
 import Constantes.LoadRecursos;
 import Constantes.MiscData;
+import Constantes.Skills.SkillsData;
 import Geo.Celda;
 import Geo.Mapa;
 import Geo.Muro;
 import Graficos.PixieArbol;
-import Graficos.Recursos;
-import static Graficos.Recursos.atlas;
-import Graficos.Pixie;
 import Graficos.Texto;
 import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
-import Mobiles.Player;
 import static Pantallas.AbstractPantalla.camara;
+import Recursos.Recursos;
 import Save.SaveData;
-import Skills.Aura;
-import Skills.TipoSkills.TipoAura;
-import TiposAura.Dot;
+import Skill.SpellBook;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -64,6 +54,7 @@ public class PantallaJuego extends AbstractPantalla
     {
         super (game);
         
+        Mundo.inicializarMundo();
         Mundo.stageMundo = new Stage (0,0, true);
         Mundo.world = new World (new Vector2 (0, -9.8f), false);
         
@@ -87,10 +78,10 @@ public class PantallaJuego extends AbstractPantalla
         player = Mundo.añadirPlayer(0, 0, 0, "Hanto");
         player.setPosition(500, 400);
         
-        player.barraSpells.setSpell(0, Mundo.listaDeSpells.get(0));
-        player.barraSpells.setSpell(1, Mundo.listaDeSpells.get(1));
-        player.barraSpells.setSpell(2, Mundo.listaDeSpells.get(2));
-        player.barraSpells.setSpell(3, Mundo.listaDeSpells.get(3));
+        player.barraSpells.setSkill(0, SpellBook.listaDeSkills.get(SkillsData.FIREBOLT_ID));
+        player.barraSpells.setSkill(1, SpellBook.listaDeSkills.get(SkillsData.FROSTBOLT_ID));
+        player.barraSpells.setSkill(2, SpellBook.listaDeSkills.get(SkillsData.MUROFORMAR_ID));
+        player.barraSpells.setSkill(3, SpellBook.listaDeSkills.get(SkillsData.TERRAFORMAR_ID));
         
                 
         player.getPixiePC().setCuerpo(0);

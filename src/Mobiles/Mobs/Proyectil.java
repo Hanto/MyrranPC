@@ -1,6 +1,7 @@
-package Mobiles;
+package Mobiles.Mobs;
 import Graficos.Pixie;
 import Main.Mundo;
+import Mobiles.Mob;
 import box2dLight.PointLight;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;

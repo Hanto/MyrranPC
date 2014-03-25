@@ -3,14 +3,10 @@ import Constantes.MiscData;
 import Geo.Celda;
 import Geo.Muro;
 import Geo.Terreno;
-import static Graficos.Recursos.atlas;
+import Mobiles.Mobs.Personajes.PCs.Player;
+import Mobiles.Mobs.Proyectil;
+import static Recursos.Recursos.atlas;
 import UI.BarraTerrenos;
-import Mobiles.Player;
-import Mobiles.Proyectil;
-import Skills.Aura;
-import Skills.Spell;
-import Skills.TipoSkills.TipoAura;
-import TiposSpell.AbstractTipoSpell;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -25,10 +21,6 @@ public class Mundo
 {
     public static Player player;
         
-    public static Array<Spell> listaDeSpells = new Array<>();
-    public static Array<Aura> listaDeAuras = new Array<>();
-    public static Array<AbstractTipoSpell> listaDeTiposSpell = new Array<>();
-    public static Array<TipoAura> listaDeTiposAura = new Array<>();
     public static Array<Terreno> listaDeTerrenos = new Array<>();
     public static Array<Muro> listaDeMuros = new Array<>();
     public static Array<Player> listaDePlayers = new Array<>();
@@ -46,7 +38,10 @@ public class Mundo
     //Opciones varias:
     public static boolean dibujarNameplatesPlayer = true;
     
-    
+    public static void inicializarMundo ()
+    {
+        
+    }
     
     public static Player añadirPlayer (int numRaza, int posX, int posY, String nombre)
     {
@@ -63,8 +58,7 @@ public class Mundo
         //proyectil.getPixie().addAction(Actions.fadeOut(1.5f, Interpolation.linear));
         stageMundo.addActor(proyectil.getPixie()); 
     }
-    
-    
+        
     public static void eliminarProyectil (Proyectil proyectil)
     {
         Mundo.listaDeProyectiles.removeValue(proyectil, true);

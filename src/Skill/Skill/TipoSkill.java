@@ -1,27 +1,62 @@
-package TiposSpell;
+package Skill.Skill;
+// @author Ivan Delgado Huerta
+
 import Constantes.MiscData;
 import Graficos.Pixie;
-import Mobiles.PC;
-import Mobiles.Personaje;
-import Mobiles.Player;
+import Mobiles.Mobs.Personajes.PC;
+import Mobiles.Mobs.Personaje;
+import Mobiles.Mobs.Personajes.PCs.Player;
 import Pantallas.PantallaJuego;
-import Skills.SpellStat;
-import Skills.SpellStat.SpellPixie;
-import Skills.TipoSkills.TipoSpell;
+import Skill.SkillInterface.TipoSkillInterface;
+import Skill.SkillStat;
+import Skill.SkillStat.SkillPixie;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-//@author Ivan Delgado Huerta
-public abstract class AbstractTipoSpell implements TipoSpell
+import java.util.UUID;
+
+public abstract class TipoSkill implements TipoSkillInterface 
 {
-    protected SpellStat [] spellStats;
-    protected SpellPixie [] spellPixies;
-    //SET-GET:
-    @Override public SpellStat [] getSpellStats()                   { return spellStats; }
-    @Override public SpellPixie [] getSpellPixies()                 { return spellPixies; }
+    protected String id;
+    protected String nombre;
+    protected String descripcion;
+    protected TextureRegion icono;
+    
+    protected SkillStat [] skillStats;
+    protected SkillPixie [] skilllPixies;
+    
+    //SET
+    public void setId (String id)                       { this.id = id; }
+    public void setNombre (String nombre)               { this.nombre = nombre; }
+    public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
+    public void setIcono (TextureRegion texture)        { icono = texture; }
+    //GET
+    public String getID()                               { return id; }
+    public String getNombre()                           { return nombre; }
+    public String getDescripcion ()                     { return descripcion; }
+    public SkillStat [] skillStat ()                    { return skillStats; }
+    public SkillPixie [] skilllPixie ()                 { return skilllPixies; }
+    public TextureRegion getIcono ()                    { return icono; }
+    
+    //CONSTRUCTOR:
+    public TipoSkill (String id)
+    {   //Si especificamos un ID, lo usamos como ID del tipo
+        this.id = id;
+        inicializarSkillStats(); 
+        inicializarSkillPixies();
+    }
+    
+    public TipoSkill ()
+    {   //Si no especificamos ID generamos un ID unico con la libreria UUID
+        UUID idUUID = UUID.randomUUID();
+        id = idUUID.toString();
+        inicializarSkillStats(); 
+        inicializarSkillPixies();
+    }
     
     //De entre todas las animaciones que tiene este spell selecciona el grupo que necesitamos y extrae el pixie que queremos 
     public Pixie getPixie (int numAnimacion, int numPixie)
-    {   return spellPixies[numAnimacion].pixieArray.get(numPixie);}
+    {   return skilllPixies[numAnimacion].pixieArray.get(numPixie);}
     
     //Convertimos las coordenadas de pantalla del click en pantalla en coordenadas de mundo para comparar posiciones con el caster
     //y asi deducir la direccion de salida del pepo, en caso de ser un NPC no hace falta puesto que no estos no clickan en pantalla:

@@ -5,8 +5,9 @@
 package Constantes;
 // @author Ivan Delgado Huerta
 
-import Graficos.Recursos;
 import Main.Mundo;
+import Recursos.Recursos;
+import Skill.SkillRecursos;
 import UI.BarraTerrenos;
 
 public class LoadRecursos 
@@ -51,10 +52,11 @@ public class LoadRecursos
         Recursos.salvarIcono            ("Muros");
         
         //SPELLS:
-        Recursos.salvarCasteo           ("Fireball01");
-        Recursos.salvarEfectoDeSpell    ("Fireball02");
-        Recursos.salvarCasteo           ("FrostBolt01");
-        Recursos.salvarEfectoDeSpell    ("FrostBolt02");
+        SkillRecursos.setAtlas(Recursos.atlas);
+        SkillRecursos.salvarCasteo           ("Fireball01");
+        SkillRecursos.salvarEfectoDeSpell    ("Fireball02");
+        SkillRecursos.salvarCasteo           ("FrostBolt01");
+        SkillRecursos.salvarEfectoDeSpell    ("FrostBolt02");
         
         //TERRENOS:
         Mundo.añadirTerreno             ("Tierra4");

@@ -1,7 +1,6 @@
-package Graficos;
+package Recursos;
 import Constantes.MiscData;
-import Main.Mundo;
-import UI.BarraTerrenos;
+import Graficos.Pixie;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -32,8 +31,6 @@ public class Recursos
         public Array<Pixie> listaDeCapasTraseras = new Array<>();
         public Array<Pixie> listaDeCapasFrontales = new Array<>();
     }
-    public static Array<Pixie> listaDeSpells = new Array<>();
-    public static Array<Pixie> listaDeCasteos = new Array<>();
     public static Array<TextureRegion> listaIconos = new Array<>();
     
     public static Array<TroncoTemplate> listaDeTroncos = new Array<>();
@@ -325,23 +322,6 @@ public class Recursos
         pixieArmadura.añadirAnimacion("dispararNE",   new int []{39,40,41},   0.15f, true);
         pixieArmadura.animaciones().get(4).ininterrumpible = true;
         listaDeRazas.get(numRaza).listaDeCapasFrontales.add(pixieArmadura);
-    }
-    
-    public static void salvarEfectoDeSpell(String nombreEfecto)
-    {
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
-        Pixie spellEffect = new Pixie (texture, MiscData.PIXIE_SpellEffect_numFilas, MiscData.PIXIE_SpellEffect_numColumnas);
-        spellEffect.añadirAnimacion("casteo",       new int[] {0,1,2},      0.15f, false);
-        listaDeSpells.add(spellEffect);
-    }
-    
-    public static void salvarCasteo (String nombreEfecto)
-    {
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellSprites_LOC+nombreEfecto));
-        Pixie spellCasteo = new Pixie (texture, MiscData.PIXIE_SpellEffect_numFilas, MiscData.PIXIE_SpellEffect_numColumnas);
-        spellCasteo.añadirAnimacion("casteo",       new int[] {0,1,2},      0.15f, false);
-        spellCasteo.animaciones().get(0).animarYEliminar = true;
-        listaDeCasteos.add(spellCasteo);
     }
     
     public static void salvarCopa (String nombreCopa)

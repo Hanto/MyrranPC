@@ -1,8 +1,9 @@
-package Mobiles;
+package Mobiles.Mobs.Personajes;
 import Graficos.Nameplate;
 import Graficos.PixiePC;
-import Graficos.Recursos;
 import Graficos.Texto;
+import Mobiles.Mobs.Personaje;
+import Recursos.Recursos;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 //* @author Ivan Delgado Huerta

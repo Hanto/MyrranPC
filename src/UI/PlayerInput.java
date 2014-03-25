@@ -1,9 +1,7 @@
 package UI;
 // @author Ivan Delgado Huerta
-import Constantes.MiscData;
 import Main.Mundo;
 import static Pantallas.AbstractPantalla.camara;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -17,7 +15,9 @@ public class PlayerInput implements InputProcessor
         for (int i=0;i<barraspells.barra.size;i++)
         { if (barraspells.barra.get(i).keycode == keycode) 
             {
-                int antiguoSpellSeleccionado = Mundo.player.getSpellSeleccionado();
+                //si el bind no contiene ningun spell que no pase nada:
+                if (barraspells.barra.get(i).spellID.equals("")) break;
+                String antiguoSpellSeleccionado = Mundo.player.getSpellSeleccionado();
                 Mundo.player.setSpellSeleccionado(barraspells.barra.get(i).spellID);
                 //le ponemos reborde al spell seleccionado y se lo quitamos al que estaba seleccionado:
                 barraspells.actualizarApariencia(Mundo.player.getSpellSeleccionado());

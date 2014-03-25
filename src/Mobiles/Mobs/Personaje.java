@@ -1,7 +1,8 @@
-package Mobiles;
+package Mobiles.Mobs;
 
 import Graficos.Nameplate;
-import Skills.Aura.BDebuff;
+import Mobiles.Mob;
+import Skill.Aura.BDebuff;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -16,7 +17,7 @@ public class Personaje extends Mob
     protected int actualHPs=1000;
     protected int maxHPs=1000;
     
-    protected int spellSeleccionado = 0;
+    protected String spellSeleccionado = "";
     protected int terrenoSeleccionado = 0;
     protected int capaTerrenoSeleccionada = 0;
     
@@ -37,7 +38,7 @@ public class Personaje extends Mob
     public boolean isCasteando()                { return isCasteando; }
     public float getActualCastingTime ()        { return actualCastingTime; }
     public float getTotalCastingTime ()         { return totalCastingTime; }
-    public int getSpellSeleccionado ()          { return spellSeleccionado; }
+    public String getSpellSeleccionado ()       { return spellSeleccionado; }
     public int getTerrenoSeleccionado ()        { return terrenoSeleccionado; }
     public int getCapaTerrenoSeleccionada ()    { return capaTerrenoSeleccionada; }
     //SET
@@ -48,7 +49,7 @@ public class Personaje extends Mob
     public void setActualCastingTime (float i)  { actualCastingTime = i; }
     public void setTotalCastingTime (float i)   { totalCastingTime = i; }
     public void setCastingTime (float actual, float total)  { actualCastingTime = actual; totalCastingTime = total;}
-    public void setSpellSeleccionado (int spellID)          { spellSeleccionado = spellID; }
+    public void setSpellSeleccionado (String spellID)       { spellSeleccionado = spellID; }
     public void setTerrenoSeleccionado (int terrenoID)      { terrenoSeleccionado = terrenoID; }
     public void setCapaTerrenoSelecionada (int capaTerreno) { capaTerrenoSeleccionada = capaTerreno; }
 }

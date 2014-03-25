@@ -1,8 +1,8 @@
-package MobileEstados;
+package MobileEstados.Player;
 // @author Ivan Delgado Huertaimp
 import Graficos.Pixie;
-import Graficos.Recursos;
-import Mobiles.Player;
+import Recursos.Recursos;
+import Mobiles.Mobs.Personajes.PCs.Player;
 import com.badlogic.gdx.Gdx;
 
 public class PlayerEstado
@@ -42,8 +42,10 @@ public class PlayerEstado
         {   if (playerE.player.castear && !playerE.player.isCasteando)
             {   //Castear no es un estado, solapa el estado actual, por tanto solo lanza el casteo y la animacion
                 castear(playerE); //cargamos una segunda animacion, para que cuando acabe el casteo se muestre
-                playerE.player.getPixiePC().setAnimacion(4, false); 
-                playerE.player.getPixiePC().setAnimacion(5, false);
+                if (playerE.player.isCasteando)
+                {   playerE.player.getPixiePC().setAnimacion(4, false); 
+                    playerE.player.getPixiePC().setAnimacion(5, false);
+                }
             }   //cualquier accion hace que cambie el estado:
             if (playerE.player.disparar)        { playerE.estado = new Disparando(playerE); return; }
             if (playerE.player.irDerecha)       { playerE.estado = new Este(playerE); return; }
