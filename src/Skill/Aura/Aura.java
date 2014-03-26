@@ -2,7 +2,8 @@ package Skill.Aura;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
-import Actores.Mobs.Personaje;
+import Interfaces.Caster;
+import Interfaces.Debuffeable;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -58,11 +59,11 @@ public class Aura
         } 
     }
     
-    private int auraExisteYEsDelCaster(Personaje caster, Personaje target)
+    private int auraExisteYEsDelCaster(Caster caster, Debuffeable target)
     {   //recorremos todas las auras que tiene el target para ver si encontramos la que hemos aplicado
-        for (int i=0; i<target.listaDeAuras.size;i++)
+        for (int i=0; i<target.getListaDeAuras().size;i++)
         {   //en caso de encontrarla, si el caster es el mismo, devolvemos su posicion para refrescar su duracion
-            if (target.listaDeAuras.get(i).getID().equals(id) && target.listaDeAuras.get(i).caster == caster)
+            if (target.getListaDeAuras().get(i).getID().equals(id) && target.getListaDeAuras().get(i).caster == caster)
             {   return i; }
         }
         //en todos los demas casos aplicaremos un nuevo debuff que stackeara con los anteriores, devolvemos -1 para indicar
@@ -70,7 +71,7 @@ public class Aura
         return -1;
     }
     
-    public void aplicarAura(Personaje caster, Personaje target) 
+    public void aplicarAura(Caster caster, Debuffeable target)
     {
         int numAura = auraExisteYEsDelCaster(caster, target);
         
@@ -85,11 +86,11 @@ public class Aura
             debuff.target = target;
             debuff.setAura(this);
             
-            target.listaDeAuras.add(debuff);
+            target.getListaDeAuras().add(debuff);
         }
         else //en caso contrario es que hay un aura que pertecene al caster de ese tipo, deberemos refrescarla
         {   //y si stackea consigo misma y esta por debajo del maximo, aumentar sus stacks
-            BDebuff debuff = target.listaDeAuras.get(numAura);
+            BDebuff debuff = target.getListaDeAuras().get(numAura);
             debuff.ticksAplicados = 0;
             //Hacemos el modulo de la duracion del Tick, para que no se pierda el tiempo que lleva pasado desde el ultimo tick
             debuff.duracion = debuff.duracion%MiscData.duracionTick;

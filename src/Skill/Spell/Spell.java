@@ -1,8 +1,9 @@
 package Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Interfaces.Caster;
+import Interfaces.Debuffeable;
 import Resources.Recursos;
-import Actores.Mobs.Personaje;
 import Skill.Aura.Aura;
 import Skill.SkillBook;
 import Skill.SkillStat;
@@ -58,13 +59,12 @@ public class Spell
         }
     }
     
-    public void castear (Personaje caster, int targetX, int targetY)
+    public void castear (Caster caster, int targetX, int targetY)
     {
-        if (caster.isCasteando()) {}
+        if (caster.isCasteando()) { }
         else 
         {   //Marcamos al personaje como Casteando, y actualizamos su tiempo de casteo con el que marque el Spell (Stat Slot 0)
-            caster.setIsCasteando(true);                                    
-            caster.setCastingTime(0f,skillStats[TipoSpell.STAT_Cast].valorBase);
+            caster.setCastingTime(skillStats[TipoSpell.STAT_Cast].valorBase);
             tipoSpell.ejecutarCasteo(this, caster, targetX, targetY);
         }
     }
@@ -72,7 +72,7 @@ public class Spell
     public void añadirAura (Aura aura)
     {   if (!listaDeAurasQueAplica.contains(aura.getID(), false)) listaDeAurasQueAplica.add(aura.getID()); }
     
-    public void aplicarAuras (Personaje caster, Personaje target)
+    public void aplicarAuras (Caster caster, Debuffeable target)
     {   for (int i=0;i<listaDeAurasQueAplica.size;i++)
         {   SkillBook.listaDeAuras.get(listaDeAurasQueAplica.get(i)).aplicarAura(caster, target); }
     }

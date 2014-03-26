@@ -3,11 +3,12 @@ package Actores.Mobs;
 import Graficos.Nameplate;
 import Actores.Mob;
 import Graficos.Texto;
-import Main.Mundo;
+import Interfaces.Caster;
+import Interfaces.Dañable;
+import Interfaces.Debuffeable;
 import Resources.Recursos;
 import Skill.Aura.BDebuff;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -16,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
  */
 
 // la clase Personaje incluye a todos los seres vivos del juego, sean controlados por el jugador o por la maquina
-public class Personaje extends Mob
+public class Personaje extends Mob implements Dañable, Debuffeable, Caster
 {
     protected String nombre;
     protected int nivel;
@@ -40,13 +41,11 @@ public class Personaje extends Mob
     public int getActualHPs()                               { return actualHPs; }
     public int getMaxHPs()                                  { return maxHPs; }    
     public float getHPsPercent()                            { return ((float)actualHPs/(float)maxHPs); }
-    public float getCastingTimePercent()                    { return ((float)actualCastingTime/(float)totalCastingTime); }
-    public boolean isCasteando()                            { return isCasteando; }
+    public float getCastingTimePercent()                    { return (actualCastingTime/totalCastingTime); }
     public float getActualCastingTime ()                    { return actualCastingTime; }
     public float getTotalCastingTime ()                     { return totalCastingTime; }
     public String getSpellSeleccionado ()                   { return spellSeleccionado; }
     public int getTerrenoSeleccionado ()                    { return terrenoSeleccionado; }
-    public int getCapaTerrenoSeleccionada ()                { return capaTerrenoSeleccionada; }
     //SET
     public void setNombre(String s)                         { nombre = s; }
     public void setMaxHPs (int i)                           { maxHPs = i; }
@@ -64,12 +63,26 @@ public class Personaje extends Mob
         else if (i<= 0) {actualHPs = 0; }
         else {actualHPs = i;} 
     }
-    
-    public void modificarHps (int hp, Color color)
+
+    @Override public void modificarHPs(int HPs, Color color)
     {
-        setActualHPs(actualHPs+hp);
-        Texto texto = new Graficos.Texto(Integer.toString(hp), Recursos.font14, color, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
-        texto.setPosition(actor.getWidth()/2, actor.getHeight()+20);
+        setActualHPs(actualHPs+HPs);
+        Texto texto = new Graficos.Texto(Integer.toString(HPs), Recursos.font14, color, Color.BLACK, 0, 0, Align.center, Align.bottom, 1);
+        texto.setPosition(actor.getWidth()/2+(float)Math.random()*30-15, actor.getHeight()+15);
         texto.scrollingCombatText(actor, 2f);
     }
+
+    @Override public Array<BDebuff> getListaDeAuras()
+    {
+        return listaDeAuras;
+    }
+
+    @Override public void setCastingTime(float totalCastingTime)
+    {
+        isCasteando = true;
+        setCastingTime(0, totalCastingTime);
+    }
+
+    @Override public boolean isCasteando()                            { return isCasteando; }
+    @Override public int getCapaTerrenoSeleccionada ()                { return capaTerrenoSeleccionada; }
 }

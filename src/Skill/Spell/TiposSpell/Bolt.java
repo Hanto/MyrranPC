@@ -1,16 +1,17 @@
 package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import static Constantes.Skills.SpellsData.*;
-import static Constantes.Skills.TipoSpellsData.*;
 import Graficos.Pixie;
-import Actores.Mobs.Personaje;
+import Interfaces.Caster;
 import Skill.SkillRecursos;
 import Skill.SkillStat;
 import Skill.SkillStat.SkillPixie;
 import Skill.Spell.Spell;
 import Skill.Spell.TipoSpell;
 import com.badlogic.gdx.math.Vector2;
+
+import static Constantes.Skills.SpellsData.*;
+import static Constantes.Skills.TipoSpellsData.*;
 
 public class Bolt extends TipoSpell
 {
@@ -51,7 +52,7 @@ public class Bolt extends TipoSpell
         skilllPixies[PIXIE_Proyectiles]=spixie;
     }
     
-    @Override public void ejecutarCasteo (Spell spell, Personaje caster, float destinoX, float destinoY)
+    @Override public void ejecutarCasteo (Spell spell, Caster caster, float destinoX, float destinoY)
     {   
         Vector2 destino, origen;
         double direccion;

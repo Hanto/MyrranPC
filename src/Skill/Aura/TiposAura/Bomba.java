@@ -1,9 +1,9 @@
 package Skill.Aura.TiposAura;
 // @author Ivan Delgado Huerta
 
-import Actores.Mobs.Personaje;
 import Constantes.MiscData;
 import Constantes.Skills.TipoAurasData;
+import Interfaces.Dañable;
 import Skill.Aura.BDebuff;
 import Skill.Aura.TipoAura;
 import Skill.SkillStat;
@@ -41,9 +41,10 @@ public class Bomba extends TipoAura
         if (debuff.ticksAplicados == (int)(debuff.duracionMax/MiscData.duracionTick))
         {
             float daño = debuff.skillStats()[STAT_Daño].valorBase * debuff.stacks;
-            Personaje target = debuff.target;
-            
-            target.modificarHps((int)-daño, Color.RED);
+            if (debuff.target instanceof Dañable)
+            {
+                ((Dañable)debuff.target).modificarHPs((int) -daño, Color.RED);
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Actores.Mobs.Personaje;
 import Constantes.Skills.TipoSpellsData;
+import Interfaces.Caster;
+import Interfaces.Dañable;
+import Interfaces.Debuffeable;
 import Skill.SkillStat;
 import Skill.Spell.Spell;
 import Skill.Spell.TipoSpell;
@@ -32,11 +34,18 @@ public class Heal extends TipoSpell
     }
 
     @Override
-    public void ejecutarCasteo(Spell spell, Personaje caster, float targetX, float targetY) 
+    public void ejecutarCasteo(Spell spell, Caster caster, float targetX, float targetY)
     {
         float curacion = spell.skillStats()[STAT_Curacion].valorBase;
-        caster.modificarHps((int)curacion, Color.GREEN);
-        spell.aplicarAuras(caster, caster);
+        if (caster instanceof Dañable)
+        {
+            ((Dañable)caster).modificarHPs(Math.round(curacion), Color.GREEN);
+
+        }
+        if (caster instanceof Debuffeable)
+        {
+            spell.aplicarAuras(caster, ((Debuffeable)caster));
+        }
     }
 
 }

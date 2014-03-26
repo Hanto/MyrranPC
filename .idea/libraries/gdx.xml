@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="gdx">
+    <CLASSES>
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-setup.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-setup-ui.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-openal.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-lwjgl.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-jglfw.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-natives.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-jglfw-natives.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-lwjgl-natives.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

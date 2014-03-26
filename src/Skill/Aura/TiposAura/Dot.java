@@ -2,7 +2,7 @@ package Skill.Aura.TiposAura;
 // @author Ivan Delgado Huerta
 
 import Constantes.Skills.TipoAurasData;
-import Actores.Mobs.Personaje;
+import Interfaces.Dañable;
 import Skill.Aura.TipoAura;
 import Skill.Aura.BDebuff;
 import Skill.SkillStat;
@@ -35,8 +35,10 @@ public class Dot extends TipoAura
     @Override public void actualizarTick(BDebuff debuff) 
     {
         float dañoPorTick = debuff.skillStats()[STAT_Daño].valorBase * debuff.stacks;
-        Personaje target = debuff.target;
-                
-        target.modificarHps((int)-dañoPorTick, Color.RED);
+        if (debuff.target instanceof Dañable)
+        {
+            ((Dañable)debuff.target).modificarHPs((int)-dañoPorTick, Color.RED);
+        }
+
     }
 } 

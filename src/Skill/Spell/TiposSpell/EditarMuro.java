@@ -1,15 +1,15 @@
 package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
-import Skill.Spell.TipoSpell;
 import Constantes.MiscData;
 import Constantes.Skills.TipoSpellsData;
 import Geo.Celda;
 import Geo.Muro;
+import Interfaces.Caster;
 import Main.Mundo;
-import Actores.Mobs.Personaje;
-import Skill.Spell.Spell;
 import Skill.SkillStat;
+import Skill.Spell.Spell;
+import Skill.Spell.TipoSpell;
 import com.badlogic.gdx.math.Vector2;
 
 public class EditarMuro extends TipoSpell
@@ -25,7 +25,7 @@ public class EditarMuro extends TipoSpell
 
     @Override public void inicializarSkillPixies()  {}
 
-    @Override public void ejecutarCasteo(Spell skill, Personaje caster, float targetX, float targetY) 
+    @Override public void ejecutarCasteo(Spell skill, Caster caster, float targetX, float targetY)
     {
         Vector2 destino = convertirCoordenadasDestino(caster, targetX, targetY);
         destino = convertirCoordenadasANumeroDeTile(destino);

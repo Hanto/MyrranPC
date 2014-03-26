@@ -1,11 +1,12 @@
 package Skill.Spell;
 // @author Ivan Delgado Huerta
 
+import Actores.Mob;
+import Actores.Mobs.Personajes.PC;
+import Actores.Mobs.Personajes.PCs.Player;
 import Constantes.MiscData;
 import Graficos.Pixie;
-import Actores.Mobs.Personajes.PC;
-import Actores.Mobs.Personaje;
-import Actores.Mobs.Personajes.PCs.Player;
+import Interfaces.Caster;
 import Pantallas.PantallaJuego;
 import Skill.SkillInterface.TipoSkillInterface;
 import Skill.SkillStat;
@@ -13,6 +14,7 @@ import Skill.SkillStat.SkillPixie;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+
 import java.util.UUID;
 
 public abstract class TipoSpell implements TipoSkillInterface 
@@ -62,7 +64,7 @@ public abstract class TipoSpell implements TipoSkillInterface
     
     //Convertimos las coordenadas de pantalla del click en pantalla en coordenadas de mundo para comparar posiciones con el caster
     //y asi deducir la direccion de salida del pepo, en caso de ser un NPC no hace falta puesto que no estos no clickan en pantalla:
-    protected Vector2 convertirCoordenadasDestino (Personaje caster, float destinoX, float destinoY)
+    protected Vector2 convertirCoordenadasDestino (Caster caster, float destinoX, float destinoY)
     {   
         if (caster instanceof Player)
         {   //Si es un player las coordenadas son coordenadas de pantalla, y hay que pasarlas a coordendas de mundo
@@ -76,7 +78,7 @@ public abstract class TipoSpell implements TipoSkillInterface
         }
     }
     
-    protected Vector2 convertirCoordenadasOrigen (Personaje caster)
+    protected Vector2 convertirCoordenadasOrigen (Caster caster)
     {   //Establecemos el punto de salida del pepo, suele ser el centro de gravedadad del Pixie (altura/2) (anchura/2):
         if (caster instanceof PC)
         {   //Personaje Jugador:
@@ -84,7 +86,10 @@ public abstract class TipoSpell implements TipoSkillInterface
             return new Vector2 (pc.getX()+pc.getPixiePC().getWidth()/2, pc.getY()+pc.getPixiePC().getHeight()/2);
         } 
         else //NPC  
-        {   return new Vector2(caster.getX(), caster.getY());}
+        {
+            Mob mob = ((Mob)caster);
+            return new Vector2(mob.getX(), mob.getY());
+        }
     }
     
     //Ajustamos la posicion de origen y destino para que que esa posicion coincida con el centro de gravedad del pixie:
@@ -104,7 +109,7 @@ public abstract class TipoSpell implements TipoSkillInterface
     protected double calcularDireccion (Vector2 origen, Vector2 destino)
     {   return (Math.atan2(destino.y-origen.y, destino.x-origen.x)); }
     
-    protected void animarCasteo (Pixie pixie, Personaje caster)
+    protected void animarCasteo (Pixie pixie, Caster caster)
     {
         Pixie casteo = new Pixie (pixie);
         caster.getActor().addActor(casteo);

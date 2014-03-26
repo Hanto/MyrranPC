@@ -1,5 +1,8 @@
 package Actores.Mobs;
 import Graficos.Pixie;
+import Interfaces.Caster;
+import Interfaces.Dañable;
+import Interfaces.Debuffeable;
 import Main.Mundo;
 import Actores.Mob;
 import Skill.Spell.Spell;
@@ -12,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 //@author Ivan Delgado Huerta
 public class Proyectil extends Mob
 {
-    protected Personaje owner;                  //Quien castea el spell
+    protected Caster owner;                  //Quien castea el spell
     protected Spell spell;
    
     protected float duracionActual=0;           //Tiempo de vida que lleva el proyectil en el mundo
@@ -23,7 +26,7 @@ public class Proyectil extends Mob
     
     //SET:
     public void setDuracionMaxima (float DuracionMaxima)    { duracionMaxima = DuracionMaxima; }
-    public void setOwner (Personaje Owner)                  { owner = Owner; }
+    public void setOwner (Caster Owner)                     { owner = Owner; }
     public void setSpell (Spell spell)                      { this.spell = spell; }
     public void setPixie (Pixie pixie)                      { this.pixie.addActor(new Pixie(pixie)); }
     //GET:
@@ -61,11 +64,14 @@ public class Proyectil extends Mob
         this.pixie.rotate((float)Math.toDegrees(direccion));
     }
     
-    public void procesarColision (Personaje target)
+    public void procesarColision (Dañable target)
     {
         int daño = Math.round(spell.skillStats()[Bolt.STAT_Daño].valorBase);
-        target.setActualHPs(target.getActualHPs()-daño);
-        spell.aplicarAuras(owner, target);
+        target.modificarHPs(daño, Color.RED);
+        if (target instanceof Debuffeable)
+        {
+            spell.aplicarAuras(owner, (Debuffeable)target);
+        }
     }
     
     public void moverse(float delta)
