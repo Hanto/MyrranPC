@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Skill.Aura.BDebuff;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -9,4 +10,6 @@ import com.badlogic.gdx.utils.Array;
 public interface Debuffeable
 {
     public Array<BDebuff> getListaDeAuras ();
+    public Group getDebuffIcons ();
+    public Group getBuffIcons ();
 }

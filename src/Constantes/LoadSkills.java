@@ -16,7 +16,7 @@ import Skill.Spell.TiposSpell.Bolt;
 import Skill.Spell.TiposSpell.Heal;
 //* @author Ivan Delgado Huerta
 
-public class LoadData 
+public class LoadSkills
 {
     public static void LoadAll ()
     {
@@ -113,6 +113,7 @@ public class LoadData
         skill.setDescripcion(SpellsData.INSTAHEAL_Descripcion);
         skill.setIcono(SpellsData.INSTAHEAL_Icono);
         skill.añadirAura(SkillBook.listaDeAuras.get(AurasData.POISON_ID));
+        skill.añadirAura(SkillBook.listaDeAuras.get(AurasData.DELAYBOMB_ID));
         SkillBook.añadirSpell(skill);
     }
     

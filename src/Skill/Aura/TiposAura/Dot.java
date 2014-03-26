@@ -2,9 +2,10 @@ package Skill.Aura.TiposAura;
 // @author Ivan Delgado Huerta
 
 import Constantes.Skills.TipoAurasData;
-import Interfaces.Dañable;
+import Interfaces.Vulnerable;
 import Skill.Aura.TipoAura;
 import Skill.Aura.BDebuff;
+import Skill.SkillRecursos;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.Color;
 
@@ -20,6 +21,7 @@ public class Dot extends TipoAura
     {
         isDebuff = true;
         stacksMaximos = 3;
+        setIcono(SkillRecursos.listaDeAuraIconos.get(TipoAurasData.DOT_Icono));
         
         skillStats = new SkillStat [2];
         SkillStat stat = new SkillStat  (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
@@ -35,9 +37,9 @@ public class Dot extends TipoAura
     @Override public void actualizarTick(BDebuff debuff) 
     {
         float dañoPorTick = debuff.skillStats()[STAT_Daño].valorBase * debuff.stacks;
-        if (debuff.target instanceof Dañable)
+        if (debuff.target instanceof Vulnerable)
         {
-            ((Dañable)debuff.target).modificarHPs((int)-dañoPorTick, Color.RED);
+            ((Vulnerable)debuff.target).modificarHPs((int)-dañoPorTick, Color.RED);
         }
 
     }

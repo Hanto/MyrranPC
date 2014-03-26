@@ -4,11 +4,12 @@ import Graficos.Nameplate;
 import Actores.Mob;
 import Graficos.Texto;
 import Interfaces.Caster;
-import Interfaces.Dañable;
+import Interfaces.Vulnerable;
 import Interfaces.Debuffeable;
 import Resources.Recursos;
 import Skill.Aura.BDebuff;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
@@ -17,7 +18,7 @@ import com.badlogic.gdx.utils.Array;
  */
 
 // la clase Personaje incluye a todos los seres vivos del juego, sean controlados por el jugador o por la maquina
-public class Personaje extends Mob implements Dañable, Debuffeable, Caster
+public class Personaje extends Mob implements Vulnerable, Debuffeable, Caster
 {
     protected String nombre;
     protected int nivel;
@@ -32,7 +33,9 @@ public class Personaje extends Mob implements Dañable, Debuffeable, Caster
     public float actualCastingTime = 0;
     public float totalCastingTime = 0;
     
-    protected Nameplate nameplate;
+    protected Nameplate nameplate;                          //Extiende la clase grupo, y sabe autidibujarse
+    protected Group debuffs = new Group();                  //Contiene los iconos de los debuffs
+    protected Group buffs = new Group();                    //Contiene los iconos de los buffs
     
     public Array<BDebuff> listaDeAuras = new Array<>();
     
@@ -83,6 +86,8 @@ public class Personaje extends Mob implements Dañable, Debuffeable, Caster
         setCastingTime(0, totalCastingTime);
     }
 
-    @Override public boolean isCasteando()                            { return isCasteando; }
-    @Override public int getCapaTerrenoSeleccionada ()                { return capaTerrenoSeleccionada; }
+    @Override public boolean isCasteando()                  { return isCasteando; }
+    @Override public int getCapaTerrenoSeleccionada ()      { return capaTerrenoSeleccionada; }
+    @Override public Group getDebuffIcons ()                { return debuffs; }
+    @Override public Group getBuffIcons ()                  { return buffs; }
 }

@@ -3,7 +3,7 @@ package Skill.Spell.TiposSpell;
 
 import Constantes.Skills.TipoSpellsData;
 import Interfaces.Caster;
-import Interfaces.Dañable;
+import Interfaces.Vulnerable;
 import Interfaces.Debuffeable;
 import Skill.SkillStat;
 import Skill.Spell.Spell;
@@ -37,9 +37,9 @@ public class Heal extends TipoSpell
     public void ejecutarCasteo(Spell spell, Caster caster, float targetX, float targetY)
     {
         float curacion = spell.skillStats()[STAT_Curacion].valorBase;
-        if (caster instanceof Dañable)
+        if (caster instanceof Vulnerable)
         {
-            ((Dañable)caster).modificarHPs(Math.round(curacion), Color.GREEN);
+            ((Vulnerable)caster).modificarHPs(Math.round(curacion), Color.GREEN);
 
         }
         if (caster instanceof Debuffeable)

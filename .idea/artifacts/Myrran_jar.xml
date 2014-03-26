@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Myrran:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Myrran_jar</output-path>
+    <root id="archive" name="Myrran.jar">
+      <element id="module-output" name="Myrran" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/Box2DLights/box2dlights.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-setup.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-setup-ui.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-openal.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-lwjgl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-jglfw.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-natives.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-jglfw-natives.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-lwjgl-natives.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-tools/gdx-tools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-freetype/gdx-freetype.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/KryoNet/kryo-2.22-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Google Drive/Java/Librerias/KryoNet/kryo-debug-2.22-all.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

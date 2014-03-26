@@ -24,13 +24,18 @@ public class PC extends Personaje
         this.nombre = nombre;
         raza = numRaza;
         pixiePC = new PixiePC(numRaza, this);
-        nameplate = new Nameplate(((Personaje)this));
+        nameplate = new Nameplate(this);
         
         nameplate.setPosition(pixiePC.getWidth()/2-nameplate.getWidth()/2, pixiePC.getHeight()+2);
         Texto.printTexto(nombre, Recursos.font14, Color.WHITE, Color.BLACK, pixiePC.getWidth()/2, pixiePC.getHeight()+2+10, Align.center, Align.bottom, 1, actor );
-        
+
+        buffs.setPosition(0, pixiePC.getHeight()+2);
+        debuffs.setPosition(pixiePC.getWidth(), pixiePC.getHeight()+2);
+
         actor.addActor(pixiePC);
         actor.addActor(nameplate);
+        actor.addActor(debuffs);
+        actor.addActor(buffs);
         
         actor.setWidth(pixiePC.getWidth());
         actor.setHeight(pixiePC.getHeight());

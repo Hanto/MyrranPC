@@ -8,7 +8,6 @@ import Constantes.MiscData;
 import Graficos.Pixie;
 import Interfaces.Caster;
 import Pantallas.PantallaJuego;
-import Skill.SkillInterface.TipoSkillInterface;
 import Skill.SkillStat;
 import Skill.SkillStat.SkillPixie;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,7 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.UUID;
 
-public abstract class TipoSpell implements TipoSkillInterface 
+public abstract class TipoSpell implements TipoSpellInterface
 {
     public static final int STAT_Cast = 0;
     
@@ -57,11 +56,7 @@ public abstract class TipoSpell implements TipoSkillInterface
         inicializarSkillStats(); 
         inicializarSkillPixies();
     }
-    
-    //De entre todas las animaciones que tiene este spell selecciona el grupo que necesitamos y extrae el pixie que queremos 
-    public Pixie getPixie (int numAnimacion, int numPixie)
-    {   return skilllPixies[numAnimacion].pixieArray.get(numPixie);}
-    
+
     //Convertimos las coordenadas de pantalla del click en pantalla en coordenadas de mundo para comparar posiciones con el caster
     //y asi deducir la direccion de salida del pepo, en caso de ser un NPC no hace falta puesto que no estos no clickan en pantalla:
     protected Vector2 convertirCoordenadasDestino (Caster caster, float destinoX, float destinoY)
@@ -108,7 +103,11 @@ public abstract class TipoSpell implements TipoSkillInterface
     //Calcula la direccion que toma la recta que une el punto origen con el destino:
     protected double calcularDireccion (Vector2 origen, Vector2 destino)
     {   return (Math.atan2(destino.y-origen.y, destino.x-origen.x)); }
-    
+
+    //De entre todas las animaciones que tiene este spell selecciona el grupo que necesitamos y extrae el pixie que queremos
+    public Pixie getPixie (int numAnimacion, int numPixie)
+    {   return skilllPixies[numAnimacion].pixieArray.get(numPixie); }
+
     protected void animarCasteo (Pixie pixie, Caster caster)
     {
         Pixie casteo = new Pixie (pixie);

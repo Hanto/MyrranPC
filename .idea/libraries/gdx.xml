@@ -10,6 +10,8 @@
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-natives.jar!/" />
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-jglfw-natives.jar!/" />
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-backend-lwjgl-natives.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-tools/gdx-tools.jar!/" />
+      <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-freetype/gdx-freetype.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -104,6 +104,32 @@ atlas3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Aura Icons/Dot
+  rotate: false
+  xy: 2, 2
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+Aura Icons/Hot
+  rotate: false
+  xy: 11, 2
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+Aura Icons/Snare
+  rotate: false
+  xy: 20, 2
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+
+atlas4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 BAK/Armaduras/Botas1
   rotate: false
   xy: 2, 582
@@ -147,7 +173,7 @@ BAK/Armaduras/Peto1
   offset: 0, 0
   index: -1
 
-atlas4.png
+atlas5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -159,7 +185,7 @@ BAK/Armaduras/CapaFrontal1
   offset: 0, 0
   index: -1
 
-atlas5.png
+atlas6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -171,7 +197,7 @@ BAK/Armaduras/CapaTrasera1
   offset: 0, 0
   index: -1
 
-atlas6.png
+atlas7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -183,7 +209,7 @@ BAK/Armaduras/Casco1
   offset: 0, 0
   index: -1
 
-atlas7.png
+atlas8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -265,7 +291,7 @@ BAK/Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
-atlas8.png
+atlas9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -291,7 +317,7 @@ NPC Sprites/Momia
   offset: 0, 0
   index: -1
 
-atlas9.png
+atlas10.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -366,7 +392,7 @@ Player Sprites/Sombra
   offset: 0, 0
   index: -1
 
-atlas10.png
+atlas11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -440,15 +466,8 @@ Spell Icons/PoisonBolt
   orig: 32, 32
   offset: 0, 0
   index: -1
-Spell Icons/Renew
-  rotate: false
-  xy: 342, 2
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
 
-atlas11.png
+atlas12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -516,7 +535,7 @@ Spell Sprites/SpellBalls_04n
   offset: 0, 0
   index: -1
 
-atlas12.png
+atlas13.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -668,7 +687,7 @@ Terrenos/grid
   offset: 0, 0
   index: -1
 
-atlas13.png
+atlas14.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

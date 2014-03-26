@@ -1,5 +1,5 @@
 package Pantallas;
-import Constantes.LoadData;
+import Constantes.LoadSkills;
 import Constantes.LoadRecursos;
 import Constantes.MiscData;
 import Constantes.Skills.SpellsData;
@@ -11,7 +11,6 @@ import Graficos.Texto;
 import Main.Mundo;
 import static Main.Mundo.player;
 import Main.Myrran;
-import static Pantallas.AbstractPantalla.camara;
 import Resources.Recursos;
 import Save.SaveData;
 import Skill.SkillBook;
@@ -69,7 +68,7 @@ public class PantallaJuego extends AbstractPantalla
         LoadRecursos.cargarRecursos();
         
         crearMapa();
-        LoadData.LoadAll();
+        LoadSkills.LoadAll();
         
         Mapa.renderGrid = false;
         Mapa.crearTiledMap();

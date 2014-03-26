@@ -1,9 +1,9 @@
 package Skill.Aura;
 // @author Ivan Delgado Huerta
 
-import Skill.SkillInterface.TipoAuraInterface;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import java.util.UUID;
 
 public abstract class TipoAura implements TipoAuraInterface

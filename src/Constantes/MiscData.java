@@ -45,6 +45,7 @@ public class MiscData
     public final static String ATLAS_SpellSprites_LOC = "Spell Sprites/";
     public final static String ATLAS_PlayerSprites_LOC = "Player Sprites/";
     public final static String ATLAS_SpellIcons_LOC = "Spell Icons/";
+    public final static String ATLAS_AuraIcons_LOC = "Aura Icons/";
     public final static String ATLAS_Armaduras_LOC = "Armaduras/";
     public final static String ATLAS_Terrenos_LOC = "Terrenos/";
     public final static String ATLAS_Arboles_LOC = "Arboles/";

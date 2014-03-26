@@ -6,6 +6,7 @@ import Interfaces.Caster;
 import Interfaces.Debuffeable;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Aura
 {   
@@ -34,6 +35,7 @@ public class Aura
     public SkillStat [] skillStats ()                   { return skillStats; }
     public Integer [] pixieSeleccionado ()              { return pixieSeleccionado; }
     public TextureRegion getIcono ()                    { return icono; }
+    public boolean isDebuff ()                          { return isDebuff; }
     public int getStacksMaximos ()                      { return stacksMaximos; }
     
     //CONSTRUCTOR:
@@ -50,6 +52,7 @@ public class Aura
         }
         isDebuff = tipoaura.getIsDebuff();
         stacksMaximos = tipoaura.getStacksMaximos();
+        icono = tipoaura.getIcono();
         
         //Inicializamos el selector de Pixie, con el tamaño que tenga el array de pixies, y seleccionamos las animaciones
         if (tipoaura.skilllPixie() != null)
@@ -82,6 +85,7 @@ public class Aura
             debuff.stacks = 1;
             debuff.duracion = 0;
             debuff.duracionMax = skillStats()[0].valorBase;
+            debuff.icono = new Image(icono);
             debuff.caster = caster;
             debuff.target = target;
             debuff.setAura(this);
@@ -96,6 +100,7 @@ public class Aura
             debuff.duracion = debuff.duracion%MiscData.duracionTick;
             if (debuff.stacks < stacksMaximos) {debuff.stacks++;}
         }
+        BDebuff.actualizarIconosBDbuff(target);
     }
     
     public void actualizarTick (BDebuff debuff)

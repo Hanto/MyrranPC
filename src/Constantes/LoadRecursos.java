@@ -44,20 +44,24 @@ public class LoadRecursos
         Recursos.salvarCopa             ("BolaGrandeArbol2");
         Recursos.salvarCopa             ("BolaMedianaArbol2");
         Recursos.salvarCopa             ("Bolapequeñaarbol2");
-        
-        //ICONOS:
-        Recursos.salvarIcono            ("FireBall");
-        Recursos.salvarIcono            ("FrostBolt");
-        Recursos.salvarIcono            ("Editar");
-        Recursos.salvarIcono            ("Muros");
-        
+
         //SPELLS:
+        //SpellPixies:
         SkillRecursos.setAtlas(Recursos.atlas);
         SkillRecursos.salvarCasteo           ("Fireball01");
         SkillRecursos.salvarEfectoDeSpell    ("Fireball02");
         SkillRecursos.salvarCasteo           ("FrostBolt01");
         SkillRecursos.salvarEfectoDeSpell    ("FrostBolt02");
-        
+        //SpellIconos:
+        SkillRecursos.salvarIconoSpell("FireBall");
+        SkillRecursos.salvarIconoSpell("FrostBolt");
+        SkillRecursos.salvarIconoSpell("Editar");
+        SkillRecursos.salvarIconoSpell("Muros");
+        //AuraIconos:
+        SkillRecursos.salvarIconoAura("Dot");
+        SkillRecursos.salvarIconoAura("Hot");
+        SkillRecursos.salvarIconoAura("Snare");
+
         //TERRENOS:
         Mundo.añadirTerreno             ("Tierra4");
         Mundo.añadirTerreno             ("Tierra3");

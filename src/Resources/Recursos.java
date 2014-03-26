@@ -1,4 +1,5 @@
 package Resources;
+
 import Constantes.MiscData;
 import Graficos.Pixie;
 import com.badlogic.gdx.Gdx;
@@ -31,8 +32,7 @@ public class Recursos
         public Array<Pixie> listaDeCapasTraseras = new Array<>();
         public Array<Pixie> listaDeCapasFrontales = new Array<>();
     }
-    public static Array<TextureRegion> listaIconos = new Array<>();
-    
+
     public static Array<TroncoTemplate> listaDeTroncos = new Array<>();
     public static class TroncoTemplate
     {
@@ -331,13 +331,7 @@ public class Recursos
         pixieCopa.añadirAnimacion("viento",         new int[] {0,1,2},      1.30f, false);
         listaDeCopas.add(pixieCopa);
     }
-    
-    public static void salvarIcono (String nombreIcono)
-    {
-        TextureRegion texture = new TextureRegion (atlas.findRegion(MiscData.ATLAS_SpellIcons_LOC+nombreIcono));
-        listaIconos.add(texture);
-    }
-    
+
     public static void salvarTronco (String nombreTronco, int X1, int Y1, int X2, int Y2, int X3, int Y3)
     {
         TroncoTemplate tronco = new TroncoTemplate ();

@@ -1,7 +1,7 @@
 package Actores.Mobs;
 import Graficos.Pixie;
 import Interfaces.Caster;
-import Interfaces.Dañable;
+import Interfaces.Vulnerable;
 import Interfaces.Debuffeable;
 import Main.Mundo;
 import Actores.Mob;
@@ -64,7 +64,7 @@ public class Proyectil extends Mob
         this.pixie.rotate((float)Math.toDegrees(direccion));
     }
     
-    public void procesarColision (Dañable target)
+    public void procesarColision (Vulnerable target)
     {
         int daño = Math.round(spell.skillStats()[Bolt.STAT_Daño].valorBase);
         target.modificarHPs(daño, Color.RED);
