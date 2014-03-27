@@ -1,7 +1,10 @@
-package UI;
+package Input;
 // @author Ivan Delgado Huerta
 import Main.Mundo;
 import static Pantallas.AbstractPantalla.camara;
+
+import UI.BarraSpells;
+import UI.BarraTerrenos;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;

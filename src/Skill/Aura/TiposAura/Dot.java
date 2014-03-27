@@ -18,13 +18,13 @@ public class Dot extends TipoAura
     
     @Override public void inicializarSkillStats() 
     {
-        isDebuff = true;
-        stacksMaximos = 3;
+        isDebuff = TipoAurasData.DOT_isDebuff;
+        stacksMaximos = TipoAurasData.DOT_Stacks_Maximos;
         setIcono(TipoAurasData.DOT_Icono);
         
-        skillStats = new SkillStat [2];
-        SkillStat stat = new SkillStat  (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
-        stat = new SkillStat            (TipoAurasData.DOT_Daño_String, TipoAurasData.DOT_Daño_Valor); skillStats[STAT_Daño] = stat; //DAÑO
+        skillStats = new SkillStat [2]; SkillStat stat;
+        stat = new SkillStat (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
+        stat = new SkillStat (TipoAurasData.DOT_Daño_String, TipoAurasData.DOT_Daño_Valor); skillStats[STAT_Daño] = stat; //DAÑO
     }
 
     @Override public void inicializarSkillPixies() 

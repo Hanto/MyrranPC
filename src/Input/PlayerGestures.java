@@ -1,4 +1,4 @@
-package UI;
+package Input;
 // @author Ivan Delgado Huerta
 
 import com.badlogic.gdx.input.GestureDetector.GestureListener;

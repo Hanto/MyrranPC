@@ -20,13 +20,13 @@ public class Bomba extends TipoAura
     @Override
     public void inicializarSkillStats() 
     {
-        isDebuff = true;
-        stacksMaximos = 3;
+        isDebuff = TipoAurasData.BOMBA_isDebuff;
+        stacksMaximos = TipoAurasData.BOMBA_Stacks_Maximos;
         setIcono(TipoAurasData.BOMBA_Icono);
         
-        skillStats = new SkillStat [2];
-        SkillStat stat = new SkillStat  (TipoAurasData.BOMBA_Duracion_String, TipoAurasData.BOMBA_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
-        stat = new SkillStat            (TipoAurasData.BOMBA_Daño_String, TipoAurasData.BOMBA_Daño_Valor); skillStats[STAT_Daño] = stat; //DAÑO
+        skillStats = new SkillStat [2]; SkillStat stat;
+        stat = new SkillStat (TipoAurasData.BOMBA_Duracion_String, TipoAurasData.BOMBA_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION
+        stat = new SkillStat (TipoAurasData.BOMBA_Daño_String, TipoAurasData.BOMBA_Daño_Valor); skillStats[STAT_Daño] = stat; //DAÑO
     }
 
     @Override

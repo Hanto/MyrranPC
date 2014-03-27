@@ -34,6 +34,7 @@ public class Spell
     public String getNombre ()                          { return nombre; }
     public String getDescripcion ()                     { return descripcion; }
     public TextureRegion getIcono ()                    { return icono; }
+    public Array<String> getListaDeAurasQueAplica ()    { return listaDeAurasQueAplica; }
     
     public SkillStat [] skillStats ()                   { return skillStats; }
     public Integer [] pixieSeleccionado()               { return pixieSeleccionado; }
@@ -51,6 +52,8 @@ public class Spell
             SkillStat statSkill = new SkillStat(tipospell.skillStat()[i]);
             skillStats[i] = statSkill;       
         }
+        icono = tipospell.getIcono();
+
         //Inicializamos el selector de Pixie, con el tamaño que tenga el array de pixies, y seleccionamos las animaciones
         if (tipospell.skilllPixie() != null)
         {

@@ -1,5 +1,6 @@
 package UI;
 // @author Ivan Delgado Huerta
+
 import Constantes.MiscData;
 import Graficos.Texto;
 import Main.Mundo;
@@ -27,6 +28,9 @@ public class BarraSpells extends Group
     private int numFilas;
     private int numColumnas;
     private boolean rebindearSkills = false;                //para cuando queremos rebindear los skills
+    private Group tooltip;
+
+
 
     public void setRebindearSkills (boolean b)              { rebindearSkills = b; }
     public boolean getRebindearSkills ()                    { return rebindearSkills; }
@@ -46,35 +50,54 @@ public class BarraSpells extends Group
         
         for (int i=0; i<numFilas*numColumnas; i++)
         {
-            final Casilla destino = new Casilla();
+            final Casilla casilla = new Casilla();
             
             Image islot = new Image (Recursos.casillero);
             anchoSlot = (int)islot.getWidth();
             altoSlot = (int)islot.getHeight();
             
-            destino.spellID = "";
-            if (i<9){ destino.keyBind = String.valueOf(i+1); destino.keycode = i+8; }
+            casilla.spellID = "";
+            if (i<9){ casilla.keyBind = String.valueOf(i+1); casilla.keycode = i+8; }
             islot.setColor(0, 0, 0, 0.1f);
-            destino.apariencia.addActor(islot);
-            if (destino.keyBind != null) Texto.printTexto(String.valueOf(destino.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, destino.apariencia);
+            casilla.apariencia.addActor(islot);
+            casilla.apariencia.setBounds(0,0, islot.getWidth(), islot.getHeight());
+            if (casilla.keyBind != null) Texto.printTexto(String.valueOf(casilla.keyBind), Recursos.font14, Color.ORANGE, Color.BLACK, 0, 20, Align.left, Align.bottom, 2, casilla.apariencia);
             
             int columna = (i)/numColumnas;
             int fila = (i)%numColumnas;
             
-            destino.apariencia.setPosition(fila*(anchoSlot+2), columna*(altoSlot+2)); //2 es el margen entre casillas
+            casilla.apariencia.setPosition(fila*(anchoSlot+2), columna*(altoSlot+2)); //2 es el margen entre casillas
                         
-            this.addActor(destino.apariencia);
-            barra.add(destino);
+            this.addActor(casilla.apariencia);
+            barra.add(casilla);
             
             //Codigo para Rebindear Teclas
-            destino.apariencia.addListener(new InputListener()
+            casilla.apariencia.addListener(new InputListener()
             {   //Hacemos que el stage acepte eventos de teclado del icono sobre el que el raton ha entrado
                 @Override public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-                { if (rebindearSkills) destino.apariencia.getStage().setKeyboardFocus(destino.apariencia);  }
+                {
+                    if (rebindearSkills) casilla.apariencia.getStage().setKeyboardFocus(casilla.apariencia);
+                    if (casilla.spellID.length() > 0 && pointer <0)
+                    {   //por algun motivo absurdo si haces click reprocesa el evento de enter, si hay mouseclicks pointer >=0
+                        if (!dad.isDragging())
+                        {
+                            if (tooltip != null)    { removeActor(tooltip); }   //Antes de añadir, borramos el que ya hay
+                            tooltip = SpellTooltip.tooltip(SkillBook.listaDeSpells.get(casilla.spellID));
+                            tooltip.setPosition(casilla.apariencia.getX(), casilla.apariencia.getY()+casilla.apariencia.getHeight()+2);
+                            addActor(tooltip);
+                        }
+                    }
+                }
                 
                 //Hacemos que deje de recibir eventos de teclado, puesto que el teclado ha salido
                 @Override public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor)
-                { if (rebindearSkills) destino.apariencia.getStage().setKeyboardFocus(null); }
+                {
+                    if (rebindearSkills) casilla.apariencia.getStage().setKeyboardFocus(null);
+                    if (casilla.spellID.length() > 0 && pointer <0)
+                    {   //Por algun motivo absurdo al soltar cualquier boton del raton, lo interpreta como un exit, y el pointer es >=0
+                        removeActor(tooltip);
+                    }
+                }
                 
                 //Capturamos que tecla aprieta el player para rebindearla
                 @Override public boolean keyDown (InputEvent event, int keycode)
@@ -90,13 +113,24 @@ public class BarraSpells extends Group
                                 setApariencia(barra.get(i), barra.get(i).apariencia);
                             }
                        }//rebindeamos el skill, y actualizamos su apariencia, para que aparezca la tecla de bind:
-                       destino.keycode = keycode;
-                       destino.keyBind = MiscData.keycodeNames.get(keycode);
-                       setApariencia(destino, destino.apariencia);
+                       casilla.keycode = keycode;
+                       casilla.keyBind = MiscData.keycodeNames.get(keycode);
+                       setApariencia(casilla, casilla.apariencia);
                    }
                    return true;
                 }
+
+                //Con cualquier click de boton, hacemos desaparecer los Tooltips, si es el boton derecho crearemos una
+                //ventana editable con los datos del spell para modificar los Talentos:
+                @Override public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+                {
+                    if (tooltip !=null) removeActor(tooltip);
+                    return true;
+                }
+
+                @Override public void touchUp(InputEvent event, float x, float y, int pointer, int button) { }
             });
+
             final Image rebindButtonOff = new Image (Recursos.rebindButtonOn);
             this.addActor(rebindButtonOff);
             rebindButtonOff.setPosition(-rebindButtonOff.getWidth()-2, 0);
@@ -124,24 +158,24 @@ public class BarraSpells extends Group
             });
             
             //Codigo DRAG AND DROP:
-            dad.addSource(new Source(destino.apariencia) 
+            dad.addSource(new Source(casilla.apariencia)
             {
                 @Override public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) 
                 {
-                    if (destino.spellID.length() > 0)
-                    {   //Solo creamos un objeto de Payload si hay un spell en la destino, es decir si spellID >= 0
+                    if (casilla.spellID.length() > 0)
+                    {   //Solo creamos un objeto de Payload si hay un spell en la casilla, es decir si spellID >= 0
                         DragAndDrop.Payload payload = new DragAndDrop.Payload();
                         //Definimos el actor para cuando arrastramos el icono                        
-                        payload.setDragActor(setApariencia(destino));
-                        //Copiamos el objeto original para poder acceder a sus datos cuando aterricen en destino
-                        payload.setObject(destino);
+                        payload.setDragActor(setApariencia(casilla));
+                        //Copiamos el objeto original para poder acceder a sus datos cuando aterricen en casilla
+                        payload.setObject(casilla);
                         return payload;
                     } 
                     else return null;
                 }
             });
             
-            dad.addTarget(new Target(destino.apariencia) 
+            dad.addTarget(new Target(casilla.apariencia)
             {
                 @Override public boolean drag(Source source, DragAndDrop.Payload payload, float x, float y, int pointer) 
                 { return true; }
@@ -152,12 +186,12 @@ public class BarraSpells extends Group
                 @Override public void drop(Source source, DragAndDrop.Payload payload, float x, float y, int pointer) 
                 {   //Para que sea mas facil de manipular salvamos los datos del objeto origen en la variable origen
                     Casilla origen = ((Casilla)payload.getObject());
-                    String destinoSpellID = destino.spellID;
-                    //Intercambiamos los Spell IDs de destino y Origen
-                    destino.spellID = origen.spellID;
+                    String destinoSpellID = casilla.spellID;
+                    //Intercambiamos los Spell IDs de casilla y Origen
+                    casilla.spellID = origen.spellID;
                     origen.spellID = destinoSpellID;
                     //Modificamos el aspecto de ambos iconos
-                    setApariencia(destino, destino.apariencia);
+                    setApariencia(casilla, casilla.apariencia);
                     setApariencia(origen, origen.apariencia);  
                 }
             });

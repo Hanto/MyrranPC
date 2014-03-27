@@ -1,8 +1,8 @@
 package Pantallas;
 import Main.Mundo;
-import UI.PlayerInput;
+import Input.PlayerInput;
 import Main.Myrran;
-import UI.PlayerGestures;
+import Input.PlayerGestures;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
