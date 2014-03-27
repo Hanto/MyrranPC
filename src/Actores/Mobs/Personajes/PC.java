@@ -29,8 +29,8 @@ public class PC extends Personaje
         nameplate.setPosition(pixiePC.getWidth()/2-nameplate.getWidth()/2, pixiePC.getHeight()+2);
         Texto.printTexto(nombre, Recursos.font14, Color.WHITE, Color.BLACK, pixiePC.getWidth()/2, pixiePC.getHeight()+2+10, Align.center, Align.bottom, 1, actor );
 
-        buffs.setPosition(0, pixiePC.getHeight()+2);
-        debuffs.setPosition(pixiePC.getWidth(), pixiePC.getHeight()+2);
+        buffs.setPosition(0+2, pixiePC.getHeight()+2);
+        debuffs.setPosition(pixiePC.getWidth()-2, pixiePC.getHeight()+2);
 
         actor.addActor(pixiePC);
         actor.addActor(nameplate);

@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="gdx">
+  <library name="LibGDX">
     <CLASSES>
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx.jar!/" />
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/gdx-setup.jar!/" />
@@ -13,7 +13,9 @@
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-tools/gdx-tools.jar!/" />
       <root url="jar://D:/Google Drive/Java/Librerias/LibGDX/extensions/gdx-freetype/gdx-freetype.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="file://D:/Google Drive/Java/Librerias/LibGDX/docs/api" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

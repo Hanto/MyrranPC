@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="kryo-2.22-all">
+  <library name="KryoNet">
     <CLASSES>
       <root url="jar://D:/Google Drive/Java/Librerias/KryoNet/kryo-2.22-all.jar!/" />
       <root url="jar://D:/Google Drive/Java/Librerias/KryoNet/kryo-debug-2.22-all.jar!/" />

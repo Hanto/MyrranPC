@@ -3,9 +3,8 @@ package Skill.Aura.TiposAura;
 
 import Constantes.Skills.TipoAurasData;
 import Interfaces.Vulnerable;
-import Skill.Aura.TipoAura;
 import Skill.Aura.BDebuff;
-import Skill.SkillRecursos;
+import Skill.Aura.TipoAura;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.Color;
 
@@ -21,7 +20,7 @@ public class Dot extends TipoAura
     {
         isDebuff = true;
         stacksMaximos = 3;
-        setIcono(SkillRecursos.listaDeAuraIconos.get(TipoAurasData.DOT_Icono));
+        setIcono(TipoAurasData.DOT_Icono);
         
         skillStats = new SkillStat [2];
         SkillStat stat = new SkillStat  (TipoAurasData.Dot_Duracion_String, TipoAurasData.DOT_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION

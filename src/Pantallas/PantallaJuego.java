@@ -1,6 +1,6 @@
 package Pantallas;
-import Constantes.LoadSkills;
 import Constantes.LoadRecursos;
+import Constantes.LoadSkills;
 import Constantes.MiscData;
 import Constantes.Skills.SpellsData;
 import Geo.Celda;
@@ -9,7 +9,6 @@ import Geo.Muro;
 import Graficos.PixieArbol;
 import Graficos.Texto;
 import Main.Mundo;
-import static Main.Mundo.player;
 import Main.Myrran;
 import Resources.Recursos;
 import Save.SaveData;
@@ -24,7 +23,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+
 import java.util.Comparator;
+
+import static Main.Mundo.player;
 // * @author Ivan Delgado Huerta
 public class PantallaJuego extends AbstractPantalla
 {
@@ -96,7 +98,7 @@ public class PantallaJuego extends AbstractPantalla
         //player.getPixiePC().setCapaFrontal(1);
         //player.getPixiePC().setCapaTrasera(1);
         
-        /*Pixie fireball = new Pixie(Recursos.listaDeSpells.get(0));
+        /*Pixie fireball = new Pixie(Recursos.listaDePixieProyectiles.get(0));
         stageMundo.addActor(fireball);
         fireball.setPosition(50, 50);
         fireball.setRotation(135);

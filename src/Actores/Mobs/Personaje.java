@@ -67,6 +67,7 @@ public class Personaje extends Mob implements Vulnerable, Debuffeable, Caster
         else {actualHPs = i;} 
     }
 
+    //VULNERABLE:
     @Override public void modificarHPs(int HPs, Color color)
     {
         setActualHPs(actualHPs+HPs);
@@ -75,19 +76,22 @@ public class Personaje extends Mob implements Vulnerable, Debuffeable, Caster
         texto.scrollingCombatText(actor, 2f);
     }
 
+    //DEBUFFABLE:
     @Override public Array<BDebuff> getListaDeAuras()
     {
         return listaDeAuras;
     }
+    @Override public Group getDebuffIcons ()                { return debuffs; }
+    @Override public Group getBuffIcons ()                  { return buffs; }
 
+    //CASTER:
     @Override public void setCastingTime(float totalCastingTime)
     {
         isCasteando = true;
         setCastingTime(0, totalCastingTime);
     }
-
     @Override public boolean isCasteando()                  { return isCasteando; }
+    @Override public Group getActor ()                      { return actor; }
     @Override public int getCapaTerrenoSeleccionada ()      { return capaTerrenoSeleccionada; }
-    @Override public Group getDebuffIcons ()                { return debuffs; }
-    @Override public Group getBuffIcons ()                  { return buffs; }
+
 }

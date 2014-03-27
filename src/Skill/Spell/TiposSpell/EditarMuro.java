@@ -19,8 +19,10 @@ public class EditarMuro extends TipoSpell
     
     @Override public void inicializarSkillStats() 
     {
-        skillStats = new SkillStat [1]; 
-        SkillStat stat = new SkillStat  (TipoSpellsData.EDITARMURO_CastingTime_String, TipoSpellsData.EDITARMURO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
+        setIcono(TipoSpellsData.EDITARMURO_Icono);
+
+        skillStats = new SkillStat [1]; SkillStat stat;
+        stat = new SkillStat  (TipoSpellsData.EDITARMURO_CastingTime_String, TipoSpellsData.EDITARMURO_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
     }
 
     @Override public void inicializarSkillPixies()  {}

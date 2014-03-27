@@ -1,6 +1,7 @@
 package Skill.Spell.TiposSpell;
 // @author Ivan Delgado Huerta
 
+import Constantes.Skills.TipoSpellsData;
 import Graficos.Pixie;
 import Interfaces.Caster;
 import Skill.SkillRecursos;
@@ -25,11 +26,13 @@ public class Bolt extends TipoSpell
     public Bolt (String id)        { super(id); }
     public Bolt ()                 { }
     
-    @Override public void inicializarSkillStats() 
-    {   //Siempre que se construya una objeto de tipo Firebolt se inicializan los Stats base que usara:
+    @Override public void inicializarSkillStats()
+    {
+        setIcono(TipoSpellsData.BOLT_Icono);
+        //Siempre que se construya una objeto de tipo Firebolt se inicializan los Stats base que usara:
         //Creamos un array con el tamaño del numero de stats que vamos a introducir:
-        skillStats = new SkillStat [4]; 
-        SkillStat stat = new SkillStat  (BOLT_CastingTime_String, BOLT_CastingTime_Valor); skillStats[STAT_Cast]=stat;  //CAST
+        skillStats = new SkillStat [4]; SkillStat stat;
+        stat = new SkillStat  (BOLT_CastingTime_String, BOLT_CastingTime_Valor); skillStats[STAT_Cast]=stat;            //CAST
         stat = new SkillStat            (BOLT_Daño_String, BOLT_Daño_Valor); skillStats[STAT_Daño]=stat;                //DAÑO
         stat = new SkillStat            (BOLT_Velocidad_String, BOLT_Velocidad_Valor); skillStats[STAT_Velocidad]=stat; //VELOCIDAD
         stat = new SkillStat            (BOLT_Duracion_String, BOLT_Duracion_Valor); skillStats[STAT_Duracion]=stat;    //DURACION
@@ -41,14 +44,14 @@ public class Bolt extends TipoSpell
         skilllPixies = new SkillPixie[2];
         SkillStat.SkillPixie spixie = new SkillStat.SkillPixie();
         spixie.tipoAnimacion = "Casteos Bolt";
-        spixie.pixieArray.add(SkillRecursos.listaDeCasteos.get(FIREBOLT_Pixie_Casteo));
-        spixie.pixieArray.add(SkillRecursos.listaDeCasteos.get(FROSTBOLT_Pixie_Casteo));
+        spixie.pixieArray.add(SkillRecursos.listaDePixieCasteos.get(FIREBOLT_Pixie_Casteo));
+        spixie.pixieArray.add(SkillRecursos.listaDePixieCasteos.get(FROSTBOLT_Pixie_Casteo));
         skilllPixies[PIXIE_Casteos]=spixie;
         
         spixie = new SkillPixie(); 
         spixie.tipoAnimacion = "Proyectiles Bolt";
-        spixie.pixieArray.add(SkillRecursos.listaDeSpells.get(FIREBOLT_Pixie_Proyectil));
-        spixie.pixieArray.add(SkillRecursos.listaDeSpells.get(FROSTBOLT_Pixie_Proyectil));
+        spixie.pixieArray.add(SkillRecursos.listaDePixieProyectiles.get(FIREBOLT_Pixie_Proyectil));
+        spixie.pixieArray.add(SkillRecursos.listaDePixieProyectiles.get(FROSTBOLT_Pixie_Proyectil));
         skilllPixies[PIXIE_Proyectiles]=spixie;
     }
     

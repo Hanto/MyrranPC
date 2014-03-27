@@ -6,7 +6,6 @@ import Constantes.Skills.TipoAurasData;
 import Interfaces.Vulnerable;
 import Skill.Aura.BDebuff;
 import Skill.Aura.TipoAura;
-import Skill.SkillRecursos;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.Color;
 
@@ -23,7 +22,7 @@ public class Bomba extends TipoAura
     {
         isDebuff = true;
         stacksMaximos = 3;
-        setIcono(SkillRecursos.listaDeAuraIconos.get(TipoAurasData.BOMBA_Icono));
+        setIcono(TipoAurasData.BOMBA_Icono);
         
         skillStats = new SkillStat [2];
         SkillStat stat = new SkillStat  (TipoAurasData.BOMBA_Duracion_String, TipoAurasData.BOMBA_Duracion_Valor); skillStats[STAT_Duracion] = stat;       //DURACION

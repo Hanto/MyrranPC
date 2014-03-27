@@ -56,8 +56,8 @@ public class LoadSkills
     
     private static void cargarListaDeTiposSpell ()
     {   //BOLT:
-        TipoSpell proyectil = new Bolt(TipoSpellsData.BOLT_ID);
-        SkillBook.añadirTipoSpell(proyectil);
+        TipoSpell bolt = new Bolt(TipoSpellsData.BOLT_ID);
+        SkillBook.añadirTipoSpell(bolt);
         //EDITAR TERRENO:
         TipoSpell editar = new EditarTerreno(TipoSpellsData.EDITARTERRENO_ID);
         SkillBook.añadirTipoSpell(editar);

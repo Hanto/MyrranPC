@@ -28,7 +28,7 @@ public class Spell
     public void setNombre (String nombre)               { this.nombre = nombre; }
     public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
     public void setIcono (TextureRegion texture)        { icono = texture; }
-    public void setIcono (int iconoID)                  { icono = SkillRecursos.listaDeSpellIconos.get(iconoID); }
+    public void setIcono (String iconoID)               { icono = SkillRecursos.listaDeSpellIconos.get(iconoID); }
     //GET:
     public String getId ()                              { return id; }
     public String getNombre ()                          { return nombre; }

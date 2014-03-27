@@ -4,6 +4,7 @@ package Skill.Aura;
 import Constantes.MiscData;
 import Interfaces.Caster;
 import Interfaces.Debuffeable;
+import Skill.SkillRecursos;
 import Skill.SkillStat;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -28,6 +29,7 @@ public class Aura
     public void setNombre (String nombre)               { this.nombre = nombre; }
     public void setDescripcion (String descripcion)     { this.descripcion = descripcion; }
     public void setIcono (TextureRegion texture)        { icono = texture; }
+    public void setIcono (String iconoID)               { icono = SkillRecursos.listaDeAuraIconos.get(iconoID); }
     //GET
     public String getID()                               { return id; }
     public String getNombre()                           { return nombre; }

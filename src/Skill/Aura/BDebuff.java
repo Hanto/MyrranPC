@@ -2,11 +2,15 @@ package Skill.Aura;
 // @author Ivan Delgado Huerta
 
 import Constantes.MiscData;
+import Graficos.Texto;
 import Interfaces.Caster;
 import Interfaces.Debuffeable;
+import Resources.Recursos;
 import Skill.SkillStat;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class BDebuff 
 {
@@ -53,18 +57,36 @@ public class BDebuff
         int numDebuffs=0;
         int numBuffs = 1;
 
+        int textoX, textoY;
+
         for (int i=0;i<target.getListaDeAuras().size;i++)
         {
             BDebuff debuff = target.getListaDeAuras().get(i);
 
             if (debuff.isDebuff())
-            {
+            {   //numero de Stacks:
+                if (debuff.stacks>1)
+                {
+                    textoX = (int) (numDebuffs * debuff.icono.getWidth() + debuff.icono.getWidth() / 2);
+                    textoY = (int) (-debuff.icono.getHeight());
+                    Texto.printTexto(Integer.toString(debuff.stacks), Recursos.font8, Color.WHITE, Color.BLACK, textoX, textoY,
+                            Align.center, Align.bottom, 0, target.getDebuffIcons());
+                }
+                //Icono:
                 debuff.icono.setPosition(numDebuffs*debuff.icono.getWidth(), 0);
                 target.getDebuffIcons().addActor(debuff.icono);
                 numDebuffs++;
             }
             if (!debuff.isDebuff())
-            {
+            {   //numero de Stacks:
+                if (debuff.stacks >1)
+                {
+                    textoX = (int) (-numBuffs * debuff.icono.getWidth() + debuff.icono.getWidth() / 2);
+                    textoY = (int) (-debuff.icono.getHeight());
+                    Texto.printTexto(Integer.toString(debuff.stacks), Recursos.font8, Color.WHITE, Color.BLACK, textoX, textoY,
+                            Align.center, Align.bottom, 0, target.getBuffIcons());
+                }
+                //Icono:
                 debuff.icono.setX(-numBuffs*debuff.icono.getWidth());
                 target.getBuffIcons().addActor(debuff.icono);
                 numBuffs++;

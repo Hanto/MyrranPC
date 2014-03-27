@@ -20,8 +20,9 @@ public class Heal extends TipoSpell
     @Override
     public void inicializarSkillStats() 
     {
-        skillStats = new SkillStat [2];
-        SkillStat stat;
+        setIcono(TipoSpellsData.HEAL_Icono);
+
+        skillStats = new SkillStat [2]; SkillStat stat;
         stat = new SkillStat (TipoSpellsData.HEAL_CastingTime_String, TipoSpellsData.HEAL_CastingTime_Valor); skillStats[STAT_Cast]=stat;//CAST
         stat = new SkillStat (TipoSpellsData.HEAL_Curacion_String, TipoSpellsData.HEAL_Curacion_Valor); skillStats[STAT_Curacion]=stat;  //CURACION
     }

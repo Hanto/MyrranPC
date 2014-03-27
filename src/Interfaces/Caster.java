@@ -9,6 +9,7 @@ public interface Caster
 {
     public void setCastingTime(float totalCastingTime);
     public boolean isCasteando();
+
     public Group getActor();
     public int getCapaTerrenoSeleccionada();
 }

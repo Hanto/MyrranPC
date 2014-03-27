@@ -51,7 +51,8 @@ public class Recursos
     public static Image troncon;
     public static Image hojas;
     public static Image sombraArbol1;
-    public static BitmapFont font14;  
+    public static BitmapFont font14;
+    public static BitmapFont font8;
     public static TextureRegion casillero;
     public static TextureRegion rebindButtonOn;
     public static TextureRegion rebindButtonOff;
@@ -74,7 +75,8 @@ public class Recursos
         nameplateActual = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_PlayerSprites_LOC+"NameplateFondo"));
         troncon = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Tronco1"));
         hojas = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"Hojas1"));
-        sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1")); 
+        sombraArbol1 = new Image(Recursos.atlas.findRegion(MiscData.ATLAS_Arboles_LOC+"SombraArbol1"));
+        font8 = new BitmapFont (Gdx.files.internal("fonts/8.fnt"), false);
         font14 = new BitmapFont (Gdx.files.internal("fonts/14.fnt"), false);
         grid = new TextureRegion(Recursos.atlas.findRegion(MiscData.ATLAS_Terrenos_LOC+"grid"));
         casillero = new TextureRegion (Recursos.atlas.findRegion(MiscData.ATLAS_UI_LOC+"Casillero"));
