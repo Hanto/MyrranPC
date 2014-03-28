@@ -83,7 +83,7 @@ public class BarraSpells extends Group
                         {
                             if (tooltip != null)    { removeActor(tooltip); }   //Antes de añadir, borramos el que ya hay
                             tooltip = SpellTooltip.tooltip(SkillBook.listaDeSpells.get(casilla.spellID));
-                            tooltip.setPosition(casilla.apariencia.getX(), casilla.apariencia.getY()+casilla.apariencia.getHeight()+2);
+                            tooltip.setPosition(casilla.apariencia.getX(), casilla.apariencia.getY()+casilla.apariencia.getHeight()+4);
                             addActor(tooltip);
                         }
                     }

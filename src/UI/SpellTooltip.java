@@ -12,32 +12,38 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class SpellTooltip
 {
+    private static final int ALTOLINEA_Stat = 11;
+    private static final int ALTOLINEA_Nombre = 14;
+
     public static Group tooltip (Spell spell)
     {
         Group tooltip = new Group();
-
         Image fondo = new Image(Recursos.casillero);
-        fondo.setBounds(0,0,200,100);
+
+        int altoTooltip = altoTooltip(spell);
+        fondo.setBounds(0,0,200,altoTooltip);
         fondo.setColor(0, 0, 0, 0.3f);
         tooltip.addActor(fondo);
 
         Image icono = new Image(spell.getIcono());
-        icono.setPosition(0, 94);
+        icono.setPosition(-icono.getWidth(), altoTooltip-icono.getHeight()+5);
         tooltip.addActor(icono);
 
         Texto nombreSpell = new Texto(spell.getNombre(), Recursos.font14, Color.ORANGE, Color.BLACK,
-                                      0, 0, Align.left, Align.center, 1);
-        nombreSpell.setPosition(5, 100);
+                0, 0, Align.left, Align.center, 1);
+        nombreSpell.setPosition(5, altoTooltip);
         tooltip.addActor(nombreSpell);
 
-        int linea = 95;
+        int linea = altoTooltip;
         Texto nombreSkillStat;
         Texto nombreAura;
         Texto valorStat;
 
+        linea = linea - 3;
+
         for (int i=0; i<spell.skillStats().length;i++)
         {
-            linea = linea-10;
+            linea = linea- ALTOLINEA_Stat;
 
             nombreSkillStat = new Texto(spell.skillStats()[i].nombre, Recursos.font14, Color.WHITE, Color.BLACK,
                                         0, 0, Align.left, Align.center, 1);
@@ -54,15 +60,15 @@ public class SpellTooltip
         {
             Aura aura = SkillBook.listaDeAuras.get(spell.getListaDeAurasQueAplica().get(i));
 
-            linea = linea-13;
-            nombreAura = new Texto(aura.getNombre(), Recursos.font14, aura.isDebuff() ? Color.RED : Color.RED, Color.BLACK,
+            linea = linea- ALTOLINEA_Nombre;
+            nombreAura = new Texto(aura.getNombre()+":", Recursos.font14, Color.GREEN, Color.BLACK,
                                    0, 0, Align.left, Align.center, 1);
             nombreAura.setPosition(7, linea);
             tooltip.addActor(nombreAura);
 
             for (int j=0; j<aura.skillStats().length;j++)
             {
-                linea = linea-10;
+                linea = linea- ALTOLINEA_Stat;
 
                 nombreSkillStat = new Texto(aura.skillStats()[j].nombre, Recursos.font14, Color.WHITE, Color.BLACK,
                         0, 0, Align.left, Align.center, 1);
@@ -76,5 +82,20 @@ public class SpellTooltip
             }
         }
         return tooltip;
+    }
+
+    public static int altoTooltip (Spell spell)
+    {   //Es lo que ocupa el nombre del Skill
+        int alto = ALTOLINEA_Nombre;
+        //Dejamos 11 pixeles por Stat
+        alto = alto + spell.skillStats().length* ALTOLINEA_Stat;
+
+        for (int i=0;i<spell.getListaDeAurasQueAplica().size;i++)
+        {
+            Aura aura = SkillBook.listaDeAuras.get(spell.getListaDeAurasQueAplica().get(i));
+            //Dejamos 11 pixeles por Stat y 14 para el nombre del Aura
+            alto = alto + aura.skillStats().length* ALTOLINEA_Stat +14;
+        }
+        return alto;
     }
 }

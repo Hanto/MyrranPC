@@ -91,7 +91,7 @@ public class LoadSkills
         SkillBook.añadirSpell(skill);
         
         //TERRAFORMAR: (Editar Terreno)
-        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.EDITARMURO_ID));
+        skill = new Spell(SkillBook.listaDeTiposSpell.get(TipoSpellsData.EDITARTERRENO_ID));
         skill.setId(SpellsData.TERRAFORMAR_ID);
         skill.setNombre(SpellsData.TERRAFORMAR_Nombre);
         skill.setDescripcion(SpellsData.TERRAFORMAR_Descripcion);
